@@ -1,0 +1,84 @@
+ body {
+	margin: 0;
+	padding: 0;
+ }
+ 
+ #background 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: relative; 
+	 margin-left: auto; 
+	 margin-right: auto; 
+	 width: 1519px;
+	 height: 1162px; 
+	 overflow: hidden;
+	 z-index:0;
+	} 
+
+ #Calque0 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: absolute; 
+	 width: 1519px;
+	 height: 1161px;
+	 z-index:1;
+} 
+
+ #lvisa 
+{ 
+	 left: 262px; 
+	 top: 258px; 
+	 font-size: 1.1em;
+	 position: absolute; 
+	 width: 138px;
+	 height: 33px;
+	 z-index:2;
+} 
+
+ #psi 
+{ 
+	 left: 350px; 
+	 top: 378px; 
+	 position: absolute; 
+	 width: 100px;
+	 height: 37px;
+	 z-index:3;
+	 outline: none;
+	 border: none;
+	 font-size: 1.5em;
+} 
+
+ #var 
+{ 
+	 left: 306px; 
+	 top: 690px; 
+	 position: absolute; 
+	 width: 231px;
+	 height: 46px;
+	 z-index:4;
+} 
+
+#tabonmok
+{
+   border-top-width: 0px;
+   border-right-width: 0px;
+   border-bottom-width: 0px;
+   border-left-width: 0px;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+   border-top-color: #000000;
+   border-right-color: #000000;
+   border-bottom-color: #000000;
+   border-left-color: #000000;
+   background-color: transparent;
+   background-image: url(images/index_Button1_bkgrnd.png);
+   background-repeat: repeat;
+   background-position: left top;
+   color: #000000;
+   font-family: Arial;
+   font-size: 13px;
+}

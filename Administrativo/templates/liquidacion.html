@@ -1,0 +1,593 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+	<div class="row content_search">
+		<div class="col-md-12">
+			<h4 style="font-weight:bold;margin-bottom: 0px !important;">LIQUIDACION CLIENTE</h4>
+			<hr style="margin-top: 5px !important">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+        <div class="col-md-12">
+            <p class="imprimir_pedido2 pull-right" ng-click="imprimir()" style="margin-right:30px;"><i class="fa fa-print"></i> Imprimir</p>
+            <p class="imprimir_pedido2 pull-right" ng-click="exportToExcel('#liquidacion')" style="margin-right:30px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</p>
+        </div>
+		<div class="col-md-12">
+			<div class="row">
+                <div class="col-lg-12">
+                    <md-card>
+                        <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length > 0">
+                          <div class="md-toolbar-tools">
+                            <span style="color: #fff;text-transform: uppercase;">LIQUIDACION {{pedidos[0].nombre}}</span>
+                            <div flex></div>
+                          </div>
+                        </md-toolbar>
+                         <div class="dataTable_wrapper">
+                            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr class="head_table">
+                                        <th>Nº Orden</th>
+                                        <th>Cliente</th>
+                                        <th>Visitas</th>
+                                        <th>Tipo</th>
+                                        <th>Estado</th>
+                                        <th>Costo Productos</th>
+                                        <th ng-if="pedidos[0].tipo_usuario == 3">Adicionar</th>
+                                        <th ng-if="pedidos[0].tipo_usuario != 3">Costo Envío</th>
+                                        <th ng-if="pedidos[0].tipo_usuario == 3">Descuento</th>
+                                        <th>Forma de Pago</th>
+                                        <th style="width:180px">Observacion</th>
+                                        <th>Total Servicios</th>
+                                        <th>Fecha Reprog.</th>
+                                        <th>Hora envío</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat='item in tracking' class="odd gradeX">
+                                        <td>LIE000{{item.id}}</td>
+                                        <td>{{item.nombre_destino}}</td>
+                                        <td style="width:70px"><input type="text" ng-model="item.reprogramado" class="input_montos"></td>
+                                        <td>{{item.tipo}}</td>
+                                        <td>{{item.estado}}</td>
+                                        <td>S/. {{item.monto | number:2}}</td>
+                                        <td ng-if="pedidos[0].tipo_usuario == 3">S/. {{item.costoenvio2 | number:2}}</td>
+                                        <td ng-if="pedidos[0].tipo_usuario != 3">S/. {{item.costoenvio | number:2}}</td>
+                                        <td ng-if="pedidos[0].tipo_usuario == 3">S/. {{item.descuento | number:2}}</td>
+                                        <td>{{item.forma_pago}}</td>
+                                        <td><textarea class="input_montos" rows="3" style="width:100% !important;height:auto" ng-model="item.motivo"></textarea></td>
+                                        <td>S/. <input type="text" ng-model="item.costo" class="input_montos" ng-change="change_montoacobrar()"></td>
+                                        <td>{{item.fecha_reprogramacion}}</td>
+                                        <td>{{item.horap}}</td>
+                                    </tr>
+                                    <tr ng-if="tracking.length > 0">
+                                        <td colspan="6" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">TOTAL MONTO A COBRAR</p>  
+                                        </td>
+                                        <td colspan="2" style="background-color:#fff">
+                                            S/. {{pagos.total_cobrar | number:2}}
+                                        </td>
+                                         <td colspan="2" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">COSTO TOTAL SERVICIOS</p>  
+                                        </td>
+                                        <td colspan="3" style="background-color:#fff">
+                                            S/. {{pagos.total_servicios | number:2}}
+                                        </td>
+                                        <td style="background-color:#fff"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="text-align:center" ng-show="no_liquidacion">No hay liquidaciones pendientes para esta fecha</p>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+		</div>
+	</div>	
+	<br>
+    <div class="row" ng-if="tracking.length > 0">
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <md-card>
+                <div>
+                    <div class="contet_servicios">
+                        <span>TOTAL SERVICIOS</span>
+                        <span class="pull-right number_servicio">{{pagos.count_servicios}}</span>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="ic_model"><ng-md-icon icon="event_available" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+                            <span style="font-weight:bold">Entregados:</span>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <span class="pull-right serv_number">{{pagos.count_entregados}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="ic_model"><ng-md-icon icon="event_busy" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+                            <span style="font-weight: bold">Anulados:</span>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <span class="pull-right serv_number">{{pagos.count_anulados}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="ic_model"><ng-md-icon icon="event_note" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+                            <span style="font-weight: bold">Reprogramados:</span>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <span class="pull-right serv_number">{{pagos.count_reprogramados}}</span>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </md-card>
+            <md-card>
+                <div class="contet_servicios red">
+                    <span>PENDIENTE DE PAGO</span>
+                </div>
+                <div class="contet_pendientes">
+                    <h3 class="monto_pendiente">S./ {{pagos.total_pedientedepago | number:2}}</h3>
+                    <p class="pull-right detalles_pendiente" ng-click="detalles_pendientes()">Ver Detalles</p>
+                </div>
+            </md-card>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    <md-card>
+                        <div class="dataTable_wrapper">
+                            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr class="head_table">
+                                        <th></th>
+                                        <th>EFECT</th>
+                                        <th>POS (-5%)</th>
+                                        <th>TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">TOTAL A DEPOSITAR</p>  
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.pagar_efect" ng-change="change_sinservicio()">
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.pagar_pos" ng-change="change_sinservicio()">
+                                        </td>
+                                         <td style="background-color:#fff">
+                                            S./ &nbsp;&nbsp;{{pagos.total_sinservicio}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">TOTAL SERVICIOS</p>  
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.total_servicios" ng-change="change_totaldepositar()">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">COSTO RECOJO PRODUCTOS</p>  
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.costo_recojo" ng-change="change_totaldepositar()">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">SERVICIOS OLVA</p>  
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.total_serviciosolva" ng-change="change_totaldepositar()">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">SERVICIOS ADICIONALES</p>  
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.costo_adicional" ng-change="change_totaldepositar()">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">SALDO PENDIENDE POR DEPOSITAR</p>
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.pendiente" ng-change="change_totaldepositar()">
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="pedidos[0].tipo_usuario=='3'">
+                                        <td colspan="3" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">TOTAL DE DEPOSITO DESCUENTO DE LOS SERVICIOS</p>
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.total_depostirar">
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="pedidos[0].tipo_usuario!=='3'">
+                                        <td colspan="3" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">TOTAL A CANCELAR</p>
+                                        </td>
+                                        <td style="background-color:#fff">
+                                            S./ <input type="text" name="costo_adicional" class="input_montos" ng-model="pagos.total_depostirar">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3" style="text-align:center">
+            <md-button class="md-raised text-white orange" ng-click="liquidar()" ng-disabled="liquidacion">LIQUIDAR PEDIDO</md-button>
+            <br>
+            <md-button class="md-raised text-white green" ng-disabled="despositado" ng-click="liquidar1()">MARCAR COMO DEPOSITADO</md-button>
+            <br>
+            <md-button class="md-raised text-white button_cliente" ng-click="finalizar()">SALIR</md-button>
+        </div>
+    </div>  
+</div>
+<navfooter></navfooter>
+<div id="articulos" ng-show="false">
+      <img src="images/logo.png" height="50">
+      <h4 class="title_print">Courier Liebre Express</h4>
+      <hr>
+      <br>
+      <h4 style="text-align:center;text-decoration: underline;">REPORTE LIQUIDACION</h4>
+      <div>
+          <p style="text-align:right;font-size:10px;">Fecha: {{fechaInicio}}</p>
+      </div>
+      <br>
+	<table style="width:100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+            <tr class="head_table">
+                <th class="th_print">Nº Orden</th>
+                <th class="th_print">Cliente</th>
+                <th class="th_print">Visitas</th>
+                <th class="th_print">Tipo</th>
+                <th class="th_print">Estado</th>
+                <th class="th_print">Costo Productos</th>
+                <th class="th_print" ng-if="pedidos[0].tipo_usuario=='3'">Adicionar</th>
+                <th class="th_print" ng-if="pedidos[0].tipo_usuario!='3'">Costo Envío</th>
+                <th class="th_print" ng-if="pedidos[0].tipo_usuario=='3'">Descuento</th>
+                <th class="th_print">Forma de Pago</th>
+                <th class="th_print">Observacion</th>
+                <th class="th_print">Total Servicios</th>
+                <th class="th_print">Fecha Reprog.</th>
+                <th class="th_print">Hora envío</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='item in tracking' class="odd gradeX">
+                <td class="th_print">LIE000{{item.id}}</td>
+                <td class="th_print">{{item.nombre_destino}}</td>
+                <td class="th_print">{{item.visitas}}</td>
+                <td class="th_print">{{item.tipo}}</td>
+                <td class="th_print">{{item.estado}}</td>
+                <td class="th_print">S/. {{item.monto}}</td>
+                <td class="th_print"  ng-if="pedidos[0].tipo_usuario=='3'">S/. {{item.costoenvio2}}</td>
+                <td class="th_print" ng-if="pedidos[0].tipo_usuario!='3'">S/. {{item.costoenvio}}</td>
+                <td class="th_print"  ng-if="pedidos[0].tipo_usuario=='3'">S/. {{item.descuento}}</td>
+                <td class="th_print">{{item.forma_pago}}</td>
+                <td class="th_print"><p style="page-break-inside:avoid; page-break-after:auto">{{item.motivo}}</p></td>
+                <td class="th_print">S/. {{item.costo | number:2}}</td>
+                <td class="th_print">{{item.fecha_reprogramacion}}</td>
+                <td class="th_print">{{item.horap}}</td>
+            </tr>
+            <tr ng-if="tracking.length > 0">
+                <td class="th_print" colspan="5" style="background-color:#fff">
+                    <p style="text-align:right;font-weight:bold">TOTAL MONTO A COBRAR</p>  
+                </td>
+                <td class="th_print" colspan="1" style="background-color:#fff">
+                    S/. {{pagos.total_cobrar | number:2}}
+                </td>
+                 <td class="th_print" colspan="4" style="background-color:#fff">
+                    <p style="text-align:right;font-weight:bold">COSTO TOTAL SERVICIOS</p>  
+                </td>
+                <td class="th_print" colspan="1" style="background-color:#fff">
+                    S/. {{pagos.total_servicios | number:2}}
+                </td>
+                <td style="background-color:#fff"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <div class="row">
+        <div class="dataTable_wrapper">
+                <table style="width:25%; margin-right:15px; float:left" class="table table-striped table-hover" id="dataTables-example">
+                    <thead>
+                        <tr class="head_table">
+                            <th>TOTAL SERVICIOS</th>
+                            <th>{{pagos.count_servicios}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">ENTREGADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{pagos.count_entregados}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">ANULADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{pagos.count_anulados}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">REPROGRAMADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{pagos.count_reprogramados}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <div class="dataTable_wrapper">
+            <table style="width:73%; float:left" class="table table-striped table-hover" id="dataTables-example">
+                <thead>
+                    <tr class="head_table">
+                        <th></th>
+                        <th>EFECT</th>
+                        <th>POS</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="background-color:#fff">
+                            <p style="text-align:right;font-weight:bold">TOTAL A DEPOSITAR</p>  
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.pagar_efect | number:2}}
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.pagar_pos | number:2}}
+                        </td>
+                         <td style="background-color:#fff">
+                            S./ {{pagos.total_sinservicio | number:2}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color:#fff">
+                            <p style="text-align:right;font-weight:bold">TOTAL SERVICIOS</p>  
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.total_servicios |number:2}}
+                        </td>
+                    </tr>
+                    <tr ng-if="cliente.almacen == 0">
+                        <td colspan="3" style="background-color:#fff">
+                            <p style="text-align:right;font-weight:bold">COSTO RECOJO PRODUCTOS</p>  
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.costo_recojo |number:2}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color:#fff">
+                            <p style="text-align:right;font-weight:bold">SERVICIOS OLVA</p>  
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.total_serviciosolva |number:2}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color:#fff">
+                            <p style="text-align:right;font-weight:bold">SERVICIOS ADICIONALES</p>  
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.costo_adicional |number:2}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color:#fff">
+                            <p style="text-align:right;font-weight:bold">SALDO PENDIENTE</p>
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.pendiente |number:2}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color:#fff">
+                            <p style="text-align:right;font-weight:bold">TOTAL DE DEPOSITO</p>  
+                        </td>
+                        <td style="background-color:#fff">
+                            S./ {{pagos.total_depostirar |number:2}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive --> 
+    </div> 
+</div>
+<div id="liquidacion" ng-show="false">
+    <table style="width:100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+            <tr class="head_table">
+                <th style="background-color:#eee">ORDEN</th>
+                <th style="background-color:#eee">CLIENTE</th>
+                <th style="background-color:#eee">VISITAS</th>
+                <th style="background-color:#eee">TIPO</th>
+                <th style="background-color:#eee">ESTADO</th>
+                <th style="background-color:#eee">COSTO PRODUCTOS</th>
+                <th style="background-color:#eee" ng-if="pedidos[0].tipo_usuario=='3'">ADICIONAR</th>
+                <th style="background-color:#eee" ng-if="pedidos[0].tipo_usuario!='3'">COSTO ENVIO</th>
+                <th style="background-color:#eee" ng-if="pedidos[0].tipo_usuario=='3'">DESCUENTO</th>
+                <th style="background-color:#eee">FORMA DE PAGO</th>
+                <th style="background-color:#eee">OBSERVACION</th>
+                <th style="background-color:#bdbdbd">TOTAL SERVICIOS</th>
+                <th style="background-color:#eee">FECHA REPROGRAMACION</th>
+                <th style="background-color:#eee">HORA ENVIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='item in tracking'>
+                <td class="th_print">LIE000{{item.id}}</td>
+                <td class="th_print">{{item.nombre_destino}}</td>
+                <td class="th_print">{{item.visitas}}</td>
+                <td class="th_print">{{item.tipo}}</td>
+                <td class="th_print">{{item.estado}}</td>
+                <td class="th_print">S/. {{item.monto}}</td>
+                <td class="th_print"  ng-if="pedidos[0].tipo_usuario=='3'">S/. {{item.costoenvio2}}</td>
+                <td class="th_print" ng-if="pedidos[0].tipo_usuario!='3'">S/. {{item.costoenvio}}</td>
+                <td class="th_print"  ng-if="pedidos[0].tipo_usuario=='3'">S/. {{item.descuento}}</td>
+                <td class="th_print">{{item.forma_pago}}</td>
+                <td class="th_print"><p style="page-break-inside:avoid; page-break-after:auto">{{item.motivo}}</p></td>
+                <td class="th_print">S/. {{item.costo | number:2}}</td>
+                <td class="th_print">{{item.fecha_reprogramacion}}</td>
+                <td class="th_print">{{item.horap}}</td>
+            </tr>
+            <tr>
+                <td colspan="5" style="background-color: #64b5f6">
+                    <p style="text-align:right;">TOTAL MONTO A COBRAR</p>  
+                </td>
+                <td colspan="1" style="background-color:#e0f7fa">
+                    S/. {{pagos.total_cobrar | number:2}}
+                </td>
+                 <td colspan="4" style="background-color: #64b5f6">
+                    <p style="text-align:right;">COSTO TOTAL SERVICIOS</p>  
+                </td>
+                <td colspan="1" style="background-color:#e0f7fa">
+                    S/. {{pagos.total_servicios | number:2}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <div>
+        <table class="table table-striped table-hover" style="display:inline-block">
+            <thead>
+                <tr>
+                    <th style="background-color:#eee"></th>
+                    <th style="background-color:#eee">EFECT</th>
+                    <th style="background-color:#eee">POS</th>
+                    <th style="background-color:#eee">TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p style="text-align:right;">TOTAL A DEPOSITAR</p>  
+                    </td>
+                    <td>
+                        S./ {{pagos.pagar_efect | number:2}}
+                    </td>
+                    <td>
+                        S./ {{pagos.pagar_pos | number:2}}
+                    </td>
+                     <td>
+                        S./ {{pagos.total_sinservicio | number:2}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <p style="text-align:right;"">TOTAL SERVICIOS</p>  
+                    </td>
+                    <td>
+                        S./ {{pagos.total_servicios |number:2}}
+                    </td>
+                </tr>
+                <tr ng-if="cliente.almacen == 0">
+                    <td colspan="3">
+                        <p style="text-align:right;">COSTO RECOJO PRODUCTOS</p>  
+                    </td>
+                    <td>
+                        S./ {{pagos.costo_recojo |number:2}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <p style="text-align:right;">SERVICIOS OLVA</p>  
+                    </td>
+                    <td>
+                        S./ {{pagos.total_serviciosolva |number:2}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <p style="text-align:right;">SERVICIOS ADICIONALES</p>  
+                    </td>
+                    <td>
+                        S./ {{pagos.costo_adicional |number:2}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <p style="text-align:right;">SALDO PENDIENTE</p>
+                    </td>
+                    <td>
+                        S./ {{pagos.pendiente |number:2}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="background-color: #64b5f6">
+                        <p style="text-align:right;">TOTAL DE DEPOSITO</p>  
+                    </td>
+                    <td style="background-color:#e0f7fa">
+                        S./ {{pagos.total_depostirar |number:2}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <table class="table table-striped table-hover" style="display:inline-block">
+            <thead>
+                <tr>
+                    <th style="background-color:#eee">TOTAL SERVICIOS</th>
+                    <th style="text-align:right;">{{pagos.count_servicios}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>ENTREGADO</p>  
+                    </td>
+                    <td>
+                        {{pagos.count_entregados}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>ANULADO</p>  
+                    </td>
+                    <td>
+                        {{pagos.count_anulados}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>REPROGRAMADO</p>  
+                    </td>
+                    <td>
+                        {{pagos.count_reprogramados}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+</div>

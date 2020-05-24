@@ -1,0 +1,24 @@
+[09-Jan-2017 19:02:18 America/Chicago] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 91
+[09-Jan-2017 19:02:18 America/Chicago] PHP Warning:  mysqli::autocommit(): Couldn't fetch mysqli in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 92
+[09-Jan-2017 19:02:18 America/Chicago] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 111
+[09-Jan-2017 19:02:18 America/Chicago] PHP Fatal error:  Call to a member function execute() on a non-object in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 112
+[09-Jan-2017 19:03:31 America/Chicago] PHP Warning:  mysqli::mysqli(): (42000/1044): Access denied for user 'rattiosc'@'localhost' to database 'rattiosc_dbcourier' in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 91
+[09-Jan-2017 19:03:31 America/Chicago] PHP Warning:  mysqli::autocommit(): Couldn't fetch mysqli in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 92
+[09-Jan-2017 19:03:31 America/Chicago] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 111
+[09-Jan-2017 19:03:31 America/Chicago] PHP Fatal error:  Call to a member function execute() on a non-object in /home/rattiosc/public_html/Liebre/Liebre/php/listadoproceso.php on line 112
+[02-Feb-2017 21:18:39 UTC] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 91
+[02-Feb-2017 21:18:39 UTC] PHP Warning:  mysqli::autocommit(): Couldn't fetch mysqli in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 92
+[02-Feb-2017 21:18:39 UTC] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 111
+[02-Feb-2017 21:18:39 UTC] PHP Fatal error:  Call to a member function execute() on null in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 112
+[02-Feb-2017 21:23:19 UTC] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'rattiosc'@'localhost' (using password: YES) in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 91
+[02-Feb-2017 21:23:19 UTC] PHP Warning:  mysqli::autocommit(): Couldn't fetch mysqli in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 92
+[02-Feb-2017 21:23:19 UTC] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 111
+[02-Feb-2017 21:23:19 UTC] PHP Fatal error:  Call to a member function execute() on null in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 112
+[02-Feb-2017 21:24:03 UTC] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'rattiosc'@'localhost' (using password: YES) in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 91
+[02-Feb-2017 21:24:03 UTC] PHP Warning:  mysqli::autocommit(): Couldn't fetch mysqli in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 92
+[02-Feb-2017 21:24:03 UTC] PHP Warning:  mysqli::prepare(): Couldn't fetch mysqli in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 111
+[02-Feb-2017 21:24:03 UTC] PHP Fatal error:  Call to a member function execute() on null in /home/howardflores/public_html/Administrativo/php/listadoproceso.php on line 112
+[17-Aug-2017 21:02:37 UTC] PHP Notice:  Undefined index: file in /home/adminliebre2016/public_html/Administrativo/php/subirRevision.php on line 92
+[17-Aug-2017 21:02:37 UTC] PHP Notice:  Undefined index: file in /home/adminliebre2016/public_html/Administrativo/php/subirRevision.php on line 93
+[17-Aug-2017 21:02:37 UTC] PHP Notice:  Undefined index: file in /home/adminliebre2016/public_html/Administrativo/php/subirRevision.php on line 95
+[17-Aug-2017 21:02:37 UTC] PHP Notice:  Undefined index: file in /home/adminliebre2016/public_html/Administrativo/php/subirRevision.php on line 95

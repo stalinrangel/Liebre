@@ -1,0 +1,16 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+
+  <p class="title">Motorizados</p>
+  <button class="pull-right btn buttom_blue" ng-click="agregar()">AGREGAR MOTORIZADO</button>
+	<br><br>
+    <div ng-controller="ListadoMotorizadosCtrl as showCase" class="tabla_motorizados">
+      <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover"></table>
+    </div>
+</div>
+<navfooter></navfooter>
+

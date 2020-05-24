@@ -1,0 +1,72 @@
+<md-dialog aria-label="Pagos" style="width: 85%;">
+  <form ng-cloak >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <div class="content_pago">
+          <h3 class="text_pago">Resumen de Envío</h3>
+        </div>
+        <div>
+          <i class="fa fa-times delete_modal1" aria-hidden="true" ng-click="cancelar()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <p class="title_confirm">Fecha Recojo</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1">
+              <p class="title_confirm">Cliente Final</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <p class="title_confirm">Fecha de Entrega</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <p class="title_confirm">Destino</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <p class="title_confirm">Distrito</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <p class="title_confirm">Productos</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1">
+              <p class="title_confirm">Costo Productos + Costo entrega - Descuento
+              </p>
+            </div>
+        </div>
+        <hr style="margin-top: 0px !important;">
+        <div ng-repeat="pedido in pedidos">
+          <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-2">
+                <strong>{{forigen}}</strong>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-1">
+                {{pedido.nombreDestino}}
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-2" style="color:#B71C1C">
+                <strong>{{pedido.fdestino}}</strong>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-2">
+                {{pedido.destino}}
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-2">
+                {{pedido.distrito_destino}}
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-2">
+                <p>{{pedido.detalle}}</p>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-1" style="text-align:right">
+                <p> S/.{{pedido.total | number:2}}</p>
+              </div>
+          </div>
+          <hr>
+        </div>
+        <button class="btn btn-danger btn-add pull-right" ng-disabled="confirm_pedido" ng-click="guardar()">Confirmar Envío</button>
+        <loadingwait></loadingwait>
+        <br>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

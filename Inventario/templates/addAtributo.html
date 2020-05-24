@@ -1,0 +1,38 @@
+<md-dialog aria-label="Mango (Fruit)" style="width:25%;">
+  <form ng-cloak >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Agregar Medida</h2>
+        <span flex></span>
+        <div>
+          <i class="fa fa-times delete_modal" style="color:#fff !important" aria-hidden="true" ng-click="cancelar()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="text_registro form-group">
+          <div class="ic_model" style="margin-bottom: 5px;"><i class="fa fa-sort-numeric-asc icon_dtmodel" aria-hidden="true"></i></div>
+          <span style="font-weight: bold">Cantidad:</span>
+          <p style="font-size: 10px;margin-left: 35px;margin-bottom: 5px;">La cantidad del producto se establecerá en 0. Para actualizar este valor debe ir a la sección "Agregar Guías".</p>
+        </div>
+        <div class="text_registro form-group">
+          <div class="ic_model" style="margin-bottom: 5px;"><ng-md-icon icon="straighten" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+          <span style="font-weight: bold">Medida:</span>
+          <p style="font-size: 10px;margin-left: 35px;margin-bottom: 5px;">Medida puede ser utilizada según sea el tipo de artículo: tallas (S,40,etc.), pulgadas (24"), dimensiones (5x5cm), especificaciones (8GB,DDR3), etc.</p>
+          <input type="text" class="form-control" placeholder="S,M,39,40" ng-model="crearAtributo.atributo">
+        </div>
+        <div class="text_registro form-group">
+          <div class="ic_model" style="margin-bottom: 5px;"><ng-md-icon icon="attach_money" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+          <span style="font-weight: bold">Precio:</span>
+          <p style="font-size: 10px;margin-left: 35px;margin-bottom: 5px;">Precio del producto. Para decimales utilizar punto (.)</p>
+          <input type="text" class="form-control" placeholder="0" ng-model="crearAtributo.precio">
+        </div>
+        <div class="text_registro form-group" ng-show="false">
+          <input type="text" class="form-control" placeholder="ID color" ng-model="crearAtributo.color_id">
+        </div>
+          <button class="btn btn-danger btn-add btn_mproduct" ng-click="guardarAtributo()">Crear</button>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

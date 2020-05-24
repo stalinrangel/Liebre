@@ -1,0 +1,81 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a ng-click="toggleSidebar()">
+            Menú
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          </a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/pedido">Realizar envíos <span class="menu-icon fa fa-truck"><md-tooltip md-direction="right">Realizar envíos</md-tooltip></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/tracking">Mis envíos <span class="menu-icon fa fa-search"><md-tooltip md-direction="right">Mis envíos</md-tooltip></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/historial">Historial <span class="menu-icon fa fa-clock-o"><md-tooltip md-direction="right">Historial</md-tooltip></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/reprogramar">Reprogramar envío <span class="menu-icon fa fa-refresh"><md-tooltip md-direction="right">Reprogramar envío</md-tooltip></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/liquidaciones">Liquidaciones <span class="menu-icon fa fa-list-alt"><md-tooltip md-direction="right">Liquidaciones</md-tooltip></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/perfil">Mi cuenta <span class="menu-icon fa fa-user"><md-tooltip md-direction="right">Mi cuenta</md-tooltip></span></a>
+        </li>
+        <!--<li class="sidebar-list">
+          <a href="#">Ayuda <span class="menu-icon fa fa-question"></span></a>
+        </li>-->
+      </ul>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div class="page-content">
+        <!-- Header Bar -->
+        <div class="row header">
+          <div class="col-xs-12">
+            <div class="user pull-right">
+              <p class="welcome_name">Bienvenido, {{profile.usuario}} </p>
+              <div class="item dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle>
+                  <img ng-src="{{profile.picture}}">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li class="dropdown-header">
+                    {{profile.usuario}}
+                  </li>
+                  <li class="divider"></li>
+                  <li class="link">
+                    <a ng-click="cerrarS()">
+                      Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="page">
+               <img src="images/logo.png" width="90" height="45">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Header Bar -->
+
+        <!-- Main Content -->
+        <div class="content">
+          <div class="content_listpedidos">
+            <h4 class="text_info2">Liquidaciones de Pedidos</h4>
+            <p class="info_page">En Liquidaciones, se listan el resumen de pago de los pedidos finalizados.</p>
+            <div ng-controller="LiquidacionesTableCtrl as showCase" class="table-responsive">
+              <p class="text-danger"><strong>{{ showCase.message }}</strong></p>
+              <br>
+              <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover tabla_pacientes"></table>
+            </div>
+          </div>
+        </div>

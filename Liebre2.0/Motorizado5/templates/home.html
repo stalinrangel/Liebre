@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default" role="navigation" style="background-color: #029ED1 !important">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" style="background-color: #FFF !important">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="color: #FFF" href="#/home">Liebre Express</a>
+      </div>
+    
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+      
+        <ul class="nav navbar-nav">
+          <li><a href="#/tracking" style="color: #FFF"><span class="menu-icon fa fa-search" style="color: #E6A344"></span> Pedidos</a></li>
+          <li><a href="#/encamino" style="color: #FFF"><span class="menu-icon fa fa-motorcycle" style="color: #E6A344"></span> En Camino</a></li>
+          <li><a href="#/historial" style="color: #FFF"><span class="menu-icon fa fa-list-ol" style="color: #E6A344"></span> Historial</a></li>
+<!--           <li><a href="#/anulados" style="color: #FFF"><span class="menu-icon fa fa-ban" style="color: #E6A344"></span> Anulados</a></li> -->
+          <li><a href="#/perfil" style="color: #FFF"><span class="menu-icon fa fa-user" style="color: #E6A344"></span> Perfil</a></li>
+          <li><a href="#/home" style="color: #FFF"><span class="menu-icon fa fa-question" style="color: #E6A344"></span> Ayuda</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+        <h5 class="info-pantallas" align="center">Motorizado</h5>
+          <md-divider ></md-divider>
+
+          <md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card>
+        <img ng-src="images/google-maps-2.jpg" class="md-card-image" alt="Washed Out"  height="200px">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Pedidos asignados</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            Aquí se listarán y veras la información de todos los pedidos que se te asignen.
+          </p>
+          <md-button class="md-primary navButton" style="width: 98%" href="#/tracking">Pedidos</md-button>
+        </md-card-content>
+      </md-card>
+    </div>
+     <div flex-xs flex-gt-xs="50" layout="column"> 
+      <md-card>
+        <img ng-src="images/google-maps-telefono-720x389.png" class="md-card-image" alt="Washed Out"  height="200px">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Pedidos en camino</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            !Podrás procesar el pedido! Solo puedes aceptar un pedido a la vez.
+          </p>
+          <md-button class="md-primary navButton" style="width: 98%"  href="#/encamino">En camino</md-button>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card>
+        <img ng-src="images/Google3.jpg" class="md-card-image" alt="Washed Out" height="200px">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Historial de pedidos</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            En historial de pedidos podrás ver todos los pedidos que has entregado. <br> También puedes filtras las busquedas para por cualquier palabra que recuerdes referente al pedido.
+          </p>
+          <md-button class="md-primary navButton" style="width: 98%" href="#/historial">Historial</md-button>
+        </md-card-content>
+      </md-card>
+      
+    </div>
+  </md-content>

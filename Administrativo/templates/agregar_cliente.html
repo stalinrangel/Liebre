@@ -1,0 +1,107 @@
+<md-dialog aria-label="Motorizados" style="width:auto">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Agregar Cliente</h2>
+        <span flex></span>
+        <div>
+          <i class="fa fa-times delete_modal" aria-hidden="true" ng-click="cancel()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="row">
+          <div class="col-xs-12 col-md-7"></div>
+          <div class="col-xs-12 col-md-5">
+            <div class="form-group input_pedido">
+              <label>Tipo Usuario:</label>
+              <select  ng-model="select_item" ng-options="item as item.name for item in items" ng-change="update_type(select_item)" class="form-control"></select>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12 col-md-7" ng-show="motorizado.tipo_usuario == 1">
+            <div class="form-group input_pedido">
+              <label>Nombre:</label>
+              <input type="text"  ng-model="motorizado.name" class="form-control"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-5" ng-show="motorizado.tipo_usuario == 1">
+            <div class="form-group input_pedido">
+              <label>Apellido:</label>
+              <input type="text"  ng-model="motorizado.apellidos" class="form-control"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-12" ng-show="motorizado.tipo_usuario == 2 || motorizado.tipo_usuario == 3">
+            <div class="form-group input_pedido">
+              <label>Razón Social:</label>
+              <input type="text"  ng-model="motorizado.razon_social" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-7">
+            <div class="form-group input_pedido" ng-show="motorizado.tipo_usuario == 1">
+              <label>Dni:</label>
+              <input type="text" ng-model="motorizado.dni" class="form-control"/>
+            </div>
+            <div class="form-group input_pedido" ng-show="motorizado.tipo_usuario == 2 || motorizado.tipo_usuario == 3">
+              <label>Ruc:</label>
+              <input type="text" ng-model="motorizado.ruc" class="form-control"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-5">
+            <div class="form-group input_pedido">
+              <label>Teléfono:</label>
+              <input type="text"  ng-model="motorizado.telefono" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <div class="form-group input_pedido">
+              <label>Email:</label>
+              <input type="email"  ng-model="motorizado.email" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-7">
+            <div class="form-group input_pedido">
+              <label>Contraseña:</label>
+              <input type="password"  ng-model="motorizado.password" class="form-control"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-5">
+            <div class="form-group input_pedido">
+              <label>Repita Contraseña:</label>
+              <input type="password"  ng-model="motorizado.rpassword" class="form-control"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <div class="col-xs-12 col-md-12">
+            <div class="form-group input_pedido">
+              <label>Imagen Cliente:</label>
+              <div><div class="text_img"><div class="texto_imagen">{{imagenSubir.name}}</div></div>
+              <input type="file" class="seleccionar" ng-change='changeImage(picFile2)' ngf-select ng-model="picFile2" name="file" accept="image/*" ngf-max-size="2MB" >
+            <i class="fa fa-search lupa" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <button class="pull-right btn buttom_blue" ng-click="update()">Agregar</button>
+            <button class="pull-right btn buttom_cancel" ng-click="cancel()">Cancelar</button>
+          </div>
+        </div>
+        <br>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

@@ -1,0 +1,60 @@
+<md-dialog aria-label="Pagos" style="width: 41%;">
+  <form ng-cloak >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <div class="content_pago">
+          <h3 class="text_pago">Total a Cancelar: S/. {{costo | number:2}}</h3>
+        </div>
+        <div>
+          <i class="fa fa-times delete_modal1" aria-hidden="true" ng-click="cancelar()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div>
+          <h5 class="title_forma">Selecciona un método de pago:</h5>
+      </div>
+      <div class="md-dialog-content">
+        <div class="content-tab">
+          <ul class="nav nav-pills nav-stacked">
+            <li ng-class="{ activep: isSet(1) }" class="li_pagos">
+              <a href ng-click="setTab(1)"><i class="fa fa-money icon_money" aria-hidden="true"></i> Efectivo</a>
+            </li>
+            <!--<li ng-class="{ activep: isSet(2) }" class="li_pagos">
+                <a href ng-click="setTab(2)"><i class="fa fa-bank icon_money" aria-hidden="true"></i> Transferencia Bancaria</a>
+            </li>-->
+            <li ng-class="{ activep: isSet(3) }" class="li_pagos">
+                <a href ng-click="setTab(3)"><i class="fa fa-credit-card icon_money" aria-hidden="true"></i> POS VISA</a>
+            </li>
+          </ul>
+        </div>
+    <div class="content-tab2">
+      <div class="content_formrg">
+        <div ng-show="isSet(1)">
+          <br>
+          <button class="btn btn-danger btn-add pull-right" ng-disabled="confirm_pedido2" ng-click="guardar(0)">Confirmar Envío</button>
+          <loadingwait></loadingwait>
+          <br>
+        </div>
+      <!--<div ng-show="isSet(2)">
+          <div class="text_efectivo2">
+            <p>Banco:</p>
+            <p>Nº de cuenta:</p>
+            <p>RUC: </p>
+          </div>
+          <br>
+          <button class="btn btn-danger btn-add pull-right" ng-click="guardar(1)">Confirmar Envío</button>
+          <br>
+      </div>-->
+      <div ng-show="isSet(3)">
+          <br>
+          <button class="btn btn-danger btn-add pull-right" ng-disabled="confirm_pedido2" ng-click="guardar(2)">Confirmar Envío</button>
+          <loadingwait></loadingwait>
+          <br>
+      </div>
+    </div>
+       
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

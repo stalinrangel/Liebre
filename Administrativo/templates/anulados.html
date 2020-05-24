@@ -1,0 +1,133 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal p_top">
+	<div class="row margin_null">  
+		  <ul class="content_tabmoto">
+		    <div class="col-xs-3 col-md-3 nav nav-pills nav-stacked">
+		      <li ng-class="{ active: isSet(1) }">
+		        <a href="#/pendientes" class="link_tab">Pedidos Pendientes &nbsp;<i class="fa fa-clock-o icon_tab" aria-hidden="true"></i></a>
+		      </li>
+		    </div>
+		    <div class="col-xs-3 col-md-3 nav nav-pills nav-stacked">
+		      <li ng-class="{ active: isSet(2) }">
+		        <a href="#/encurso" class="link_tab">Pedidos en Curso &nbsp;<i class="fa fa-road icon_tab" aria-hidden="true"></i></a>
+		      </li>
+		    </div>
+		    <div class="col-xs-3 col-md-3 nav nav-pills nav-stacked">
+		      <li ng-class="{ active: isSet(3) }">
+		        <a href="#/finalizados" class="link_tab">Pedidos Finalizados &nbsp;<i class="fa fa-check icon_tab" aria-hidden="true"></i></a>
+		      </li>
+		    </div>
+			<div class="col-xs-3 col-md-3 nav nav-pills nav-stacked">
+		      <li ng-class="{ active: isSet(4) }">
+		        <a href="#/anulados" class="link_tab link_active">Pedidos Anulados &nbsp;<i class="fa fa-times icon_tab" aria-hidden="true"></i></a>
+		      </li>
+		    </div>
+		  </ul>
+	</div>
+		<br>
+		<button class="md-button btn_yellow pull-right" ng-click="imprimir()">Imprimir Listado</button>
+		<br>
+        <div ng-controller="ListadoAnuladosCtrl as showCase" class="tabla_pedidos tabla_anulados">
+	      <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover"></table>
+	    <div id="detalle_pedido5" ng-show="false">
+			<img src="images/logo.png" height="50">
+			<h4 class="title_print">Courier Liebre Express</h4>
+			<hr>
+			<p style="display:block !important;text-align:right;margin-bottom:0px !important">Nº Pedido: {{idpedido}}</p>
+			<div style="width:30%;display:inline-block !important;float:left">
+				<p style="margin-bottom:0px !important">CLIENTE</p>
+			  	<hr>
+			  	<p class="text_print">Nombre/Razón Social: {{pedidos.nombre}}</p>
+			  	<p class="text_print">DNI/RUC: {{cliente.dni}}</p>
+			  	<p class="text_print">Teléfono: {{cliente.telefono}}</p>
+			  	<p class="text_print">Correo: {{cliente.email}}</p>
+			</div>
+		  	<div style="width:30%; display:inline-block !important;float:left">
+			  <p style="margin-bottom:0px !important">ORIGEN</p>
+			  <hr>
+			  <div style="width:95%">
+		      <p class="text_print">Dirección: {{destinos.origen}}</p>
+		      <p class="text_print">Distrito: {{destinos.distrito_origen}}</p>
+		      <p class="text_print">Departamento: {{destinos.departamento_origen}}</p>
+		      <p class="text_print">Contacto: {{destinos.nombre_origen}}</p>
+		      <p class="text_print">Teléfono: {{destinos.telefono_origen}}</p>
+			  <p class="text_print">Comentarios: {{destinos.comentarios}}</p>
+			  </div>
+		  	</div>  
+		  	<div style="width:38%; display:inline-block !important;float:left">
+			  <p style="margin-bottom:0px !important">DESTINO</p>
+			  <hr>
+			  <div style="width:50%; display:inline-block !important; float:left;margin-left:5px">
+		          <p class="text_print" style="margin-top:0px !important">Dirección: {{destinos.destino}}</p>
+		          <p class="text_print">Distrito: {{destinos.distrito_destino}}</p>
+		          <p class="text_print">Departamento: {{destinos.departamento_destino}}</p>
+		          <p class="text_print">Contacto: {{destinos.nombre_destino}}</p>
+		          <p class="text_print">Teléfono: {{destinos.telefono_destino}}</p>
+		      </div>
+		       <div style="width:48%; display:inline-block !important;margin: 0px 0px 5px 0px;float:left;text-align:right !important">
+		          <p class="text_print" style="margin-top:0px !important">KM: {{destinos.km}}</p>
+		          <p class="text_print">Costo: S/.{{destinos.costo}}</p>
+		      </div>
+		      <div style="width:100%; display:inline-block !important;margin: 0px 0px 5px 0px;">
+		        <p class="text_print">Comentarios: {{destinos.comentarios2}}</p>
+		      </div>
+		      <div style="width:49%; display:inline-block !important;margin: 0px 0px 5px 0px;" ng-if="cliente.tipo_usuario == 3">
+		        <p class="text_print">Productos: {{destinos.detalle}}</p>
+		        <div ng-if="!$last"><hr></div>
+		      </div>
+		      <div style="width:48%; display:inline-block !important;margin: 0px 0px 5px 0px;text-align:right !important" ng-if="cliente.tipo_usuario == 3">
+		        <p class="text_print">Costo Productos: S/.{{destinos.subtotal}}</p>
+		        <p class="text_print">Costo Entrega: S/.{{destinos.cobrarecommerce}}</p>
+		        <div ng-if="!$last"><hr></div>
+		      </div>
+			</div>
+			<br>
+			<div style="width:100%;display:block">
+				<br>
+				<p class="text_print">Servicio: {{pedidos.tipo}}, Forma de Pago: {{pedidos.forma_pago1}}, Fecha de Envío: {{pedidos.fecha}}</p>
+		  		<p style="display:block !important;text-align:right;margin-bottom:0px !important;font-size:9px">Emitido: {{fecha_actual}}</p>
+			</div>
+		</div>
+			<div id="anulados" ng-show="false">
+				<img src="images/logo.png" height="50">
+				<h4 class="title_print">Courier Liebre Express</h4>
+				<hr>
+				<p style="text-align:center">PEDIDOS ANULADOS</p>
+				<table style="width:100%">
+				  <tr>
+				    <th>Orden de Despacho</th>
+				    <th>Cliente</th> 
+				    <th>Plataforma</th>
+				    <th>Origen</th>
+				    <th>Distrito Origen</th>
+				    <th>Destino</th>
+				    <th>Distrito Destino</th>
+				    <th>Productos</th>
+				    <th>Motivo Anulado</th>
+				    <th>Fecha de Entrega</th>
+				    <th>Hora Programada</th>
+				  </tr>
+				  <tr ng-repeat="track in tracking">
+				    <td>LIE000{{track.id}}</td>
+				    <td>{{track.nombre}}</td> 
+				    <td>{{track.origen_solicitud}}</td>
+				   	<td ng-repeat="dest in track.destinos" ng-if="$first">{{dest.origen}}</td>
+				   	<td ng-repeat="dest in track.destinos" ng-if="$first">{{dest.distrito_origen}}</td>
+				   	<td ng-repeat="dest in track.destinos" ng-if="$last">{{dest.destino}}</td>
+				   	<td ng-repeat="dest in track.destinos" ng-if="$last">{{dest.distrito_destino}}</td>
+				   	<td ng-repeat="dest in track.destinos" ng-if="$last">{{dest.detalle}}</td>
+				   	<td>{{track.motivo}}</td>
+				   	<td>{{track.created_at | date:'dd/MM/yyyy'}}</td>
+				   	<td>{{track.hora}}</td>
+				  </tr>
+				</table>
+			</div>
+	  	</div>
+	</div>
+</div>
+<navfooter></navfooter>
+

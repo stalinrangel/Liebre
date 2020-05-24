@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<title>Liebre | Courier Express</title>
+
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
+
+    <!--<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAyw5cwYdjAQ8HcLRBu4TQcbAug9D6bKI&libraries=places">
+    </script>-->
+    
+ 
+<!-- Librerias DataTable-->
+
+    <link rel="stylesheet" href="vendor/font-awesome-animation/dist/font-awesome-animation.min.css">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,300,700' rel='stylesheet' type='text/css'> -->
+
+    <!-- <link rel="stylesheet" href="vendor/datatables/media/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="vendor/datatables-colreorder/css/dataTables.colReorder.css">
+    <link rel="stylesheet" href="vendor/datatables-colvis/css/dataTables.colVis.css">
+    <link rel="stylesheet" href="vendor/datatables-tabletools/css/dataTables.tableTools.css">
+    <link rel="stylesheet" href="vendor/datatables-responsive/css/dataTables.responsive.css">
+    <link rel="stylesheet" href="vendor/datatables-scroller/css/dataTables.scroller.css">
+    <link rel="stylesheet" href="vendor/datatables-fixedcolumns/css/dataTables.fixedColumns.css">
+    <link rel="stylesheet" href="vendor/datatables-fixedheader/css/fixedHeader.dataTables.css">
+    <link rel="stylesheet" href="vendor/datatables-buttons/css/buttons.dataTables.css">
+    <link rel="stylesheet" href="vendor/datatables-select/css/select.dataTables.css"> 
+    <link rel="stylesheet" href="vendor/backtotop/backtotop.min.css">
+    <link rel="stylesheet" href="vendor/highlightjs/styles/github.css">
+    <link rel="stylesheet" href="dist/plugins/bootstrap/datatables.bootstrap.min.css"> 
+
+
+   
+    <script src="vendor/highlightjs/highlight.pack.js"></script>-->
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="vendor/backtotop/backtotop.min.js"></script> -->
+    <!-- <script type='text/javascript' src="components/angular/angular.js"></script>  -->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.min.js"></script> 
+    
+    <script type="text/javascript" src="components/angular/autocomplete.js"></script>
+    <script src="vendor/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <script src="vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- <script src="vendor/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script> -->
+
+   <!--  <script src="lib/angular-facebook.js"></script> -->
+    
+<!-- 
+    <link rel="stylesheet" href="angular-datatables.css">
+    <script src="angular-datatables.js"></script> -->
+
+    
+<!-- Fin datatable-->
+    <link rel="stylesheet" href="dist/css/angular-material.css">
+    <script src="node_modules/angular-route/angular-route.js"></script>
+   	<script src="vendor/angular-resource/angular-resource.min.js"></script>
+  	<script type="text/javascript" src="lib/angular-animate.min.js"></script> 
+    <script type="text/javascript" src="lib/angular-aria.min.js"></script>
+    <script type="text/javascript" src="lib/angular-messages.min.js"></script>
+    <!-- <script type='text/javascript' src="lib/angular-material.js"></script>  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0-rc.5/angular-material.js"></script>
+    <script type="text/javascript" src="js/f/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
+   
+
+    <script src="lib/alertify.min.js"></script>
+    <link rel="stylesheet" href="css/alertify.min.css" />
+    <link rel="stylesheet" href="css/themes/default.min.css" />
+    <!-- <link rel="stylesheet" href="css/xeditable.css" />-->
+    <script src="js/xeditable.js"></script> 
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js"></script> -->
+
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="bower_components/restangular/dist/restangular.min.js"></script>
+    <!-- style sheet -->
+   <!--  <link href="node_modules/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/> -->
+    <!-- module -->
+    <!-- <script type="text/javascript" src="node_modules/angular-material-data-table/dist/md-data-table.min.js"></script> -->
+
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" ></script>
+
+    <!-- <script src="lib/moment.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    
+  <script>
+    
+    function llamar(){
+    alert('llamar');
+  }
+    
+  </script>
+
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+
+  </head>
+  <body ng-app="starter">
+    <div ng-controller="indexCtrl" id="indexController" ng-show="false">
+      <input type="text" ng-model="banderaPush" id="peso_campo_1" ng-change="change()" my-directive="">
+    </div>
+    <div data-ng-view=""></div>
+  </body>
+</html>

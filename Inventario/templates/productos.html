@@ -1,0 +1,246 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+	<br>
+	<div layout="column" class="relative" layout-fill role="main">
+      <md-toolbar ng-show="!showSearch">
+        <div class="md-toolbar-tools">
+          <md-button class="icon_inventario" ng-click="inventario()" aria-label="Back">
+            <ng-md-icon icon="arrow_back" style="fill:white"></ng-md-icon>
+          </md-button>
+          <h3 flex>
+            Productos
+          </h3>
+          <md-button class="icon_inventario" aria-label="Search" ng-click="showSearch = !showSearch">
+            <ng-md-icon icon="search" style="fill:white"></ng-md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-toolbar class="md-hue-1" ng-show="showSearch" style="background-color: rgb(238,238,238) !important;">
+        <div class="md-toolbar-tools">
+          <md-button class="icon_inventario" ng-click="inventario()" aria-label="Back">
+            <ng-md-icon icon="arrow_back"></ng-md-icon>
+          </md-button>
+          <md-input-container md-theme="input" flex>
+            <label>&nbsp;</label>
+            <input ng-model="search" placeholder="Buscar productos" class="m-15">
+          </md-input-container>
+          <md-button class="icon_inventario" aria-label="Search" ng-click="showSearch = !showSearch">
+            <ng-md-icon icon="search"></ng-md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-content flex md-scroll-y>
+      	<md-button class="pull-right md-primary navButton" aria-label="exportar a excel" ng-click="exportar()">
+	      Exportar a Excel
+	    </md-button>
+        <ui-view layout="column" layout-fill layout-padding>
+          <md-list>
+          	<div id="exportable" ng-show="false">
+			    <table width="100%">
+			        <thead>
+			            <tr>
+			            	<th>Cantidad</th>
+			                <th>Nombre</th>
+			                <th>Color</th>
+			                <th>Atributo</th>
+			                <th>Precio</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr ng-repeat="item in stock">
+			            	<td style="text-align: center;">{{item.stock}}</td>
+			                <td style="text-align: center;">{{item.nombre}}</td>
+			                <td style="text-align: center;">{{item.color}}</td>
+			                <td style="text-align: center;">{{item.atributo}}</td>
+			                <td style="text-align: center;">{{item.precio}}</td>
+			            </tr>
+			        </tbody>
+			    </table>
+			</div>
+            <md-item ng-repeat="pedido in inventarios | filter:search | orderBy:'nombre'">
+            	<md-card flex-gt-sm="100" flex-gt-md="100" ng-class="{product_active: pedido.admin_id}">
+        			<md-card-content>
+	                  <md-item-content>
+	                    <div class="md-tile-content content_productos">
+	                    	<div class="row">
+								<div class="col-md-6">
+									<img ng-repeat="img in pedido.colores" ng-if="$first" ng-src="{{img.imagen}}" class="item_img">
+									<div class="item_description">
+										<div>
+											<h4 style="display:inline-block"><b>{{pedido.nombre}}</b></h4> 
+											<i style="margin-left:15px" class="fa fa-edit" ng-click="editar_Producto(pedido)"><md-tooltip md-direction="top">Editar Producto</md-tooltip></i>
+										</div>
+		                      			<p style="text-align: justify;"><show-more text="pedido.descripcion" limit="170"> </show-more></p>
+									</div>
+								</div>
+								<div class="col-md-1">
+									<h4 style="display:inline-block"><b>Cantidad: </b> {{pedido.cantidad}}</h4>
+								
+								</div>
+								<div class="col-md-5">
+
+									<md-button class="pull-right md-primary navButton" aria-label="VerTienda" ng-click="verPedido(pedido.id)" ng-if="!pedido.admin_id">VER PRODUCTO</md-button>
+									<md-button class="pull-right md-primary navButton" aria-label="VerTienda" ng-click="verPedido(pedido.id)" ng-if="pedido.admin_id">OCULTAR</md-button>
+	                      			<md-button class="pull-right md-primary navButton" aria-label="eliminartienda" ng-click="eliminarProducto(pedido.id,pedido.nombre)" ng-if="pedido.admin_id" style="background-color:transparent !important;color:#fff !important;border: 1px solid #fff"><md-tooltip md-direction="top">Elimina el producto de manera permanente junto a sus colores y medidas asociadas</md-tooltip> ELIMINAR EL PRODUCTO Y SUS DERIVADOS</md-button>
+								</div>
+	                    	</div>
+	                      	<div ng-if="pedido.admin_id" class="content_modelo">
+	                      		<md-card flex-gt-sm="100" flex-gt-md="100" class="card_modelo" ng-repeat="dest in pedido.colores">
+				        			<md-card-content>
+					                  <md-item-content>
+					                    <div class="md-tile-content row">
+					                    	<div class="col-xs-12 col-sm-12 col-md-12">  
+					                    		<md-button class="pull-right md-primary" style="background-color:#fff !important;color:#029ed1 !important;border: 1px solid #029ed1; margin-bottom: 10px;" aria-label="VerTienda" ng-click="eliminarColor(pedido.id,pedido.colores[$index].id,pedido.colores[$index].nombrecolor)" ng-if="pedido.admin_id"><md-tooltip md-direction="top">Elimina la foto y el color del producto seleccionado junto a las medidas o tallas asociadas a el</md-tooltip> ELIMINAR</md-button>
+					                    	</div>
+					                    	<div class="col-xs-12 col-sm-12 col-md-3">  
+						                      	<div>
+								                    <img ng-src="{{pedido.colores[$index].imagen}}" width="85%" style="display:block;margin:auto">
+								                </div>
+						                      	<div style="font-size:12px !important">
+						                      		<br>
+						                      		<div class="ic_model"><ng-md-icon icon="format_color_fill" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+						                      		<h5 style="display:inline-block;font-weight: bold">Color: {{pedido.colores[$index].nombrecolor}}</h5>
+						                      		<div style="background-color:{{pedido.colores[$index].color}};" class="div_color"></div>
+						                      	</div>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-9" >
+						                      	<div ng-repeat="atributo in dest.atributos" class="card_model">
+							                      	<div class="panel panel-default">
+								                        <div class="panel-body pb">
+								                            <div class="row">
+								                              <div class="col-xs-12 col-md-12 padding_row">
+								                                <p>
+									                                <div class="ic_model"><i class="fa fa-sort-numeric-asc icon_dtmodel" aria-hidden="true"></i></div>
+									                                <span style="font-weight: bold">Cantidad:</span>
+									                                <p class="p-cant">
+									                                <input type="text" ng-model="atributo.cantidad" ng-disabled="false"></p>
+								                                </p> 
+								                              </div>
+								                              <div class="col-xs-12 col-md-12 padding_row">
+								                                <p>
+									                                <div class="ic_model"><ng-md-icon icon="straighten" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+									                                <span style="font-weight: bold">Opción de compra o Medidas:</span>
+									                                <input type="text" ng-model="atributo.atributo">
+								                                </p>
+								                              </div>
+								                              <div class="col-xs-12 col-md-12 padding_row">
+								                                <p>
+									                                <div class="ic_model"><ng-md-icon icon="attach_money" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+									                                <span style="font-weight: bold">Precio:</span>
+									                                <input type="text" ng-model="atributo.precio"> 
+								                                </p>
+								                              </div>
+								                              <div class="col-xs-12 col-md-12 padding_row">
+								                              	<md-button class="icon_modelo" aria-label="guardar" ng-click="guardar(pedido.id,dest.id,atributo.id)"><ng-md-icon icon="save" style="fill:#029ed1" size="26"></ng-md-icon>
+											                    </md-button>
+											                    <md-button class="icon_modelo" aria-label="eliminar" ng-click="eliminar(pedido.id,dest.id,atributo.id,atributo.atributo)"><ng-md-icon icon="delete" style="fill:#029ed1" size="26"></ng-md-icon>
+											                    </md-button>
+								                              </div>
+								                            </div>   
+							                        	</div>
+						                      		</div>		
+							                  	</div>
+							                  	<div class="card_model" ng-click="addAtributo(pedido.id,pedido.colores[$index].id)">
+							                  		<div class="panel panel-default">
+							                  		<div class="panel-body pb">
+								                        <div class="content_addmodelo" style="background-color:rgba(238, 238, 238, 0.7)">
+							                      			<h4>Agregar nueva talla, medida o especificación</h4>
+							                      			<p>(Opción que permite adicionar una nueva medida o especificación del producto, cantidad y precio)</p>
+								                        </div>
+							                    	</div>
+							                    	</div>
+							                  	</div>
+						                    </div> 
+					                    </div>
+					                  </md-item-content>
+				              		</md-card-content>
+				      			</md-card>
+	                      		<md-card flex-gt-sm="100" flex-gt-md="100" style="width:99%">
+				        			<md-card-content class="add_modelo">
+					                  <md-item-content ng-click="addColor(pedido.id)">
+					                    <div class="md-tile-content content_productos">
+					                    	<md-tooltip md-direction="top">Agrega un nuevo color del producto que has seleccionado</md-tooltip><h4>Agrega una foto y escoje el color de {{pedido.nombre}}</h4>
+					                    </div>
+					                  </md-item-content>
+				              		</md-card-content>
+				              		
+				      			</md-card>
+				      				<div class="row">
+								        <div class="col-md-12">
+								            <div class="row">
+								                <div class="col-lg-12">
+								                    <md-card style="margin:auto">
+								                    	<div style="text-align: center">
+									                    	<h4 style="font-weight: bold;">Últimos 100 movimientos en el inventario</h4>
+									                    	<br>
+								                    	</div>
+								                    	<md-button class="pull-right md-primary navButton" aria-label="exportar a excel" ng-click="exportar2(pedido.nombre)">
+													      Exportar a Excel
+													    </md-button>
+								                        <div class="dataTable_wrapper" id="exportable2">
+								                            <table class="table table-striped table-hover">
+								                                <thead>
+								                                    <tr class="head_table">
+								                                    	<th></th>
+								                                        <th style="text-align:center">Cantidad</th>
+								                                        <th style="text-align:center">Producto</th>
+								                                        <th style="text-align:center">Color</th>
+								                                        <th style="text-align:center">Atributo</th>
+								                                        <th style="text-align:center">Pedido</th>
+								                                        <th style="text-align:center">Estado</th>
+								                                        <th style="text-align:center">Reprogramado</th>
+								                                        <th style="text-align:center">Guia</th>
+								                                        <th style="text-align:center">En stock  </th>
+								                                        <th style="text-align:center">Tipo</th>
+								                                        <th style="text-align:center">Fecha</th>
+
+								                                    </tr>
+								                                </thead>
+								                                <tbody>
+								                                    <tr ng-repeat='item in pedido.trazas' class="odd gradeX">
+								                                    	<td style="text-align:right;">{{item.tipo3}}</td>
+								                                    	<td style="text-align:center">{{item.cantidad}}</td>
+								                                        <td style="text-align:center">{{item.productos.nombre}}</td>
+								                                        <td style="text-align:center">{{item.colores.nombrecolor}}</td>
+								                                        <td style="text-align:center">{{item.atributos.atributo}}</td>
+								                                        <td style="text-align:center">LIE00{{item.pedido_id}}</td>
+								                                        <td style="text-align:center">{{item.pedidos.estado2}}</td>
+								                                        <td style="text-align:center">{{item.pedidos.reprogramado2}}</td>
+								                                        <td style="text-align:center">{{item.guia_id}}</td>
+								                                        <td style="text-align:center">{{item.total}}</td>
+								                                        <td style="text-align:center">{{item.tipo2}}</td>
+								                                        <td style="text-align:center">{{item.created_at}}</td>
+								                                        
+								                                    </tr>
+								                                </tbody>
+								                            </table>
+								                        </div>
+								                        <!-- /.table-responsive --> 
+								                    </md-card>
+								                <!-- /.panel -->
+								                </div>
+								            <!-- /.col-lg-12 -->
+								            </div>
+								        </div>
+								    </div>
+	                      	</div>
+	                    </div>
+	                  </md-item-content>
+              		</md-card-content>
+      			</md-card>
+            </md-item>
+          </md-list>
+        </ui-view>
+	    
+      </md-content>
+    </div>
+    <md-button class="md-fab md-fab-bottom-right btnadd_producto" aria-label="Add" ng-click="agregar_Producto()">
+      <md-tooltip md-direction="top">Agregar un nuevo producto al inventario</md-tooltip> <img src="images/add.svg" width="25px">
+    </md-button>
+</div>
+
+<navfooter></navfooter>

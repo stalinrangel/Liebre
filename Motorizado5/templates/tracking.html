@@ -1,0 +1,279 @@
+<style>
+  table, th , td  {
+    border: 0px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+    font-size: 10px;
+  }
+  table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+    color: grey;
+  }
+  table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+</style>
+  <nav class="navbar navbar-default" role="navigation" style="background-color: #029ED1 !important">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" style="background-color: #FFF !important">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="color: #FFF" href="#/home">Liebre Express</a>
+      </div>
+    
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+      
+        <ul class="nav navbar-nav">
+          <li><a href="#/tracking" style="color: #FFF"><span class="menu-icon fa fa-search" style="color: #E6A344"></span> Pedidos</a></li>
+          <li><a href="#/encamino" style="color: #FFF"><span class="menu-icon fa fa-motorcycle" style="color: #E6A344"></span> En Camino</a></li>
+          <li><a href="#/historial" style="color: #FFF"><span class="menu-icon fa fa-list-ol" style="color: #E6A344"></span> Historial</a></li>
+<!--           <li><a href="#/anulados" style="color: #FFF"><span class="menu-icon fa fa-ban" style="color: #E6A344"></span> Anulados</a></li> -->
+          <li><a href="#/perfil" style="color: #FFF"><span class="menu-icon fa fa-user" style="color: #E6A344"></span> Perfil</a></li>
+          <li><a href="#/home" style="color: #FFF"><span class="menu-icon fa fa-question" style="color: #E6A344"></span> Ayuda</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+        <div>
+           <md-button ng-click="reload()" class="md-fab" style="position: absolute;right: 5px">
+            <md-icon md-svg-src="images/ic_autorenew_white_24px.svg"></md-icon>
+          </md-button>
+        </div>
+        <h5 class="info-pantallas" align="center" style="margin-top: 45px;margin-bottom: 30px !important">PEDIDOS</h5>
+        
+        <div>
+          <md-divider ></md-divider>
+          <loading></loading>
+          <md-input-container class="md-block" flex-gt-sm ng-show="!loading"> 
+                  <label>Buscar <i class="fa fa-search" aria-hidden="true"></i> </label>
+                  <input ng-model="searchText">
+          </md-input-container>
+        </div>
+    <div ng-show="sinDatos">
+         <h3 class="text_status">En este momento no tienes pedidos asignados.</h3>
+       </div>
+    <div ng-repeat="pedido in pedidos | filter:searchText" ng-show="pedido.estado==1">
+
+      <div class="md-dialog-content" >
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content_status">
+              
+              <!--<h5 class="text_status">ESTADO: {{pedido.estado}}</h5>-->
+              <h3 class="text_status" style="text-align: right !important;">ID Pedido: {{pedido.id}} </h3> 
+
+              <div ng-show="pedido.reprogramado>0">
+                <h4 class="text_status" style="text-align: right !important; color: #FF0000">REPROGRAMADO</h4>
+              </div>
+              <h4 class="text_status">Rango de Entrega: {{pedido.calculoHora}}</h4>
+
+              <h4 class="text_status" ng-show="pedido.destinos[0].admin_id==0">Distrito: {{pedido.destinos[0].distrito_origen}}</h4>
+              <h4 class="text_status" ng-show="pedido.destinos[0].admin_id!=0">Distrito: {{pedido.destinos[0].distrito_destino}}</h4>
+              <md-button ng-show="!pedido.admin_id" class="md-primary navButton" style="width: 98%" ng-click="verPedido(pedido.id)">Ver</md-button>
+              <md-button ng-show="pedido.admin_id" class="md-primary navButton" style="width: 98% !important; background-color:#E6A344 !important; color:#FFF !important" ng-click="verPedido(pedido.id)">Ocultar</md-button>
+              <md-button ng-show="pedido.admin_id" class="md-primary navButton" style="width: 98%" ng-click="aceptarPedido(pedido.id)">Aceptar pedido</md-button>
+              <!-- <p class="imprimir_pedido2" ng-click="imprimir()"><i class="fa fa-print"></i> Imprimir Pedido</p>-->
+            </div>
+              <!--<div class="content_formdetalle">-->
+            <div ng-show="pedido.admin_id">
+                <div class="content_dist"><h5 class="dest-orin" style="margin-bottom:5px !important; font-size:12px !important"> ORIGEN</h5></div>
+                  <div class="panel panel-default" style="margin-bottom:7px !important">
+                      <div class="panel-body">
+                          <div class="row">
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-map-marker title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Origen:</i> {{pedido.destinos[0].origen}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-home title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Departamento:</i> {{pedido.destinos[0].departamento_origen}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-home title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Distrito:</i> {{pedido.destinos[0].distrito_origen}}</p>
+                              </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-user title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Nombre:</i> {{pedido.destinos[0].nombre_origen}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-phone title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Telefonos:</i> {{pedido.destinos[0].telefono_origen}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Comentarios:</i> {{pedido.destinos[0].comentarios}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Fecha:</i> {{pedido.fecha | date : "dd-MM-yyyy"}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Hora:</i> {{pedido.hora}}</p>
+                                </div>
+                                <md-button class="md-primary navButton" style="width: 98%; background-color: grey !important" ng-href="https://www.google.com.pe/maps/search/{{pedido.destinos[0].lat}},{{pedido.destinos[0].lng}}">Ir al origen con google maps</md-button>
+
+                            </div> 
+                      </div>
+                    </div>
+                  <div ng-repeat="dest in pedido.destinos">
+                      <div class="content_dist" ng-show="false"><h5 class="  dest-orin" ng-show="false" style="margin-bottom:5px !important; font-size:12px !important">DESTINO</h5>
+                      </div>
+                      <div class="content_dist" ng-show="true" style="margin-bottom:5px !important; font-size:12px !important"><h5 class="dest-orin" ng-show="true">DESTINO {{$index + 1}}</h5>
+                      </div>
+                      <div class="panel panel-default" style="margin-bottom:7px !important">
+                        <div class="panel-body">
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-map-marker title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Destino:</i> {{dest.destino}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-home title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Departamento:</i> {{dest.departamento_destino}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-home title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Distrito:</i> {{dest.distrito_destino}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-user title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Nombre:</i> {{dest.nombre_destino}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-phone title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Telefono:</i> {{dest.telefono_destino}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Comentarios:</i> {{dest.comentarios2}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row" ng-show="(pedido.tipo_usuario==2)">
+                                <p><i class="fa fa-shopping-cart title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Nombre de la empresa:</i> {{pedido.nombre}} </p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row" ng-show="(pedido.tipo_usuario!=1&&pedido.tipo_usuario!=2)">
+                                <p><i class="fa fa-shopping-cart title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Nombre de ecommerce:</i> {{pedido.nombre}} </p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row" ng-show="(pedido.tipo_usuario!=1&&pedido.tipo_usuario!=2)">
+                                <p><i class="fa fa-shopping-cart title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Resumen de  los productos:</i> <ul>
+                                  <p class="title_detalle">Cantidad: {{dest.cantidad}} </p>
+                                  <p class="title_detalle">Detalles: {{dest.detalle}}</p>
+                                  <p class="title_detalle">Monto: S/. {{dest.subtotal | number:2}}</p>
+                                </ul>  </p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row" ng-show="dest.admin_id!=0">
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-info-circle title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Detalle de los productos:</i></p>
+                                </div>
+                                  <table align="center" style="width: 100%">
+                                      <th>Nº</th>
+                                      <th>DETALLE</th>
+                                      <th>MONTO</th>
+                                    <!--   <th>ENTREGADO</th> -->
+                                   <tr ng-repeat="productos in dest.admin_id">
+
+                                        <td><p class="title_detalle">{{productos.cantidad}} </p></td>
+                                        <td><p class="title_detalle">{{productos.nombre}}</p></td>
+                                        <td><p class="title_detalle">S/. {{productos.precio}}</p></td>
+                                        <!-- <td>
+                                          <div ng-show="productos.estado==0">
+                                            <md-button class="md-primary navButton" style="background-color: #00B050 !important" ng-click="entregadoSI(productos.id)">SI</md-button>
+                                            <md-button class="md-raised md-warn" style="background-color: #FF0000 !important" ng-click="entregadoNO(productos.id)">NO</md-button>
+                                          </div>
+                                          <div ng-show="productos.estado==1">
+                                            <img src="images/entregado.png" style="width: 25px; height: 25px">
+                                          </div>
+                                          <div ng-show="productos.estado==2">
+                                            <img src="images/noentregado.png" style="width: 25px; height: 25px">
+                                          </div>
+                                        </td> -->
+                                   </tr>
+                                  </table>
+                                  <!-- <br>
+                                  <table align="center" style="width: 100%">
+                                    <th>A ENTREGAR</th>
+                                    <th>ENTREGADO</th>
+                                    <th>DEVOLUCION</th>
+                                    <tr>
+                                      <td>{{dest.cantidad}}</td>
+                                      <td>{{dest.entregados}}</td>
+                                      <td>{{dest.devolucion}}</td>
+                                    </tr>
+                                  </table> -->
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row"  ng-hide="pedido.tipo_usuario==1 || pedido.tipo_usuario==2">
+                                <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Fecha:</i> {{dest.fecha_destino | date : "dd-MM-yyyy"}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row"  ng-hide="pedido.tipo_usuario==1 || pedido.tipo_usuario==2">
+                                <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Hora:</i> {{dest.hora_destino}}</p>
+                              </div>
+                                <div class="col-xs-12 col-md-12 padding_row" ng-show="pedido.destinos[0].detalle==''">
+                                <p><i class="fa fa-money title_detalle" aria-hidden="true"></i> <i style="font-weight: bold">Costo:</i> {{dest.costo}}</p>
+                              </div>
+                              <div class="col-xs-12 col-md-12 padding_row">
+                                <md-button class="md-primary navButton" style="width: 98%; background-color: grey !important" ng-href="https://www.google.com.pe/maps/search/{{dest.lat2}},{{dest.lng2}}">Ir al destino {{$index + 1}} con google maps</md-button>
+                                <md-button class="md-primary navButton" ng-show="botones" ng-click="marcarEntregado(dest.id)">Marcar como entregado</md-button>
+                              </div>
+
+                            </div> 
+                        </div>
+                      </div>
+                  </div>
+
+                <div class="content_extdetalle">
+                  <!-- <div class="row content-unidades2 content_timedet">
+                    <div class="col-xs-4 col-md-4"><img src="images/location-blank.png" width="30" class="img_detalle"><p class="text_unidades2">KM: {{pedido.km}}</p></div>
+                    <div class="col-xs-4 col-md-4"><img src="images/passage-blank.png" width="30" class="img_detalle"><p class="text_unidades2">Min: {{pedido.min}}</p></div>
+                    <div class="col-xs-4 col-md-4"><img src="images/credit-blank.png" width="30" class="img_detalle"><p class="text_unidades2">Costo: {{pedido.costo}}</p></div>
+                    <br>
+                    <div class="clearfix"></div>
+                </div> -->
+                  <div class="row">
+                    <br>
+                    <div class="col-md-12">
+                      <p class="title_detalle2">Tipo de Servicio: {{pedido.tipo}}</p>
+                    </div>
+                    <div class="col-md-5">
+                      <p class="title_detalle2">Forma de Pago: {{pedido.forma_pago}}</p>
+                    </div>
+                    <div class="col-md-5" ng-show="pedido.destinos[0].detalle==''">
+                      <p class="title_detalle2">Costo total: S/.{{pedido.costo | number:2}}</p>
+                    </div>
+                    <div class="col-md-5" ng-show="pedido.destinos[0].detalle!=''">
+                      <p class="title_detalle2">Costo total: S/.{{pedido.costoEcommerce | number:2}}</p>
+                    </div>
+                    <!-- <div class="col-md-7">
+                      <div class="col-xs-12 col-md-4">
+                          <img src="images/letter.png" width="23"><p class="title_caja2"> {{pedido.cajap}}</p>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                          <img src="images/box.png" width="29"><p class="title_caja2"> {{pedido.cajam}}</p> 
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                          <img src="images/delivery-truck.png" width="29"><p class="title_caja2"> {{pedido.cajag}}</p>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12">
+                      <p class="title_detalle2">Fecha de Envío: {{pedido.fecha | date : "dd-MM-yyyy"}}</p>
+                    </div>
+                    <div class="col-md-12">
+                      <p class="title_detalle2">Hora Programada: {{pedido.hora}}</p>
+                    </div>
+                  </div>
+                </div>
+                
+
+               <!--  <md-button ng-show="pedido.admin_id" class="md-primary navButton" ng-show="botones" ng-click="pedidoEntregado(pedido.id)">Marcar todo el pedido como entregado</md-button> -->
+                <!-- <md-button class="md-primary navButton" ng-show="!pedido.show" style="width: 98%" ng-click="showAnular(pedido.id)">Anular</md-button>
+                <md-button class="md-primary navButton" style="width: 98% !important; background-color:#E6A344 !important; color:#FFF !important" ng-show="pedido.show" ng-click="showAnular(pedido.id)">Ocultar</md-button>
+                  <div ng-show="pedido.show">
+                  Motivo: <input type="text" ng-model="anular.motivo">
+                  <md-button class="md-primary navButton" ng-click="anularPedido(pedido.id)">Anular</md-button>
+                  </div> -->
+                <!-- <md-button class="md-primary navButton" ng-show="!pedido.show" style="width: 98%; background-color: #FF0000 !important" ng-click="rechazar(pedido.id)">Rechazar</md-button> -->
+                <md-button ng-show="pedido.admin_id" class="md-primary navButton" style="width: 98% !important; background-color:#E6A344 !important; color:#FFF !important" ng-click="verPedido(pedido.id)">Ocultar</md-button>
+          <!--</div>-->
+            </div>
+          </div>
+          <!--<div class="col-md-6">
+            <br>
+              <div id="map2"></div>
+          </div>-->
+        </div>
+      </div>
+    </div>  
+          </div>
+        </div>

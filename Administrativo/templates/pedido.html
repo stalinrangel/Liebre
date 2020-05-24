@@ -1,0 +1,228 @@
+<md-dialog aria-label="Mango (Fruit)" class="dialog_detalle">
+  <form ng-cloak >
+    <md-dialog-content>
+      <div>
+        <i class="fa fa-times delete_modal" aria-hidden="true" ng-click="cancelar()"></i>
+      </div>
+      <div class="md-dialog-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="content_status">
+              <h5 class="text_status">ESTADO: {{pedidos_detalle.estado}}</h5>
+              <p class="imprimir_pedido2" ng-click="imprimir()"><i class="fa fa-print"></i> Imprimir Pedido</p>
+            </div>
+              <div class="content_formdetalle">
+                <div class="content_dist"><h5 class="dest-orin" style="margin-bottom:5px !important; font-size:12px !important"> ORIGEN</h5></div>
+                  <div class="panel panel-default" style="margin-bottom:7px !important;min-height: auto !important;">
+                      <div class="panel-body">
+                          <div class="row">
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-map-marker title_detalle" aria-hidden="true"></i> {{destinos[0].origen}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-map-pin title_detalle" aria-hidden="true"></i> {{destinos[0].distrito_origen}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-user title_detalle" aria-hidden="true"></i> {{destinos[0].nombre_origen}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-phone title_detalle" aria-hidden="true"></i> {{destinos[0].telefono_origen}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-12 padding_row">
+                                  <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> {{destinos[0].comentarios}}</p>
+                                </div>
+                            </div> 
+                      </div>
+                    </div>
+                  <div ng-repeat="pedido in destinos | orderBy:'id_pedido'">
+                    <div class="content_dist" ng-show="destinos.length < 2"><h5 class="dest-orin" ng-show="destinos.length < 2" style="margin-bottom:5px !important; font-size:12px !important">DESTINO</h5></div>
+                    <div class="content_dist" ng-show="destinos.length > 1" style="margin-bottom:5px !important; font-size:12px !important"><h5 class="dest-orin" ng-show="destinos.length > 1">DESTINO {{$index + 1}}</h5></div>
+                    <div class="panel panel-default" style="margin-bottom:7px !important;min-height: auto !important;">
+                      <div class="panel-body">
+                          <div class="row">
+                            <div class="col-xs-12 col-md-12 padding_row">
+                              <p><i class="fa fa-map-marker title_detalle" aria-hidden="true"></i> {{pedido.destino}}</p>
+                            </div>
+                            <div class="col-xs-12 col-md-12 padding_row">
+                              <p><i class="fa fa-map-pin title_detalle" aria-hidden="true"></i> {{pedido.distrito_destino}}</p>
+                            </div>
+                            <div class="col-xs-12 col-md-12 padding_row">
+                              <p><i class="fa fa-user title_detalle" aria-hidden="true"></i> {{pedido.nombre_destino}}</p>
+                            </div>
+                            <div class="col-xs-12 col-md-12 padding_row">
+                              <p><i class="fa fa-phone title_detalle" aria-hidden="true"></i> {{pedido.telefono_destino}}</p>
+                            </div>
+                            <div class="col-xs-12 col-md-12 padding_row">
+                              <p><i class="fa fa-commenting title_detalle" aria-hidden="true"></i> {{pedido.comentarios2}}</p>
+                            </div>
+                          </div> 
+                      </div>
+                    </div> 
+                  <div class="content_dist"><h5 class="dest-orin" style="margin-bottom:5px !important; font-size:12px !important" ng-if="cliente.tipo_usuario == 3"> PRODUCTOS</h5></div>
+                  <div class="panel panel-default" style="margin-bottom:7px !important;min-height: auto !important;" ng-if="cliente.tipo_usuario == 3">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-xs-12 col-md-12 padding_row">
+                          <p><i class="fa fa-shopping-basket title_detalle" aria-hidden="true"></i> {{pedido.detalle}}</p>
+                        </div>
+                        <div class="col-xs-12 col-md-12 padding_row">
+                          <p><i class="fa fa-money title_detalle" aria-hidden="true"></i> <i>Productos:</i> S/.{{pedido.subtotal | number:2}}</p>
+                          <p><i class="fa fa-truck title_detalle" aria-hidden="true"></i> <i>Envío:</i> S/.{{pedido.cobrarecommerce | number:2}}</p>
+                          <p><i class="fa fa-arrow-down title_detalle" aria-hidden="true"></i> <i>Descuento:</i> S/.{{pedido.descuento | number:2}}</p>
+                          <h5 class="title_finalpr">TOTAL A COBRAR</h5>
+                          <p><i class="fa fa-money title_detalle" aria-hidden="true"></i> S/.{{pedido.total | number:2}}</p>
+                        </div>
+                      </div> 
+                    </div>
+                  </div>
+                  <div class="content_dist"><h5 class="dest-orin" style="margin-bottom:5px !important; font-size:12px !important" ng-if="pedidos_detalle.estado == 'FINALIZADO' || pedidos_detalle.estado == 'ANULADO'" ng-show="$last">DETALLE ENVIO</h5></div>
+                  <div class="panel panel-default" style="margin-bottom:7px !important;min-height: auto !important;" ng-if="pedidos_detalle.estado == 'FINALIZADO' || pedidos_detalle.estado == 'ANULADO'" ng-show="$last">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-xs-12 col-md-12 padding_row" ng-if="pedidos_detalle.estado == 'ANULADO'">
+                          <h5 class="title_finalpr">OBSERVACION</h5>
+                          <p>{{pedidos_detalle.motivo}}</p>
+                        </div>
+                        <div class="col-xs-12 col-md-12 padding_row" ng-if="pedidos_detalle.estado == 'FINALIZADO' && pedido.admin_id != 0">
+                          <h5 class="title_finalpr">ENTREGADO</h5>
+                          <p ng-repeat="cant1 in pedido.admin_id" ng-if="cant1.cantE>0">{{cant1.cantE}} {{cant1.nombre}}</p>
+                          <h5 class="title_finalpr">DEVUELTO</h5>
+                          <p ng-repeat="cant2 in pedido.admin_id" ng-if="cant2.cantD>0">{{cant2.cantD}} {{cant2.nombre}}</p>
+                        </div>
+                        <div class="col-xs-12 col-md-12 padding_row" ng-if="pedidos_detalle.estado == 'FINALIZADO'">
+                          <h5 class="title_finalpr">MONTO COBRADO</h5>
+                          <p>S/.{{pedidos_detalle.total}}</p>
+                        </div>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="content_extdetalle">
+                  <div class="row content-unidades2 content_timedet">
+                    <div class="col-xs-4 col-md-4"><img src="images/location-blank.png" width="30" class="img_detalle"><p class="text_unidades2">KM: {{pedido.km}}</p></div>
+                    <div class="col-xs-4 col-md-4"><img src="images/passage-blank.png" width="30" class="img_detalle"><p class="text_unidades2">Min: {{pedido.min}}</p></div>
+                    <div class="col-xs-4 col-md-4"><img src="images/credit-blank.png" width="30" class="img_detalle"><p class="text_unidades2">Costo: {{costoe | number:2}}</p></div>
+                    <br>
+                    <div class="clearfix"></div>
+                </div>
+                  <div class="row">
+                    <br>
+                    <div class="col-md-12" ng-if="cliente.tipo_usuario == 3">
+                      <p class="title_detalle2">Costo Recojo: S/.{{pedidos_detalle.costo_recojo | number:2}}</p>
+                    </div>
+                    <div class="col-md-12">
+                      <p class="title_detalle2">Tipo de Servicio: {{pedidos_detalle.tipo}}</p>
+                    </div>
+                    <div class="col-md-5">
+                      <p class="title_detalle2">Forma de Pago: {{pedidos_detalle.forma_pago}}</p>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="col-xs-12 col-md-4">
+                          <img src="images/letter.png" width="23"><p class="title_caja2"> {{pedidos_detalle.cajap}}</p>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                          <img src="images/box.png" width="29"><p class="title_caja2"> {{pedidos_detalle.cajam}}</p> 
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                          <img src="images/delivery-truck.png" width="29"><p class="title_caja2"> {{pedidos_detalle.cajag}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12" ng-if="cliente.tipo_usuario != 3">
+                      <p class="title_detalle2">Fecha de Envío: {{pedidos_detalle.fecha}}</p>
+                    </div>
+                    <div class="col-md-12" ng-if="cliente.tipo_usuario != 3">
+                      <p class="title_detalle2">Hora Programada: {{pedidos_detalle.hora}}</p>
+                    </div>
+                    <div ng-if="cliente.tipo_usuario == 3">
+                      <div class="col-md-12">
+                        <p class="title_detalle2">Fecha de Recojo: {{pedidos_detalle.fecha_origen1}} ({{pedidos_detalle.hora_origen}})</p>
+                      </div>
+                      <div class="col-md-12">
+                        <p class="title_detalle2">Fecha de Entrega: {{destinos[0].fecha_destino1}} ({{destinos[0].hora_destino}})</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <br>
+              <div id="map2"></div>
+              <div ng-if="pedidos_detalle.estado == 'ASIGNADO' || pedidos_detalle.estado == 'EN CAMINO'" class="info_motorizado">Motorizado: {{pedidos_detalle.motorizado_nombre}}</div>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
+<div id="detalle_pedidos" ng-show="false">
+  <img src="images/logo.png" height="50">
+  <h4 class="title_print">Courier Liebre Express</h4>
+  <hr>
+  <p style="display:block !important;text-align:right;margin-bottom:0px !important">Nº Pedido: LIE000{{pedidos_detalle.id}}</p>
+  <div style="width:30%;display:inline-block !important;float:left">
+    <p style="margin-bottom:0px !important">CLIENTE</p>
+      <hr>
+      <p class="text_print">Nombre/Razón Social: {{pedido.nombre}}</p>
+      <p class="text_print">DNI/RUC: {{cliente.dni}}</p>
+      <p class="text_print">Teléfono: {{cliente.telefono}}</p>
+      <p class="text_print">Correo: {{cliente.email}}</p>
+  </div>
+  <div style="width:22%; display:inline-block !important;float:left">
+    <p style="margin-bottom:0px !important">ORIGEN</p>
+    <hr>
+    <div style="width:95%">
+      <p class="text_print">Dirección: {{destinos[0].origen}}</p>
+      <p class="text_print">Distrito: {{destinos[0].distrito_origen}}</p>
+      <p class="text_print">Departamento: {{destinos[0].departamento_origen}}</p>
+      <p class="text_print">Contacto: {{destinos[0].nombre_origen}}</p>
+      <p class="text_print">Teléfono: {{destinos[0].telefono_origen}}</p>
+    <p class="text_print">Comentarios: {{destinos[0].comentarios}}</p>
+    </div>
+  </div>
+  <div style="width:45%; display:inline-block !important;float:left">  
+    <p ng-show="destinos.length > 1" style="margin-bottom:0px !important">DESTINOS</p>
+    <hr>
+    <div ng-repeat="destinos in destinos">
+      <div ng-show="destinos.length > 1" style="width:23%; display:inline-block !important;float:left;font-size:10px !important;">
+        LIE000{{pedidos_detalle.id}}-{{getLetter($index)}}
+      </div>
+      <div style="width:50%; display:inline-block !important; float:left;margin-left:5px">
+          <p class="text_print" style="margin-top:0px !important">Dirección: {{destinos.destino}}</p>
+          <p class="text_print">Distrito: {{destinos.distrito_destino}}</p>
+          <p class="text_print">Departamento: {{destinos.departamento_destino}}</p>
+          <p class="text_print">Contacto: {{destinos.nombre_destino}}</p>
+          <p class="text_print">Teléfono: {{destinos.telefono_destino}}</p>
+      </div>
+       <div style="width:25%; display:inline-block !important;margin: 0px 0px 5px 0px;float:left;text-align:right !important">
+          <p class="text_print" style="margin-top:0px !important">KM: {{destinos.km}}</p>
+          <p class="text_print">Costo: S/.{{destinos.costo1 | number:2}}</p>
+      </div>
+      <div style="width:100%; display:inline-block !important;margin: 0px 0px 5px 0px;">
+        <p class="text_print">Comentarios: {{destinos.comentarios2}}</p>
+      </div>
+      <div style="width:49%; display:inline-block !important;margin: 0px 0px 5px 0px;" ng-if="cliente.tipo_usuario == 3">
+        <p class="text_print">Productos: {{destinos.detalle}}</p>
+        <div ng-if="!$last"><hr></div>
+      </div>
+      <div style="width:48%; display:inline-block !important;margin: 0px 0px 5px 0px;text-align:right !important" ng-if="cliente.tipo_usuario == 3">
+        <p class="text_print">Costo Productos: S/.{{destinos.subtotal | number:2}}</p>
+        <p class="text_print">Costo Entrega: S/.{{destinos.cobrarecommerce | number:2}}</p>
+        <p class="text_print">Descuento: S/.{{destinos.descuento | number:2}}</p>
+        <div ng-if="!$last"><hr></div>
+      </div>
+    </div>
+    <hr>
+    <div style="text-align:right;width:100%;display:block !important;">
+      <p class="text_print">COSTO ENVIO: S/.{{costoe | number:2}}</p>
+      <p class="text_print">SERVICIOS ADICIONALES: S/.{{pedido.costo_recojo | number:2}}</p>
+      <hr>
+      <p class="text_print">TOTAL COSTO: S/.{{costo | number:2}}</p>
+      <p class="text_print">TOTAL KM: {{pedido.km}}</p>
+    </div>
+  </div>
+  <br>
+  <p class="text_print" ng-if="pedidos_detalle.estado == 'ASIGNADO' || pedidos_detalle.estado == 'EN CAMINO'">Motorizado: {{pedidos_detalle.motorizado_nombre}}</p>
+  <p class="text_print">Servicio: {{pedido.tipo}}, Forma de Pago: {{pedido.forma_pago}}, Fecha de Envío: {{pedido.fecha1}}</p>
+  <p style="display:block !important;text-align:right;margin-bottom:0px !important;font-size:9px">Emitido: {{fecha_actual}}</p>
+</div>

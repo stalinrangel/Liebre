@@ -1,0 +1,73 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+  <div ng-controller="AngularWayChangeDataCtrl as showCase" style="width:80%;margin:auto">
+    <form class="form-inline" ng-submit="showCase.addPerson()">
+        <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="row-border hover">
+            <thead>
+            <tr>
+                <th>
+                    <div class="form-group">
+                        <label>
+                            <input class="form-control" type="text" name="id" ng-model="showCase.person2Add.nombre" placeholder="Nombre Distrito" value="">
+                        </label>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control" name="firstName" ng-model="showCase.person2Add.zona" placeholder="Zona x" value="">
+                        </label>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control" name="firstName" ng-model="showCase.person2Add.estado" placeholder="Habilitado" value="1">
+                        </label>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success"><md-tooltip md-direction="top">Agregar Distrito</md-tooltip><i class="fa fa-plus"></i></button>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>DISTRITO</th>
+                <th>ZONA</th>
+                <th>NO HABILITADO (0)<br>HABILITADO (1)</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="person in showCase.persons" ng-include="getTemplate(person)">
+            </tr>
+            </tbody>
+        </table>
+      <script type="text/ng-template" id="display2">
+          <td class="pd_table">{{ person.nombre }}</td>
+          <td class="pd_table">{{ person.zona }}</td>
+          <td class="pd_table">{{ person.estado }}</td>
+          <td class="pd_table">
+            <button type="button" ng-click="showCase.modifyPerson(person)" class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow" style="min-width: 35px !important;min-height:30px !important"><md-tooltip md-direction="top">Editar Distrito</md-tooltip><i class="fa fa-edit"></i></button>
+            <button type="button" ng-click="showCase.removePerson($index,person)" class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow" style="min-width: 35px !important;min-height:30px !important"><md-tooltip md-direction="top">Eliminar Distrito</md-tooltip><i class="fa fa-trash-o"></i></button>
+          </td>
+      </script>
+      <script type="text/ng-template" id="edit2">
+          <td class="pd_table"><input type="text" ng-model="model.nombre" /></td>
+          <td class="pd_table"><input type="text" ng-model="model.zona" /></td>
+          <td class="pd_table"><input type="text" ng-model="model.estado" /></td>
+          <td class="pd_table">
+            <button type="button" ng-click="saveContact($index)" class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow" style="min-width: 35px !important;min-height:30px !important"><md-tooltip md-direction="top">Guardar Cambios</md-tooltip><i class="fa fa-check"></i></button>
+            <button type="button" ng-click="reset()" class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow" style="min-width: 35px !important;min-height:30px !important"><md-tooltip md-direction="top">Cancelar</md-tooltip><i class="fa fa-times"></i></button>
+          </td>
+      </script>
+    </form>
+</div>
+</div>
+<navfooter></navfooter>
+

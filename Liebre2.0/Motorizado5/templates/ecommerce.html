@@ -1,0 +1,90 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a ng-click="toggleSidebar()">
+            Menú
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          </a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/persona">Realizar envíos <span class="menu-icon fa fa-truck"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/tracking">Mis envíos <span class="menu-icon fa fa-search"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/historial">Historial <span class="menu-icon fa fa-list-ol"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">Pagos <span class="menu-icon fa fa-credit-card"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/perfil">Mi cuenta <span class="menu-icon fa fa-user"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">Ayuda <span class="menu-icon fa fa-question"></span></a>
+        </li>
+      </ul>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div class="page-content">
+        <!-- Header Bar -->
+        <div class="row header">
+          <div class="col-xs-12">
+            <div class="user pull-right">
+              <div class="item dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle>
+                  <img ng-src="{{profile.picture}}">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li class="dropdown-header">
+                    {{profile.usuario}}
+                  </li>
+                  <li class="divider"></li>
+                  <li class="link">
+                    <a ng-click="cerrarS()">
+                      Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="page">
+               <img src="images/logo.png" width="90" height="45">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Header Bar -->
+
+        <!-- Main Content -->
+        <div class="content" style="background-color:#fafafa">
+
+          <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+            <md-whiteframe class="md-whiteframe-1dp" flex-sm="40" flex-gt-sm="30" flex-gt-md="20" layout-align="center center">
+            <img src="http://www.oprintjet.com/wp-content/uploads/2014/07/5280_plain_shirts_1.jpg" height="100px">
+            <span><p>Polo</p><p>camisa</p></span>
+            </md-whiteframe>
+            <md-whiteframe class="md-whiteframe-1dp" flex-sm="40" flex-gt-sm="30" flex-gt-md="20" layout layout-align="center center">
+             <img src="http://media.newlookassets.com/i/newlook/527870210/womens/tops/t-shirts/white-ripped-acdc-print-t-shirt-/?$new_pdp_szoom_image_600$" height="100px">
+            <span><p>Polo</p><p>camisa</p></span>
+            </md-whiteframe>
+            <md-whiteframe class="md-whiteframe-1dp" flex-sm="40" flex-gt-sm="30" flex-gt-md="20" layout layout-align="center center">
+              <img src="http://media.newlookassets.com/i/newlook/529830012/womens/tops/shirts-and-blouses/cream-corset-front-t-shirt/?$plp_3_row$" height="100px">
+            <span><p>Polo</p><p>camisa</p></span>
+            </md-whiteframe>
+            <md-whiteframe class="md-whiteframe-1dp" flex-sm="40" flex-gt-sm="30" flex-gt-md="20" layout layout-align="center center">
+              <img src="http://www.oprintjet.com/wp-content/uploads/2014/07/5280_plain_shirts_1.jpg" height="100px">
+            <span><p>Polo</p><p>camisa</p></span>
+            </md-whiteframe>
+          </div>
+        </div>
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+  </div><!-- End Page Wrapper -->

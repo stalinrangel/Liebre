@@ -1,0 +1,83 @@
+ body {
+	margin: 0;
+	padding: 0;
+ }
+ 
+ #background 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: relative; 
+	 margin-left: auto; 
+	 margin-right: auto; 
+	 width: 1519px;
+	 height: 947px; 
+	 overflow: hidden;
+	 z-index:0;
+	} 
+
+ #Calque0 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: absolute; 
+	 width: 1519px;
+	 height: 947px;
+	 z-index:1;
+} 
+
+ #rimk 
+{ 
+	 left: 260px; 
+	 top: 251px; 
+	 position: absolute; 
+	 width: 341px;
+	 height: 43px;
+	 z-index:2;
+} 
+
+ #vale 
+{ 
+	 left: 299px; 
+	 top: 325px; 
+	 position: absolute; 
+	 width: 231px;
+	 height: 47px;
+	 z-index:3;
+} 
+
+#ramo
+{
+	box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #999;
+    height: auto;
+    font-size: 1.1em;
+    text-align: left;
+    padding: 15px 5px 15px 10px;
+    width: 80%;
+	outline: none;
+}
+
+#zviva
+{
+   border-top-width: 0px;
+   border-right-width: 0px;
+   border-bottom-width: 0px;
+   border-left-width: 0px;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+   border-top-color: #000000;
+   border-right-color: #000000;
+   border-bottom-color: #000000;
+   border-left-color: #000000;
+   background-color: transparent;
+   background-repeat: repeat;
+   background-position: left top;
+   color: #000000;
+   font-family: Arial;
+   font-size: 13px;
+   outline: none;
+}

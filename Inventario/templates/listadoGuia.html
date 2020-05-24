@@ -1,0 +1,126 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+  <md-content class="md-padding" layout-xs="column" layout="row" style="background-color:#fff">
+    <div flex-xs flex-gt-xs="55" layout="column">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">GUÍAS</span>
+            <div class="row">
+              <div class="col-md-6">
+                <md-datepicker ng-model="fecha_guia" md-placeholder="dd/mm/yyyy" ng-change="fecha(fecha_guia)">
+                </md-datepicker>
+              </div>
+              <div class="col-md-6">
+                <span layout="row" layout-align="center">Cliente:&nbsp;<input type="text" ng-model="guia_cliente"><md-button class="pull-right md-primary" ng-click="cliente()" aria-label="buscar">Buscar</md-button></span> 
+              </div>
+              
+            </div>
+            <div class="row">
+              <br>
+              <span layout="row" layout-align="end center">Filtrar:&nbsp;<input type="text" ng-model="search" ng-change="filtrar()"></span>
+            </div>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <md-list>
+            <div class="dataTable_wrapper">
+              <table class="table table-striped table-hover" id="dataTables-example">
+                  <thead>
+                      <tr class="head_table">
+                          <th style="text-align:center">Nº GUÍA</th>
+                          <th style="text-align:center">CLIENTE</th>
+                          <th style="text-align:center">FECHA</th>
+                          <th style="text-align:center">VER GUÍA</th>
+                      </tr>
+                  </thead>
+                  <tfoot ng-if="tracking.length > 0">
+                      <td colspan="4">
+                          <div class="pagination pull-right">
+                              <ul>
+                                  <li ng-class="{disabled: currentPage == 0}">
+                                      <a href ng-click="prevPage()">« Anterior</a>
+                                  </li>
+                                  <li ng-repeat="n in range(pagedItems.length)"
+                                      ng-class="{active: n == currentPage}"
+                                  ng-click="setPage()">
+                                      <a href ng-bind="n + 1">1</a>
+                                  </li>
+                                  <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                      <a href ng-click="nextPage()">Siguiente »</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </td>
+                  </tfoot>
+                  <tbody>
+                      <tr ng-repeat='item in pagedItems[currentPage]' class="odd gradeX">
+                          <td style="text-align:center">{{item.guia}}</td>
+                          <td style="text-align:center">{{item.cliente}}</td>
+                          <td style="text-align:center">{{item.fecha | date: 'dd/MM/yyyy'}}</td>
+                          <td style="text-align:center"><ng-md-icon icon="visibility" size="24" ng-click="ver_guia(item)"></ng-md-icon></td>
+                      </tr>
+                  </tbody>
+              </table>
+              <loading3></loading3>
+            </div>
+          </md-list>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="45" layout="column">
+      <md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <img src="images/logo.png"/>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title text-right">GUÍA Nº {{guias.guia}}</span>
+            <span class="md-subhead text-right">Fecha: {{guias.fecha | date: 'dd/MM/yyyy'}}</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-subhead">Cliente: {{guias.cliente}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <div layout-gt-xs="row">
+            <div flex-gt-xs="30">
+              <h5 style="margin-bottom: 0px !important;">CANTIDAD</h5>
+              <hr style="margin-top: 5px !important">
+            </div>
+            <div flex-gt-xs="70">
+              <h5 style="margin-bottom: 0px !important;">PRODUCTO</h5>
+              <hr style="margin-top: 5px !important">
+            </div>
+          </div>
+          <fieldset data-ng-repeat="product in productos">
+            <div layout-gt-xs="row">
+              <div flex-gt-xs="30">
+                <h5>{{product.cantidad}}</h5>
+              </div>
+              <div flex-gt-xs="70">
+                <h5>{{product.nombre}}</h5>
+              </div>
+            </div>
+          </fieldset>
+          <hr style="margin-top: 5px !important">
+          <div layout-gt-xs="row">
+            <div flex-gt-xs>
+              <h5>Remitente: {{guias.remitente}}</h5>
+            </div>
+            <div flex-gt-xs>
+              <h5>Receptor: {{guias.receptor}}</h5>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-content>
+</div>
+<navfooter></navfooter>

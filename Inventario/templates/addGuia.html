@@ -1,0 +1,128 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+  <md-content class="md-padding" layout-xs="column" layout="row" style="background-color:#fff">
+    <div flex-xs flex-gt-xs="60" layout="column">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">AGREGAR GUÍA</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <div class="row">
+            <div id="fechainicio1" class="col-md-12">
+              <h5 class="inline-div title_cliente" style="margin-right: 10px;">Seleccione Ecommerce:</h5>
+              <select name="show-filter" ng-model="DirOrigen" style="width:50%" ng-options="prod as prod.nombrecompleto for prod in ori" ng-change="selec(DirOrigen)"></select>
+            </div>
+          </div>
+          <div layout-gt-xs="row">
+            <div flex-gt-xs>
+              <h5>Número de Guía</h5>
+              <input type="text" ng-model="guias.guia" class="w-90">
+            </div>
+            <div flex-gt-xs>
+              <h5>Fecha</h5>
+              <md-datepicker ng-model="guias.fecha1" md-placeholder="Enter date"></md-datepicker>
+            </div>
+          </div>
+          <div layout-gt-xs="row">
+            <div flex-gt-xs>
+              <h5>Remitente</h5>
+              <input  type="text" ng-model="guias.remitente" class="w-90">
+            </div>
+            <div flex-gt-xs>
+              <h5>Receptor</h5>
+              <input  type="text" ng-model="guias.receptor" class="w-90">
+            </div>
+          </div>
+          <br>
+          <div layout-gt-xs="row">
+            <div flex-gt-xs>
+              <h5 style="margin-bottom: 0px !important;">PRODUCTOS</h5>
+              <hr style="margin-top: 5px !important">
+            </div>
+          </div>
+          <fieldset data-ng-repeat="product in productos">
+            <div layout-gt-xs="row">
+              <div flex-gt-xs="15">
+                <h5>Cantidad</h5>
+                <input type="text" ng-model="product.cantidad" style="width:80%">
+              </div>
+              <div flex-gt-xs>
+                <h5>Producto</h5>
+                <select name="show-filter" ng-model="product.producto" style="width:94%" ng-options="prod as prod.producto for prod in productos_ecommerce" ng-change="change_producto(product)"></select>
+              </div>
+            </div>
+          </fieldset>
+          <div layout-gt-xs="row">
+            <div flex-gt-xs>
+              <md-button class="md-fab md-mini md-primary pull-right" aria-label="plus" ng-click="addproducto()">
+                <md-icon md-svg-src="images/plus.svg"></md-icon>
+              </md-button>
+              <md-button class="md-fab md-mini md-primary pull-right" aria-label="remove" ng-click="removeproducto()" ng-show="productos.length > 1">
+                <md-icon md-svg-src="images/remove.svg"></md-icon>
+              </md-button>
+            </div>
+          </div>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised button_cliente md-button md-ink-ripple" ng-click="guardar()">GUARDAR GUÍA</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="40" layout="column">
+      <md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <img src="images/logo.png"/>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title text-right">GUÍA Nº {{guias.guia}}</span>
+            <span class="md-subhead text-right">Fecha: {{guias.fecha1 | date: 'dd/MM/yyyy'}}</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-subhead">Cliente: {{guias.cliente}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <div layout-gt-xs="row">
+            <div flex-gt-xs="30">
+              <h5 style="margin-bottom: 0px !important;">CANTIDAD</h5>
+              <hr style="margin-top: 5px !important">
+            </div>
+            <div flex-gt-xs="70">
+              <h5 style="margin-bottom: 0px !important;">PRODUCTO</h5>
+              <hr style="margin-top: 5px !important">
+            </div>
+          </div>
+          <fieldset data-ng-repeat="product in productos">
+            <div layout-gt-xs="row">
+              <div flex-gt-xs="30">
+                <h5>{{product.cantidad}}</h5>
+              </div>
+              <div flex-gt-xs="70">
+                <h5>{{product.nombre}}</h5>
+              </div>
+            </div>
+          </fieldset>
+          <hr style="margin-top: 5px !important">
+          <div layout-gt-xs="row">
+            <div flex-gt-xs>
+              <h5>Remitente: {{guias.remitente}}</h5>
+            </div>
+            <div flex-gt-xs>
+              <h5>Receptor: {{guias.receptor}}</h5>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-content>
+</div>
+<navfooter></navfooter>

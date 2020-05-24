@@ -1,0 +1,15 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal" ng-controller="dashboardCtrl">
+
+	<p class="title">Pedidos Finalizados/Anulados</p>
+
+    <div ng-controller="ListadoOrdenesCtrl as showCase" class="tabla_pedidos">
+      <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover"></table>
+  	</div>
+</div>
+<navfooter></navfooter>
+

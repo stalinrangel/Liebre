@@ -1,0 +1,312 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a ng-click="toggleSidebar()">
+            Menú
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          </a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/persona">Realizar envíos <span class="menu-icon fa fa-truck"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/tracking">Mis envíos <span class="menu-icon fa fa-search"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/historial">Historial <span class="menu-icon fa fa-list-ol"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/ecommerce">Pagos <span class="menu-icon fa fa-credit-card"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/perfil">Mi cuenta <span class="menu-icon fa fa-user"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">Ayuda <span class="menu-icon fa fa-question"></span></a>
+        </li>
+      </ul>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div class="page-content">
+        <!-- Header Bar -->
+        <div class="row header">
+          <div class="col-xs-12">
+            <div class="user pull-right">
+              <div class="item dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle>
+                  <img ng-src="{{profile.picture}}">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li class="dropdown-header">
+                    {{profile.usuario}}
+                  </li>
+                  <li class="divider"></li>
+                  <li class="link">
+                    <a ng-click="cerrarS()">
+                      Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="page">
+               <img src="images/logo.png" width="90" height="45">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Header Bar -->
+
+        <!-- Main Content -->
+        <div class="content">
+          <div class="content_form">
+            <div class="content-datos">
+              <div class="content_dist"><h5 class="dest-orin1 arrow_box"> ORIGEN</h5></div>
+              <form>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                      <div class="panel panel-default">
+                         <div class="panel-body">
+                            <div class="row">
+                              <div style="text-align:right"> 
+                                <button class="btn btn-icon"><md-tooltip md-direction="top">Agregar favorito</md-tooltip><span class="fa fa-star" ng-class="{active: origen.star}" ng-click="fav(origen)"></span></button>
+                              </div>
+                              <div class="col-xs-12 col-md-8">
+                                <div ng-show="false" class="col-md-12">
+                                  <input  ng-model="chosenPlace" googleplace/>
+                                  <input  type="text" ng-model="origen.origen" placeholder="Enter an origin location"  g-places-autocomplete  options="autocompleteOptions" ng-enter="consola()">
+                                </div>
+                                <div class="form-group input_pedido">
+                                    <label>Dirección de Recojo</label>
+                                    <input  type="text" ng-model="origen.origen" placeholder="Dirección de recojo"  g-places-autocomplete options="autocompleteOptions" ng-blur="consola2(0)" class="form-control" style="padding-right: 30px;">
+                                    <div class="item dropdown fav_place" uib-dropdown>
+                                      <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                                        <md-tooltip md-direction="top">Direcciones guardadas</md-tooltip><img ng-src="images/favorite-place.png" class="img_favorite">
+                                      </a>
+                                      <ul class="dropdown-menu dropdown-menu-right" style="right:106%; margin-top:6px">
+                                        <li class="dropdown-header" ng-repeat="item in lista_favorito" ng-click="select_fav(item, 0)">
+                                          {{item.direccion}} {{item.departamento}}
+                                        </li>
+                                      </ul>
+                                    </div>
+                                </div>
+                              </div>
+                              <!--<div class="col-xs-12 col-md-1">
+                                <img src="images/geomapa.png" class="geomapa" width="20" ng-click="locateMe()">
+                              </div>-->
+                              <div class="col-xs-12 col-md-4">
+                                <div class="form-group input_pedido">
+                                  <label>Departamento Origen</label>
+                                  <input type="text"  ng-model="origen.departamentoOrigen" placeholder="Departamento, Oficina " class="form-control"/>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-8">
+                                <div class="form-group input_pedido">
+                                  <label>Nombre</label>
+                                  <input type="text"  ng-model="origen.nombreOrigen"   class="form-control" placeholder="Nombre de quién envía"/>
+                                </div>
+                              </div>
+                              <div class="col-xs-12 col-md-4">
+                                <div class="form-group input_pedido">
+                                  <label>Teléfono</label>
+                                 <input type="texto"  ng-model="origen.telefonoOrigen" class="form-control" placeholder="Teléfono"/>
+                                </div>
+                              </div>
+                            </div> 
+                            <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                <div class="form-group input_pedido">
+                                  <label>Comentarios</label>
+                                  <textarea class="form-control" ng-model="origen.comentarios" placeholder="Comentarios..."></textarea>
+                                </div>
+                              </div>
+                            </div>
+                         </div>
+                      </div>
+                    </tbody>
+                </table>
+              </form>
+              <form>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <div ng-repeat="pedido in pedidos | orderBy:'id_pedido'">
+
+                            <div class="content_dist" ng-show="pedidos.length < 2"><h5 class="dest-orin1 arrow_box" ng-show="pedidos.length < 2">DESTINO</h5></div>
+                            <div class="content_dist" ng-show="pedidos.length > 1"><h5 class="dest-orin1 arrow_box" ng-show="pedidos.length > 1">DESTINO {{$index + 1}}</h5></div>
+                            <div class="panel panel-default">
+                              <div class="panel-body">
+                                <div class="delete_pedido">
+                                  <img src="images/delete.png" ng-show="pedidos.length > 1" ng-click="borrarPedido(pedido.id_pedido)">
+                                </div>
+                                <div style="text-align:right"> 
+                                <button class="btn btn-icon"><md-tooltip md-direction="top">Agregar favorito</md-tooltip><span class="fa fa-star" ng-class="{active: pedido.star}" ng-click="fav1(pedido)"></span></button>
+                                </div>
+                                  <div class="row">
+                                    <div class="col-xs-12 col-md-8">
+                                      <div class="form-group input_pedido">
+                                          <label>Dirección de Destino</label>
+                                          <input class="form-control" g-places-autocomplete options="autocompleteOptions" ng-model="pedido.destino" placeholder="Dirección de destino" ng-change="change(pedido.id_pedido)" ng-blur="consola2(pedido.id_pedido)" style="padding-right: 30px;"/>
+                                          <div class="item dropdown fav_place" uib-dropdown>
+                                            <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                                              <md-tooltip md-direction="top">Direcciones guardadas</md-tooltip><img ng-src="images/favorite-place.png" class="img_favorite">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" style="right:106%; margin-top:6px">
+                                              <li class="dropdown-header" ng-repeat="item in lista_favorito" ng-click="select_fav(item, pedido.id_pedido)">
+                                                {{item.direccion}} {{item.departamento}}
+                                              </li>
+                                            </ul>
+                                          </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                      <div class="form-group input_pedido">
+                                        <label>Departamento Destino</label>
+                                        <input type="text" class="form-control" ng-model="pedido.departamentoDestino" placeholder="Departamento destino"/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-xs-12 col-md-8">
+                                      <div class="form-group input_pedido">
+                                        <label>Nombre Contacto</label>
+                                        <input type="text" class="form-control" ng-model="pedido.nombreDestino" placeholder="Nombre de quien recibe"/>
+                                      </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                      <div class="form-group input_pedido">
+                                        <label>Teléfono</label>
+                                        <input type="text" class="form-control" ng-model="pedido.telefonoDestino" placeholder="Teléfono"/>
+                                      </div>
+                                    </div>
+                                  </div> 
+                                  <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                      <div class="form-group input_pedido">
+                                        <label>Comentarios</label>
+                                        <textarea class="form-control" ng-model="pedido.comentarios" placeholder="Comentarios..."></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row" ng-if="user.tipo_usuario == 3">
+                                    <div class="col-xs-12 col-md-12">
+                                      <div class="form-group input_pedido">
+                                        <label>Cobrar</label>
+                                        <input type="number" class="form-control" step="0.01" ng-model="pedido.cobrarecommerce" placeholder="Monto a cobrar por envío" decimal-places/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row" ng-if="user.tipo_usuario == 3">
+                                    <div class="col-xs-12 col-md-11">
+                                      <div class="form-group input_pedido">
+                                        <label>Productos</label>
+                                        <textarea class="form-control" ng-model="origen.comentarios" placeholder="Ingresa los productos que deseas enviar (Ecommerce sin almacén)"></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-1">
+                                      <button class="btn btn-danger btn-quit btn-topshop" ng-click="productos_modal()"><i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
+                                    </div>
+                                  </div>
+                                  <div class="row" ng-if="user.tipo_usuario == 3">
+                                    <p class="text_horario">Fijar horario de envío</p>
+                                    <div class="col-xs-12 col-md-4">
+                                    <md-datepicker ng-model="myDate" ng-change="ajusteFecha(myDate)" md-placeholder="Enter date" md-min-date="minDate" md-date-filter="onlyWeekendsPredicate"></md-datepicker>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                    <select ng-model='horaPedido2' ng-change="ajusteHora1(horaPedido2)" class="form-control" null-is-undefined ng-options="select.id as select.horario for select in seleccionarHorario">
+                                      <option value="">Seleccione el horario</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                    <select ng-model='horaPedido3' ng-change="ajusteHora2(horaPedido3)" class="form-control" null-is-undefined ng-options="selection.hora for selection in seleccionarHorae | filter:{ids:horaPedido2}">
+                                      <option value="">Seleccione la hora</option>
+                                    </select>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div ng-show="pedidos.length > 1" ng-if="!$last">
+                                <img src="images/arrow.png" class="arrow-up" ng-click="subir(pedido.id_pedido)">
+                                <img src="images/arrow.png" class="arrow-down" ng-click="bajar(pedido.id_pedido)">
+                            </div>
+                            <br>
+                        </div>                
+                        <button class="btn btn-danger pull-right btn-add btn-top" ng-click="addNew()">Agregar Destino</button>
+
+                        <button class="btn btn-danger pull-right btn-add btn-top" ng-click="retorno()">Retorno</button>
+                    </tbody>
+                </table>
+              </form>
+              <br>
+              <div class="row">
+              <div class="col-xs-12 col-md-12 cc-selector">
+                <div class="col-xs-12 col-md-3">
+                  <p class="title_medio">Selecciona el medio de envío que deseas utilizar:</p>
+                </div>
+                <div class="content-articulos">
+                  <div class="col-xs-4 col-md-3">
+                    <md-tooltip md-direction="top">Moto</md-tooltip><input id="moto" type="radio" name="medio" ng-model="medio" ng-value="0" ng-change="change_medio()" />
+                    <label class="drinkcard-cc moto" for="moto"></label>
+                  </div>
+                  <div class="col-xs-4 col-md-3">
+                  <md-tooltip md-direction="top">Auto</md-tooltip><input id="auto" type="radio" name="medio" ng-model="medio" ng-value="1" ng-change="change_medio()"/>
+                  <label class="drinkcard-cc auto" for="auto"></label>
+                  </div>
+                  <div class="col-xs-4 col-md-3">
+                    <md-tooltip md-direction="top">Furgoneta</md-tooltip><input id="van" type="radio" name="medio" ng-model="medio" ng-value="2" ng-change="change_medio()"/>
+                  <label class="drinkcard-cc van" for="van"></label>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              </div>
+              <div class="last-buttons" ng-show="!showProgramar">
+                <button class="btn btn-primary pull-left btn-quit" ng-click="programar()" ng-if="user.tipo_usuario != 3">Programar</button>
+                <button class="btn btn-primary pull-left btn-quit" ng-click="borrador()" style="margin-left: 5px;">Guardar Presupuesto</button>
+                <button class="btn btn-danger pull-right btn-add" ng-if="user.tipo_usuario != 3" ng-click="cotizar()">Solicitar Envío</button>
+                <button class="btn btn-danger pull-right btn-add" ng-if="user.tipo_usuario == 3" ng-click="cotizar_ecommerce()">Solicitar Envío</button>
+                <button class="btn btn-primary pull-right btn-quit" ng-click="borrar()">Limpiar</button>
+              </div>
+              <br>
+              <div ng-show="showProgramar" class="row" ng-if="user.tipo_usuario != 3">
+                <div class="col-xs-12 col-md-6">
+                <md-datepicker ng-model="myDate" ng-change="ajusteFecha(myDate)" md-placeholder="Enter date" md-min-date="minDate" md-date-filter="onlyWeekendsPredicate"></md-datepicker>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                <select ng-model='horaPedido1' ng-change="ajusteHora(horaPedido1)" class="form-control" null-is-undefined ng-options="select.hora for select in selectHora"  required>
+                  <option value="">Seleccione el horario</option>
+                </select>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                  <br><br>
+                  <button class="btn btn-primary pull-left btn-quit" ng-click="programar()">No Programar</button>
+                  <button class="btn btn-primary pull-left btn-quit" ng-click="borrador()" style="margin-left: 5px;">Guardar Presupuesto</button>
+                  <button class="btn btn-danger pull-right btn-add" ng-click="cotizar()">Solicitar Envío</button>
+                  <button class="btn btn-primary pull-right btn-quit" ng-click="borrar()">Limpiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content_mapa">
+            <div class="content-map">
+              <div id="mapo"></div>
+              <div class="content-unidades">
+                <div class="col-xs-4 col-md-4"><img src="images/location-on-road.png" width="25"><p class="text_unidades">KM: {{km}}</p></div>
+                <div class="col-xs-4 col-md-4"><img src="images/time.png" width="25"><p class="text_unidades">Min: {{duracion}}</p></div>
+                <div class="col-xs-4 col-md-4"><img src="images/credit-card.png" width="25"><p class="text_unidades">Costo: {{costo}}</p></div>
+                <br>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+  </div><!-- End Page Wrapper -->

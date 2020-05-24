@@ -1,0 +1,40 @@
+<md-dialog aria-label="Motorizados" style="width:35%; height:530px">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Seleccionar Motorizado</h2>
+        <span flex></span>
+        <div>
+          <i class="fa fa-times delete_modal" style="color:#fff !important" aria-hidden="true" ng-click="cancel()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div>
+          <label>Buscar Motorizado: </label><input ng-model="searchText" class="form-control">
+        </div>
+        <!--<div>
+          <h4 class="moto_nodis" ng-show="distancias.length == 0">No hay motorizados <br> disponibles en este momento</h4>
+        </div>-->
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="item in distancias | filter:searchText" ng-click="select_moto(item)">
+            <div class="md-list-item-text">
+              <h3 class="name_moto"><img src="{{item.img}}" width="40px" style="border-radius: 50% !important; margin-right:5px !important;height:40px !important"> {{item.nombre}}</h3>
+              <!--<h4 class="tlf_moto"><i class="fa fa-phone"></i> {{item.telefono}}</h4>
+              <h4 class="tlf_moto"><i class="fa fa-motorcycle" ng-if="item.tipo == 'Moto'"></i><i class="fa fa-car" ng-if="item.tipo == 'Auto'"></i><i class="fa fa-truck" ng-if="item.tipo == 'Furgoneta'"></i>  {{item.tipo}}</h4>-->
+            </div>
+            <div class="content_distance">
+              <h5 class="tlf_moto"><i class="fa fa-phone"></i> {{item.telefono}}</h5>
+              <h5 class="tlf_moto"><i class="fa fa-motorcycle" ng-if="item.tipo == 'Moto'"></i><i class="fa fa-car" ng-if="item.tipo == 'Auto'"></i><i class="fa fa-truck" ng-if="item.tipo == 'Furgoneta'"></i>  {{item.tipo}}</h5>
+              <!--<i class="fa fa-road icon_road" aria-hidden="true"></i>
+              <p class="distance_moto">a {{item.distancia | number : 2}} Km del envío</p>-->
+            </div>
+            <md-divider ng-if="!$last"></md-divider>    
+          </md-list-item>
+        </md-list>   
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

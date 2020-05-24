@@ -1,0 +1,96 @@
+<div ng-controller="sidevar">
+
+    <!-- Header -->
+  <div>
+  <div class="fondo_bienvenido">
+    <p>Panel Administrativo Courier Liebre Express</p>
+    <div class="page2">
+      <img src="images/logo.png">
+    </div>
+    <!--<p>Mayo 2017</p>-->
+  </div>
+  <div id='cssmenu'>
+    <ul>
+      <li class='active'><a href='#/pendientes' class="icon_home"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
+      <li><a href='#/pendientes'>Pedidos</a></li>
+      <li class='last'><a href='#/reportes'>Reportes</a>
+        <ul>
+          <li class='has-sub'><a href='#/reportes'>Reporte Clientes</a></li>
+          <li class='has-sub'><a href='#/reportes_motorizado'>Reporte Motorizados</a></li>
+          <li class='has-sub'><a href='#/listado_liquidacion'>Liquidaciones</a></li>
+          <li class='has-sub'><a href='#/reporte_distribucion'>Reporte de Distribucion</a></li>
+        </ul>
+      </li>
+      <li class='has-sub'><a href='#/clientes'>Gestionar</a>
+        <ul>
+          <li class='has-sub'><a href='#/clientes'>Clientes</a></li>
+          <li class='has-sub'><a href='#/motorizados'>Motorizados</a></li>
+          <li class='has-sub'><a href='#/variables'>Variables del sistema</a></li>
+          <li class='has-sub'><a href='#/distritos'>Distritos</a></li>
+        </ul>
+      </li>
+      <!--<li class='has-sub'><a href='#/inventario'>Ecommerce</a>
+        <ul>
+          <li class='has-sub'><a href='#/inventario'>Inventario</a></li>
+          <li class='has-sub'><a href='#/productos_devueltos'>Productos Devueltos</a></li>
+        </ul>
+      </li>-->
+    </ul>
+  </div>
+        <div class="user">
+        <div class="item dropdown" uib-dropdown>
+          <a href="#/pendientes" class="dropdown-toggle" uib-dropdown-toggle>
+            <i class="fa fa-user img_user"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li class="dropdown-header">
+              Administrador
+            </li>
+            <li class="divider"></li>
+            <li class="link">
+              <a href="#/login">
+                Cerrar Sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+</div>
+<!--<md-button ng-click="toggleRight()" aria-label="oclock" class="md-raised md-icon button_sidenav">
+  <ng-md-icon icon="access_alarms" style="fill: #fff" size="38"></ng-md-icon>
+</md-button>-->
+    <md-sidenav class="md-sidenav-right" md-component-id="right"
+                md-disable-backdrop md-whiteframe="4" style="background-color:#eee">
+    <md-toolbar class="md-theme-indigo" style="min-height: 60px !important;">
+      <md-button class="button_sidenav2" aria-label="Search" ng-click="toggleRight()">
+        <ng-md-icon icon="swap_horiz" style="fill: #fff" size="38"></ng-md-icon>
+      </md-button>
+    </md-toolbar>
+    <md-content layout-margin style="background-color:#eee">
+      <div>
+        <div>
+          <p class="timer_sidevar">{{day_text}}, {{ clock | date:'HH:mm:ss'}}</p>
+        </div>
+        <p class="textmonth_sidevar">{{month}}</p>
+        <p class="numbermonth_sidevar">{{day}}</p>
+        <p class="textmonth_sidevar">{{year}}</p>
+      </div>
+      <md-divider></md-divider>
+      <md-card>
+        <p class="number_sidevar">{{count_pendientes}}</p>
+        <p class="text_sidevar">Pedidos Pendientes</p>
+      </md-card>
+       <md-card>
+        <p class="number_sidevar">{{count_encurso}}</p>
+        <p class="text_sidevar">Pedidos en Curso</p>
+      </md-card>
+       <md-card>
+        <p class="number_sidevar">{{count_finalizados}}</p>
+        <p class="text_sidevar">Pedidos Finalizados</p>
+      </md-card>
+       <md-card>
+        <p class="number_sidevar">{{count_anulados}}</p>
+        <p class="text_sidevar">Pedidos Anulados</p>
+      </md-card>
+    </md-content>
+  </md-sidenav>

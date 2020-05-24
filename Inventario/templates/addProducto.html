@@ -1,0 +1,33 @@
+<md-dialog aria-label="Mango (Fruit)" style="width:50%;">
+  <form ng-cloak >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Agregar Producto</h2>
+        <span flex></span>
+        <div>
+          <i class="fa fa-times delete_modal" style="color:#fff !important" aria-hidden="true" ng-click="cancelar()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="text_registro form-group">
+              <div class="ic_model" style="margin-bottom: 5px;"><ng-md-icon icon="text_format" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+              <span style="font-weight: bold">Nombre Producto:</span>
+              <input type="text" class="form-control" ng-model="addProductos.nombre">
+            </div>
+            <div class="text_registro form-group">
+              <div class="ic_model" style="margin-bottom: 5px;"><ng-md-icon icon="style" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+              <span style="font-weight: bold">Descripción del Producto:</span>
+              <textarea class="form-control" rows="10" ng-model="addProductos.descripcion"></textarea>
+            </div>
+            <br>
+            <button class="btn btn-danger btn-add" style="width:100% !important; margin-bottom:20px !important" ng-click="addProducto()">Crear Producto</button>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

@@ -1,0 +1,156 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+	<div class="row content_search">
+		<div class="col-md-12">
+			<h4 style="font-weight:bold;margin-bottom: 0px !important;">PRODUCTOS DEVUELTOS</h4>
+			<hr style="margin-top: 5px !important">
+		</div>
+	</div>
+	<br>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4" style="text-align: center">
+            <md-input-container md-theme="input" flex>
+                <label>&nbsp;</label>
+                <input ng-model="buscar_id" placeholder="id" class="m-15">
+            </md-input-container>
+            <md-button class="md-raised button_cliente"  ng-click="ver_id()">Buscar por id</md-button>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <md-datepicker ng-model="devueltosFecha" md-placeholder="dd/mm/yyyy" ng-change="devueltos_fecha(devueltosFecha)">
+            </md-datepicker>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div><br><br>
+	<div class="row" ng-hide="ver_datos">
+		<div class="col-md-12">
+			<div class="row">
+                <div class="col-lg-12">
+                    <md-card style="width:55%;margin:auto">
+                        <div class="dataTable_wrapper">
+                            <table class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr class="head_table">
+                                        <th style="text-align:center">Fecha</th>
+                                        <th style="text-align:center">Productos Entregados</th>
+                                        <th style="text-align:center">Productos Devueltos</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tfoot ng-if="tracking.length > 0">
+                                    <td colspan="4">
+                                        <div class="pagination pull-right">
+                                            <ul>
+                                                <li ng-class="{disabled: currentPage == 0}">
+                                                    <a href ng-click="prevPage()">« Anterior</a>
+                                                </li>
+                                                <li ng-repeat="n in range(pagedItems.length)"
+                                                    ng-class="{active: n == currentPage}"
+                                                ng-click="setPage()">
+                                                    <a href ng-bind="n + 1">1</a>
+                                                </li>
+                                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                                    <a href ng-click="nextPage()">Siguiente »</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tfoot>
+                                <tbody>
+                                    <tr ng-repeat='item in pagedItems[currentPage]' class="odd gradeX">
+                                        <td style="text-align:center">{{item.fecha1}}</td>
+                                        <td style="text-align:center">{{item.cantE}}</td>
+                                        <td style="text-align:center">{{item.cantD}}</td>
+                                        <td style="text-align:center"><md-button class="md-raised button_cliente" style="margin-top:0px !important" ng-click="ver_dia(item.fecha)">Ver Día</md-button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <loading3></loading3>
+                        </div>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+		</div>
+	</div>	
+	<br>
+    <div class="row" ng-show="ver_datos">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <md-card style="margin:auto">
+                        <div style="text-align: right;">
+                          <md-button class="md-raised button_cliente"  ng-click="volver_dia()">Volver</md-button>  
+                        </div>
+                        <div class="dataTable_wrapper">
+                            <table class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr class="head_table">
+                                        <th style="text-align:center">Nº Orden</th>
+                                        <th style="text-align:center">De</th>
+                                        <th style="text-align:center">Destino</th>
+                                        <th style="text-align:center">Distrito</th>
+                                        <th style="text-align:center">Recibe</th>
+                                        <th style="text-align:center">Producto</th>
+                                        <th style="text-align:center">Cantidad Entregada</th>
+                                        <th style="text-align:center">Cantidad Devuelta</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <!--tfoot ng-if="tracking.length > 0">
+                                    <td colspan="4">
+                                        <div class="pagination pull-right">
+                                            <ul>
+                                                <li ng-class="{disabled: currentPage == 0}">
+                                                    <a href ng-click="prevPage()">« Anterior</a>
+                                                </li>
+                                                <li ng-repeat="n in range(pagedItems.length)"
+                                                    ng-class="{active: n == currentPage}"
+                                                ng-click="setPage()">
+                                                    <a href ng-bind="n + 1">1</a>
+                                                </li>
+                                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                                    <a href ng-click="nextPage()">Siguiente »</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tfoot-->
+                                <tbody>
+                                    <tr ng-repeat='item in productos_dia' class="odd gradeX">
+                                        <td style="text-align:center">LIE000{{item.pedido_id}}</td>
+                                        <td style="text-align:center">{{item.productos_pedido_retorno.user.name}}</td>
+                                        <td style="text-align:center">{{item.productos_destino_retorno.destino}}</td>
+                                        <td style="text-align:center">{{item.productos_destino_retorno.distrito_destino}}</td>
+                                        <td style="text-align:center">{{item.productos_destino_retorno.nombre_destino}}</td><td style="text-align:center">{{item.nombre}}</td>
+                                        <td style="text-align:center">{{item.cantE}}</td>
+                                        <td style="text-align:center">{{item.cantD}}</td>
+                                        <td style="text-align:center"><md-button class="md-raised button_cliente" style="margin-top:0px !important" ng-disabled="item.reponer == 0" ng-click="reponer(item)">Reponer a Almacen</md-button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+        </div>
+    </div>  
+</div>
+<navfooter></navfooter>

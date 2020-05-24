@@ -1,0 +1,46 @@
+<md-dialog aria-label="Mango (Fruit)" style="width:50%;">
+  <form ng-cloak >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Agregar Foto y Color</h2>
+        <span flex></span>
+        <div>
+          <i class="fa fa-times delete_modal" style="color:#fff !important" aria-hidden="true" ng-click="cancelar()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="text_registro form-group">
+              <div class="ic_model" style="margin-bottom: 5px;"><ng-md-icon icon="format_color_text" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+              <span style="font-weight: bold">Nombre del color:</span>
+              <p style="font-size: 10px;margin-left: 35px;margin-bottom: 5px;">Escriba el nombre del color del producto que desea agregar</p>
+              <input type="text" class="form-control" placeholder="Blanco, Negro, Sin color (S/C), etc." ng-model="crearColor.nombrecolor">
+            </div>
+            <div class="text_registro form-group">
+              <div class="ic_model" style="margin-bottom: 5px;"><ng-md-icon icon="colorize" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+              <span style="font-weight: bold">Código color:</span>
+              <p style="font-size: 10px;margin-left: 35px;margin-bottom: 5px;">Seleccione de la paleta de colores un color asociado al nombre de referencia.</p>
+              <input colorpicker colorpicker-parent="true" colorpicker-close-on-select colorpicker-size="150" type="text" class="form-control" placeholder="#FFFFFF" ng-model="crearColor.color">
+            </div>
+            <div class="text_registro form-group">
+              <div class="ic_model" style="margin-bottom: 5px;"><ng-md-icon icon="crop_original" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+              <span style="font-weight: bold">Imagen del producto:</span>
+              <p style="font-size: 10px;margin-left: 35px;margin-bottom: 5px;">Elija una imagen del producto asociado al color que fue seleccionado. Si no selecciona una imagen, el sistema agregará una por defecto</p>
+              <div class="text_img" style="width:55% !important"><div class="texto_imagen">{{imagenSubir.name}}</div></div>
+              <input type="file" class="seleccionar" ng-change='changeImage(producto)'  ngf-select ng-model="producto" name="file" accept="image/*" ngf-max-size="2MB">
+              <i class="fa fa-search lupa" style="margin-left:-12px !important" aria-hidden="true"></i>
+            </div>
+            <div class="text_registro form-group" ng-show="false">
+              <input type="text" class="form-control" placeholder="ID padre" ng-model="crearColor.producto_id">
+            </div>
+              <br>
+              <button class="btn btn-danger btn-add" style="width:100% !important; margin-bottom:20px !important" ng-click="guardarColor()">Crear</button>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

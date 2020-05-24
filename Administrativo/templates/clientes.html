@@ -1,0 +1,16 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+
+	<p class="title">Clientes</p>
+	<button class="pull-right btn buttom_blue" ng-click="agregar()">AGREGAR CLIENTE</button>
+	<br><br>
+    <div ng-controller="ListadoClientesCtrl as showCase" class="tabla_clientes">
+      <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover"></table>
+  	</div>
+</div>
+<navfooter></navfooter>
+

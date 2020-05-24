@@ -1,0 +1,33 @@
+ <div class="fondo_login">
+    <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="meta">
+        <div class="page">
+            <img src="images/logo.png">
+            <p class="title_head">SISTEMA DE CONTROL DE INVENTARIO - COURIER LIEBRE EXPRESS</p>
+        </div>
+      </div>
+    </div>
+    </div> 
+    <div class="content_login">
+        <div class="login-form">
+        	<h1></h1>
+            <div class="head">
+                <img src="images/logo.png" alt="" />
+            </div>
+            <form ng-submit="login()">
+                <input type="text" class="text_login" placeholder="Usuario" ng-model="user.username">
+                <input type="password" class="text_login" placeholder="Contraseña" ng-model="user.password">
+                <div class="submit">
+                    <input type="submit" value="Iniciar Sesión" >
+                </div>
+                <label style="font-weight:normal !important">
+                    <input type="checkbox" name="remember" data-ng-click="rememberMe()" data-ng-model="remember"> &nbsp; Recordar
+                </label>
+                <p>Todos los derechos reservados Liebre Express © 2017</p>
+            </form>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>  

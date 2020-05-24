@@ -1,0 +1,96 @@
+ body {
+	margin: 0;
+	padding: 0;
+ }
+ 
+ #background 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: relative; 
+	 margin-left: auto; 
+	 margin-right: auto; 
+	 width: 1519px;
+	 height: 918px; 
+	 overflow: hidden;
+	 z-index:0;
+	} 
+
+ #Calque0 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: absolute; 
+	 width: 1519px;
+	 height: 918px;
+	 z-index:1;
+} 
+
+ #cd 
+{ 
+	 left: 505px; 
+	 top: 392px; 
+	 position: absolute; 
+	 width: 369px;
+	 height: 53px;
+	 z-index:2;
+} 
+
+ #noli 
+{ 
+display: inline-block;
+    vertical-align: top;
+    width: 228px !important;
+    min-height: 37px;
+    line-height: 37px;
+    height: 40px;
+    padding: 0 8px;
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: initial;
+    border-image: initial;
+    border-color: #998f88;
+    box-shadow: none;
+    margin: 0;
+    padding: 0 6px;
+    transition: none;
+    line-height: 33px;
+    height: 35px;
+    display: inline-block;
+    max-width: 100%;
+    width: auto;
+    float: right;
+    background-color: #fff;
+    border: 1px solid #998f88;
+    border-radius: 3px;
+} 
+
+
+#zviva0
+{
+   border-top-width: 0px;
+   border-right-width: 0px;
+   border-bottom-width: 0px;
+   border-left-width: 0px;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+   border-top-color: #000000;
+   border-right-color: #000000;
+   border-bottom-color: #000000;
+   border-left-color: #000000;
+   background-color: transparent;
+   background-repeat: repeat;
+   background-position: left top;
+   color: #000000;
+   font-family: Arial;
+   font-size: 13px;
+   outline: none;
+}

@@ -1,0 +1,365 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal" ng-if="selectedorder">
+	<div class="row content_search">
+		<div class="col-md-12">
+			<h4 style="font-weight:bold;margin-bottom: 0px !important;">REPORTE CLIENTES</h4>
+			<hr style="margin-top: 5px !important">
+		</div>
+		<div class="col-md-12">
+			<div id="fechainicio1" class="col-md-3"> <h5 class=" title_cliente">Fecha:</h5>
+				<md-datepicker ng-model="cliente.fechaInicio" md-placeholder="dd/mm/yyyy" ng-change="cambia()">
+    			</md-datepicker>
+			</div>
+			<div class="col-md-2">
+				<md-button class="md-raised button_cliente" ng-click="Consultar()">Consultar</md-button>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+                <div class="col-lg-12">
+                    <md-card>
+                        <md-toolbar class="md-table-toolbar md-default">
+                          <div class="md-toolbar-tools">
+                            <span style="color: #fff;text-transform: uppercase;">REPORTE CLIENTES</span>
+                            <div flex></div>
+                            <span ng-if="fechaInicio != ''" style="color: #fff">Fecha: {{fechaInicio}}</span>
+                          </div>
+                        </md-toolbar>
+                        <div class="dataTable_wrapper">
+                            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr class="head_table">
+                                        <th style="text-align:center">Usuario o Ecommerce</th>
+                                        <th style="text-align:center">Nº Pedidos</th>
+                                        <th style="text-align:center">Ver Pedidos</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <td colspan="15">
+                                        <br>
+                                        <loading1></loading1>
+                                        <p style="text-align:center" ng-show="no_reporte">No hay reportes pendientes para esta fecha</p>
+                                        <div class="pagination pull-right">
+                                            <ul>
+                                                <li ng-class="{disabled: currentPage == 0}">
+                                                    <a href ng-click="prevPage()">« Anterior</a>
+                                                </li>
+                                                <li ng-repeat="n in range(pagedItems.length)"
+                                                    ng-class="{active: n == currentPage}"
+                                                ng-click="setPage()">
+                                                    <a href ng-bind="n + 1">1</a>
+                                                </li>
+                                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                                    <a href ng-click="nextPage()">Siguiente »</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tfoot>
+                                <tbody>
+                                    <tr ng-repeat='item in empresas' class="odd gradeX">
+                                        <td style="text-align:center">{{item.nombre}}</td>
+                                        <td style="text-align:center">{{item.npedidos}}</td>
+                                        <td style="text-align:center"><md-button style="background-color: #e6a344;color:#fff;font-size:9px" ng-click="verPedido(item)">Ver Pedidos</md-button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+		</div>
+	</div>	
+	<br>
+</div>
+<div class="content_principal" ng-if="!selectedorder">
+    <div class="row content_search">
+        <div class="col-md-12">
+            <h4 style="font-weight:bold;margin-bottom: 0px !important;">REPORTE CLIENTES</h4>
+            <hr style="margin-top: 5px !important">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="imprimir_pedido2 pull-right" ng-click="imprimir()" style="margin-right:30px;"><i class="fa fa-print"></i> Imprimir</p>
+            <p class="imprimir_pedido2 pull-right" ng-click="exportToExcel('#reporte')" style="margin-right:30px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</p>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <md-card>
+                        <md-toolbar class="md-table-toolbar md-default">
+                            <div class="md-toolbar-tools">
+                                <md-button class="icon_inventario" ng-click="verEmpresas()" aria-label="Back">
+                                <ng-md-icon icon="arrow_back" style="fill:white"></ng-md-icon>
+                              </md-button>
+                              <h3 flex="10" style="color: #fff">
+                                Volver atras
+                              </h3>
+                                <div flex></div>
+                            </div>
+                            <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+                              <md-tab id="tab1" aria-controls="tab1-content">
+                                PEDIDOS SIN LIQUIDAR
+                              </md-tab>
+                              <md-tab id="tab2" aria-controls="tab2-content">
+                                PEDIDOS LIQUIDADOS
+                              </md-tab>
+                            </md-tabs>
+                        </md-toolbar>
+                        <md-content flex md-scroll-y>
+                            <ui-view layout="column" layout-fill layout-padding>
+                              <div class="inset" hide-sm></div>
+                                <ng-switch on="data.selectedIndex" class="tabpanel-container">
+                                  <div role="tabpanel"
+                                       id="tab1-content"
+                                       aria-labelledby="tab1"
+                                       ng-switch-when="0"
+                                       md-swipe-left="next()"
+                                       md-swipe-right="previous()"
+                                       layout="row" layout-align="center center">
+                                      <md-card flex-gt-sm="100" flex-gt-md="100">
+                                        <md-card-content style="overflow-x: auto;">
+                                            <div class="dataTable_wrapper">
+                                                <md-button style="background-color: #e6a344;color:#fff;font-size:9px; float:right" ng-click="liquidarTodo()" ng-if="tracking.length > 0">Liquidar todos los pedidos</md-button>
+                                                <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                                    <thead>
+                                                        <tr class="head_table">
+                                                            <th>Nº Orden</th>
+                                                            <th>Usuario o Ecommerce</th>
+                                                            <th>Nombre Cliente Final</th>
+                                                            <th>Dirección Cliente Final</th>
+                                                            <th>Distrito</th>
+                                                            <th>Teléfono</th>
+                                                            <th>Detalle Producto</th>
+                                                            <th>C.E/C.F</th>
+                                                            <th>Turno</th>
+                                                            <th>Hora</th>
+                                                            <th>Forma de Pago</th>
+                                                            <th>Monto a Cobrar</th>
+                                                            <!--<th>Observaciones</th>-->
+                                                            <th>Estado</th>
+                                                            <th>Liquidar</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <td colspan="15">
+                                                            <br>
+                                                            <p style="text-align:center" ng-if="tracking.length == 0">No hay pedidos pendientes por liquidar</p>
+                                                            <div class="pagination pull-right">
+                                                                <ul>
+                                                                    <li ng-class="{disabled: currentPage == 0}">
+                                                                        <a href ng-click="prevPage()">« Anterior</a>
+                                                                    </li>
+                                                                    <li ng-repeat="n in range(pagedItems.length)"
+                                                                        ng-class="{active: n == currentPage}"
+                                                                    ng-click="setPage()">
+                                                                        <a href ng-bind="n + 1">1</a>
+                                                                    </li>
+                                                                    <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                                                        <a href ng-click="nextPage()">Siguiente »</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        <tr ng-repeat='item in pagedItems[currentPage]' class="odd gradeX">
+                                                            <td>LIE000{{item.id}}</td>
+                                                            <td>{{item.nombre}}</td>
+                                                            <td>{{item.nombre_destino}}</td>
+                                                            <td>{{item.destino}}</td>
+                                                            <td>{{item.distrito}}</td>
+                                                            <td>{{item.telefono}}</td>
+                                                            <td>{{item.detalle}}</td>
+                                                            <td>{{item.cantidad}}</td>
+                                                            <td>{{item.turno_destino1}}</td>
+                                                            <td>{{item.horap}}</td>
+                                                            <td>{{item.forma_pago}}</td>
+                                                            <td>S/.{{item.subtotal | number:2}}</td>
+                                                            <!--<td>{{item.motivo}}</td>-->
+                                                            <td>{{item.estado}}</td>
+                                                            <td><md-button style="background-color: #e6a344;color:#fff;font-size:9px" ng-click="liquidar(item)">Liquidar</md-button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </md-card-content>
+                                      </md-card>
+                                  </div>
+                                  <div role="tabpanel"
+                                       id="tab2-content"
+                                       aria-labelledby="tab2"
+                                       ng-switch-when="1"
+                                       md-swipe-left="next()"
+                                       md-swipe-right="previous()" 
+                                       layout="row" layout-align="center center">
+                                      <md-card flex-gt-sm="100" flex-gt-md="100">
+                                        <md-card-content style="overflow-x: auto;">
+                                          <div class="dataTable_wrapper">
+                                            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                                <thead>
+                                                    <tr class="head_table">
+                                                        <th>Nº Liquidación</th>
+                                                        <th>Ecommerce</th>
+                                                        <th>Pedidos</th>
+                                                        <th>Monto Liquidado</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot ng-if="tracking.length > 0">
+                                                    <td colspan="17">
+                                                        <div class="pagination pull-right">
+                                                            <ul>
+                                                                <li ng-class="{disabled: currentPage == 0}">
+                                                                    <a href ng-click="prevPage()">« Anterior</a>
+                                                                </li>
+                                                                <li ng-repeat="n in range(pagedItems.length)"
+                                                                    ng-class="{active: n == currentPage}"
+                                                                ng-click="setPage()">
+                                                                    <a href ng-bind="n + 1">1</a>
+                                                                </li>
+                                                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                                                    <a href ng-click="nextPage()">Siguiente »</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tfoot>
+                                                <tbody>
+                                                    <tr ng-repeat='item in liquidaciones2' class="odd gradeX">
+                                                        <td><p>LIQ000{{item.id}}</p></td>
+                                                        <td><p>{{item.nombre_ecommerce}}</p></td>
+                                                        <td><p> <span ng-repeat='orden in item.nordens | orderBy: n_orden'> LIE000{{orden.n_orden}},</span></p></td>
+                                                        <td><p>{{item.total_deposito_descuento_servicios}}</p></td>
+                                                        <td>
+                                                            <button class="md-button md-ink-ripple btn3 btn_yellow" ng-click="verLiquidado(item)">Ver</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </md-card-content>
+                                      </md-card>
+                                  </div>
+                                  
+                              </ng-switch>
+                              
+                            </ui-view>
+                        </md-content>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+        </div>
+    </div>  
+    <br>
+</div>
+<navfooter></navfooter>
+<div id="articulos" ng-show="false">
+	  <img src="images/logo.png" height="50">
+      <h4 class="title_print">Courier Liebre Express</h4>
+      <hr>
+      <br>
+      <h4 style="text-align:center;text-decoration: underline;">REPORTE CLIENTES</h4>
+      <p style="text-align:right;font-size:10px;">Fecha: {{fechaInicio}}</p>
+	  <br>
+	    <div class="dataTable_wrapper">
+            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                <thead>
+                    <tr class="head_table">
+                        <th>Nº Orden</th>
+                        <th>Usuario o Ecommerce</th>
+                        <th>Nombre Cliente Final</th>
+                        <th>Dirección Cliente Final</th>
+                        <th>Distrito</th>
+                        <th>Teléfono</th>
+                        <th>Detalle Producto</th>
+                        <th>C.E/C.F</th>
+                        <th>Turno</th>
+                        <th>Hora</th>
+                        <th>Forma de Pago</th>
+                        <th>Monto a Cobrar</th>
+                        <th>Observaciones</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='item in pagedItems[currentPage]' class="odd gradeX">
+                        <td>LIE000{{item.id}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.nombre_destino}}</td>
+                        <td>{{item.destino}}</td>
+                        <td>{{item.distrito}}</td>
+                        <td>{{item.telefono}}</td>
+                        <td>{{item.detalle}}</td>
+                        <td>{{item.cantidad}}</td>
+                        <td>{{item.turno_destino1}}</td>
+                        <td>{{item.horap}}</td>
+                        <td>{{item.forma_pago}}</td>
+                        <td>S/.{{item.subtotal | number:2}}</td>
+                        <td>{{item.motivo}}</td>
+                        <td>{{item.estado}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+<div id="reporte" ng-show="false">
+      <h4>REPORTE CLIENTES</h4>
+      <p>Fecha: {{fechaInicio}}</p>
+      <br>
+        <div class="dataTable_wrapper">
+            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                <thead>
+                    <tr class="head_table">
+                        <th>N Orden</th>
+                        <th>Usuario o Ecommerce</th>
+                        <th>Nombre Cliente Final</th>
+                        <th>Direccion Cliente Final</th>
+                        <th>Distrito</th>
+                        <th>Telefono</th>
+                        <th>Detalle Producto</th>
+                        <th>C.E/C.F</th>
+                        <th>Turno</th>
+                        <th>Hora</th>
+                        <th>Forma de Pago</th>
+                        <th>Monto a Cobrar</th>
+                        <th>Observaciones</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='item in pagedItems[currentPage]' class="odd gradeX">
+                        <td>LIE000{{item.id}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.nombre_destino}}</td>
+                        <td>{{item.destino}}</td>
+                        <td>{{item.distrito}}</td>
+                        <td>{{item.telefono}}</td>
+                        <td>{{item.detalle}}</td>
+                        <td>{{item.cantidad}}</td>
+                        <td>{{item.turno_destino1}}</td>
+                        <td>{{item.horap}}</td>
+                        <td>{{item.forma_pago}}</td>
+                        <td>S/.{{item.subtotal | number:2}}</td>
+                        <td>{{item.motivo}}</td>
+                        <td>{{item.estado}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

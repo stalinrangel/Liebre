@@ -1,0 +1,89 @@
+<div class="row-fluid">
+<div class="span12">
+    <navmenu></navmenu>
+</div>
+</div>
+<div class="content_principal">
+  <div class="row">
+    <div class="col-xs-12 col-md-5">
+      <p class="title">COSTOS ENVIO POR KM</p>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <div class="form-group input_pedido">
+              <label>Costos de envío por KM</label>
+              <input  type="text" ng-model="costos[0].costokm" class="form-control" style="width: 40%;display: block;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <p class="title">COSTOS ENVIO ECOMMERCE</p>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group input_pedido">
+              <label>Horario completo (9AM a 7PM)</label>
+              <input  type="text" ng-model="costos[0].ecommerce_completo" class="form-control" style="width: 75%;display: block;">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group input_pedido">
+              <label>Horario Mañana (9AM a 2PM)</label>
+              <input  type="text" ng-model="costos[0].ecommerce_manana" class="form-control" style="width: 75%;display: block;">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group input_pedido">
+              <label>Horario Tarde (2AM a 7PM)</label>
+              <input  type="text" ng-model="costos[0].ecommerce_tarde" class="form-control" style="width: 75%;display: block;">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group input_pedido">
+              <label>Horario Horas</label>
+              <input  type="text" ng-model="costos[0].ecommerce_horas" class="form-control" style="width: 75%;display: block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-md-5">
+      <p class="title">COSTOS ECOMMERCE SIN ALMACEN</p>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <div class="form-group input_pedido">
+              <label>Costos de recojo de productos</label>
+              <input  type="text" ng-model="costos[0].costossinalmacen" class="form-control" style="width: 40%;display: block;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <p class="title">COSTOS REPROGRAMACION</p>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group input_pedido">
+              <label>Reprogramación persona (%)</label>
+              <input  type="text" ng-model="costos[0].reprog_persona" class="form-control" style="width: 75%;display: block;">
+          </div>
+        </div>
+      </div>
+      <!--<div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group input_pedido">
+              <label>Reprogramacion ecommerce</label>
+              <input  type="text" ng-model="costos[0].reprog_ecommerce" class="form-control" style="width: 75%;display: block;">
+          </div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+  <md-button class="md-raised button_cliente pull-right md-button md-ink-ripple" ng-click="actualizar()">ACTUALIZAR VARIABLES</md-button>
+</div>
+<navfooter></navfooter>
+

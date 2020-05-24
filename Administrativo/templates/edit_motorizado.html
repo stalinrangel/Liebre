@@ -1,0 +1,241 @@
+<md-dialog aria-label="Motorizados" style="width:75%">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar Motorizado</h2>
+        <span flex></span>
+        <div>
+          <i class="fa fa-times delete_modal" aria-hidden="true" ng-click="cancel()"></i>
+        </div>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="jumbotron">
+              <div ng-show="isSet(1)">
+                <div>
+                  <img src="{{motorizado.foto}}" width="50px" height="50px" style="border-radius:2px"> <span style="margin-left: 20px; font-weight: bold;"> {{motorizado.name}} {{motorizado.apellidos}}</span>
+                  <button class="pull-right btn buttom_blue" ng-click="siguiente1()">Antecedentes &nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                  <hr style="margin-top:5px !important">
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-5">
+                    <div class="form-group input_pedido">
+                      <label>Nombre:</label>
+                      <input type="text"  ng-model="motorizado.name" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                    <div class="form-group input_pedido">
+                      <label>Apellido:</label>
+                      <input type="text"  ng-model="motorizado.apellidos" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-3">
+                    <div class="form-group input_pedido">
+                      <label>Dni:</label>
+                      <input type="text" ng-model="motorizado.dni" class="form-control"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-7">
+                    <div class="form-group input_pedido">
+                      <label>Email:</label>
+                      <input type="email"  ng-model="motorizado.email" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-5">
+                    <div class="form-group input_pedido">
+                      <label>Teléfono:</label>
+                      <input type="text"  ng-model="motorizado.telefono" class="form-control"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                    <div class="form-group input_pedido">
+                      <label>Imagen Conductor:</label>
+                      <div><div class="text_img"><div class="texto_imagen">{{imagenSubir.name}}</div></div>
+                      <input type="file" class="seleccionar" ng-change='changeImage(picFile2)' ngf-select ng-model="picFile2" name="file" accept="image/*" ngf-max-size="2MB" >
+                    <i class="fa fa-search lupa" aria-hidden="true"></i></div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div>
+                  <img src="{{motorizado.foto_moto}}" width="50px" height="50px" style="border-radius:2px"> <span style="margin-left: 20px; font-weight: bold;">{{select_item.name}}</span>
+                  <hr style="margin-top:5px !important">
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-3">
+                    <div class="form-group input_pedido">
+                      <label>Tipo de vehículo:</label>
+                      <select  ng-model="select_item" ng-options="item as item.name for item in items" ng-change="update_type(select_item)" class="form-control"></select>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-6">
+                    <div class="form-group input_pedido">
+                      <label>Modelo:</label>
+                      <input type="text"  ng-model="motorizado.modelo_moto" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-3">
+                    <div class="form-group input_pedido">
+                      <label>Año:</label>
+                      <input type="text"  ng-model="motorizado.ano" class="form-control"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <div class="form-group input_pedido">
+                      <label>Placa:</label>
+                      <input type="text"  ng-model="motorizado.placa" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-6">
+                    <div class="form-group input_pedido">
+                      <label>Carnet:</label>
+                      <input type="text"  ng-model="motorizado.carnet" class="form-control"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                    <div class="form-group input_pedido">
+                      <label>Imagen vehículo:</label>
+                      <div><div class="text_img"><div class="texto_imagen">{{imagenSubir1.name}}</div></div>
+                      <input type="file" class="seleccionar" ng-change='changeImage1(picFile2)' ngf-select ng-model="picFile2" name="file" accept="image/*" ngf-max-size="2MB" >
+                    <i class="fa fa-search lupa" aria-hidden="true"></i></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                    <button class="pull-right btn buttom_blue" ng-click="update()">Actualizar Datos</button>
+                  </div>
+                </div>
+                <br>  
+              </div>
+              <div ng-show="isSet(2)">
+                <div>
+                  <p style="margin-bottom:20px !important; font-weight: bold; display:inline-block;">ANTECEDENTES PENALES</p>
+                  <button class="pull-right btn buttom_blue" ng-click="siguiente2()">Soat &nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                  <button class="pull-right btn buttom_cancel" ng-click="atras1()">Atras</button>
+                  <br>
+                  <hr style="margin-top:5px !important">
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                    <div class="form-group input_pedido" style="width:70% !important">
+                      <label>Adjuntar Archivo:</label>
+                      <div><div class="text_img"><div class="texto_imagen">{{imagenAntecedente.name}}</div></div>
+                      <input type="file" class="seleccionar" ng-change='changeAntecedente(antecedente)' ngf-select ng-model="antecedente" name="file" accept="image/*,application/pdf" ngf-max-size="2MB" >
+                      <i class="fa fa-search lupa" aria-hidden="true"></i><i class="fa fa-times eliminar_archivo" aria-hidden="true" ng-if="imagenAntecedente != ''" ng-click="deleteAntecedente(antecedente)"></i>
+                      </div>
+                    </div>
+                    <button class="pull-right btn buttom_blue" ng-click="agregar1(imagenAntecedente)">Actualizar Antecedente</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                  <loading></loading>
+                  <iframe src="{{ant}}" width="100%" height="1000px"></iframe>
+                  </div>
+                </div>  
+              </div>
+              <div ng-show="isSet(3)">
+                <div>
+                  <p style="margin-bottom:20px !important; font-weight: bold; display:inline-block;">SOAT</p>
+                  <button class="pull-right btn buttom_blue" ng-click="siguiente3()">Revisión Técnica &nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                  <button class="pull-right btn buttom_cancel" ng-click="atras2()">Atras</button>
+                  <br>
+                  <hr style="margin-top:5px !important">
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                    <div class="form-group input_pedido" style="width:70% !important">
+                    <label>Adjuntar Archivo:</label>
+                    <div><div class="text_img"><div class="texto_imagen">{{imagenSoat.name}}</div></div>
+                    <input type="file" class="seleccionar" ng-change='changeSoat(soat,imagenSoat)' ngf-select ng-model="soat" name="file" accept="image/*,application/pdf" ngf-max-size="2MB" >
+                    <i class="fa fa-search lupa" aria-hidden="true"></i><i class="fa fa-times eliminar_archivo" aria-hidden="true" ng-if="imagenSoat != ''" ng-click="deleteSoat()"></i></div>
+                    </div>
+                    <button class="pull-right btn buttom_blue" ng-click="agregar2(imagenSoat)">Actualizar Soat</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                  <loading></loading>
+                  <iframe src="{{st}}" width="100%" height="1000px"></iframe>
+                  </div>
+                </div>
+              </div>
+              <div ng-show="isSet(4)">
+                <div>
+                  <p style="margin-bottom:20px !important; font-weight: bold; display:inline-block;">REVISION TECNICA</p>
+                  <button class="pull-right btn buttom_cancel" ng-click="atras3()">Atras</button>
+                  <br>
+                  <hr style="margin-top:5px !important">
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                    <div class="form-group input_pedido" style="width:70% !important">
+                      <label>Adjuntar Archivo:</label>
+                      <div><div class="text_img"><div class="texto_imagen">{{imagenRevision.name}}</div></div>
+                      <input type="file" class="seleccionar" ng-change='changeRevision(revision)' ngf-select ng-model="revision" name="file" accept="image/*,application/pdf" ngf-max-size="2MB" >
+                      <i class="fa fa-search lupa" aria-hidden="true"></i><i class="fa fa-times eliminar_archivo" aria-hidden="true" ng-if="imagenRevision != ''" ng-click="deleteRevision()"></i></div>
+                    </div>
+                    <button class="pull-right btn buttom_blue" ng-click="agregar3(imagenRevision)">Actualizar Revisión</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <br>
+                  <div class="col-xs-12 col-md-12">
+                  <loading></loading>
+                  <iframe src="{{rv}}" width="100%" height="1000px"></iframe>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                    <button class="pull-right btn buttom_blue" ng-click="update()">Agregar Motorizado</button>
+                    <button class="pull-right btn buttom_cancel" ng-click="atras4()">Atras</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="nav nav-pills nav-stacked">
+              <li ng-class="{ active: isSet(1) }" class="ctab_moto">
+                  <a href ng-click="setTab(1)" class="tab_moto">1</a>
+              </li>
+              <li ng-class="{ active: isSet(2) }" class="ctab_moto">
+                  <a href ng-click="setTab(2)" class="tab_moto">2</a>
+              </li>
+              <li ng-class="{ active: isSet(3) }" class="ctab_moto">
+                  <a href ng-click="setTab(3)" class="tab_moto">3</a>
+              </li>
+              <li ng-class="{ active: isSet(4) }" class="ctab_moto">
+                  <a href ng-click="setTab(4)" class="tab_moto">4</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <br>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

@@ -1,0 +1,40 @@
+<div ng-controller="sidevar">
+  <div>
+  <div class="fondo_bienvenido">
+    <p>Panel de Inventario Courier Liebre Express</p>
+    <div class="page2">
+      <img src="images/logo.png">
+    </div>
+  </div>
+  <div id='cssmenu'>
+    <ul>
+      <li><a href='#/dashboard'>Principal</a></li>
+      <li><a href='#/inventario'>Inventario</a></li>
+      <li><a href='#/productos_devueltos'>Productos Devueltos</a></li>
+      <li class='has-sub'><a>Guías</a>
+        <ul>
+          <li class='has-sub'><a href='#/listado_guia'>Ver Guías</a></li>
+          <li class='has-sub'><a href='#/agregar_guia'>Agregar Guía</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="user">
+    <div class="item dropdown" uib-dropdown>
+      <a href="#/pendientes" class="dropdown-toggle" uib-dropdown-toggle>
+        <i class="fa fa-user img_user"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li class="dropdown-header">
+          Administrador Inventario
+        </li>
+        <li class="divider"></li>
+        <li class="link">
+          <a href="#/login">
+            Cerrar Sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<md-dialog aria-label="Mango (Fruit)" style="width:40%;">
+  <form ng-cloak >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Confirmar Deposito</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div ng-if="tipo == 1">
+          <h2 style="text-align:center">Total a Depositar: S/.{{pagos.total_depostirar | number:2}}</h2>
+          <br>
+          <h4 style="color:rgba(212, 3, 3, 0.8) !important;text-align:center">Se marcará como depositado el saldo total pendiente: <b>S/.{{pagos.pendiente | number:2}}</b></h4>
+          <br>
+          <p style="text-align:center">¿Esta de acuerdo en depositar el saldo de S/.{{pagos.total_depostirar | number:2}}?</p>
+          <br>
+          <md-button class="md-raised button_cliente pull-right" ng-click="pagar(1)">SI</md-button>
+          <md-button class="md-raised button_cliente pull-right" ng-click="cancelar()">NO</md-button>
+        </div>
+        <div ng-if="tipo == 2">
+          <br>
+          <h4 style="color:#e6a344 !important;text-align:center">Debe cancelar por completo el saldo pendiente ({{pagos.total_pedientedepago | number:2}}) ó de lo contrario colocar (0) en el campo correspondiente a <br><b>SALDO PENDIENTE POR DEPOSITAR</b></h4>
+          <br>
+          <md-button class="md-raised button_cliente pull-right" ng-click="cancelar()">OK</md-button>
+        </div>
+        <div ng-if="tipo == 3">
+          <h2 style="text-align:center">Total a Depositar: S/.{{pagos.total_depostirar | number:2}}</h2>
+          <br>
+          <p style="text-align:center">¿Esta de acuerdo en depositar el saldo de S/.{{pagos.total_depostirar | number:2}}?</p>
+          <br>
+          <md-button class="md-raised button_cliente pull-right" ng-click="pagar(3)">SI</md-button>
+          <md-button class="md-raised button_cliente pull-right" ng-click="cancelar()">NO</md-button>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
