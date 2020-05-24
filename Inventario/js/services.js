@@ -41,7 +41,7 @@ angular.module('starter.services', [])
 
     function signup(name, email, password, apellidos, dni, razon_social, ruc, telefono, tipo_usuario ,onSuccess, onError) {
 
-        $http.post('../api/token4/Laravel/public/api/auth/signup', 
+        $http.post('../api/public/api/auth/signup', 
         {
             name: name,
             email: email,
@@ -65,7 +65,7 @@ angular.module('starter.services', [])
 
     function login(email, password, onSuccess, onError){
 
-        $http.post('../api/token4/Laravel/public/api/auth/login', 
+        $http.post('../api/public/api/auth/login', 
         {
             email: email,
             password: password
@@ -86,7 +86,7 @@ angular.module('starter.services', [])
     function getBooks( onSuccess, onError){
       var req = {
        method: 'GET',
-       url: '../api/token4/Laravel/public/api/book',
+       url: '../api/public/api/book',
        headers: {
          'Authorization' : 'Bearer ' + getCurrentToken()
        }

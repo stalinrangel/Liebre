@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 .controller('devolucionesCtrl', function($scope,userService,$http,$mdDialog){
   var req = {
         method: 'GET',
-        url: '../api/token4/Laravel/public/api/productos_pedido2?token='+userService.getCurrentToken(),
+        url: '../api/public/api/productos_pedido2?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -278,7 +278,7 @@ angular.module('starter.controllers', [])
           $scope.check_email=false;
           var bienvenido = {
              method: 'POST',
-             url: '../api/token4/Laravel/public/api/auth/signup_check?token='+userService.getCurrentToken(),
+             url: '../api/public/api/auth/signup_check?token='+userService.getCurrentToken(),
              headers: {
                'Authorization' : 'Bearer ' + userService.getCurrentToken()
              },
@@ -341,7 +341,7 @@ angular.module('starter.controllers', [])
 
         var req = {
           method: 'POST',
-          url: '../api/token4/Laravel/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
+          url: '../api/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -459,7 +459,7 @@ angular.module('starter.controllers', [])
 
           var reqM = {
             method: 'PUT',
-            url: '../api/token4/Laravel/public/api/update_moto_admin/'+ idC+'?token='+userService.getCurrentToken(),
+            url: '../api/public/api/update_moto_admin/'+ idC+'?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -778,7 +778,7 @@ angular.module('starter.controllers', [])
 
           var req = {
             method: 'POST',
-            url: '../api/token4/Laravel/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
+            url: '../api/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -922,7 +922,7 @@ angular.module('starter.controllers', [])
           
             var req2 = {
                    method: 'POST',
-                   url: '../api/token4/Laravel/public/api/auth/signup_check',
+                   url: '../api/public/api/auth/signup_check',
                   data: $scope.motorizado
             }
 
@@ -1076,7 +1076,7 @@ angular.module('starter.controllers', [])
 
           var req = {
             method: 'POST',
-            url: '../api/token4/Laravel/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
+            url: '../api/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -1107,7 +1107,7 @@ angular.module('starter.controllers', [])
                  //alert('a');
                 var bienvenido = {
                        method: 'POST',
-                       url: '../api/token4/Laravel/public/api/auth/bienvenido/'+$scope.motorizado.email+'?token='+userService.getCurrentToken(),
+                       url: '../api/public/api/auth/bienvenido/'+$scope.motorizado.email+'?token='+userService.getCurrentToken(),
                        headers: {
                          'Authorization' : 'Bearer ' + userService.getCurrentToken()
                        },
@@ -1157,7 +1157,7 @@ angular.module('starter.controllers', [])
 
                 var req = {
                   method: 'POST',
-                  url: '../api/token4/Laravel/public/api/pedido?token='+userService.getCurrentToken(),
+                  url: '../api/public/api/pedido?token='+userService.getCurrentToken(),
                   headers: {
                    'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -1355,7 +1355,7 @@ angular.module('starter.controllers', [])
       console.log($scope.email);
       var req = {
            method: 'POST',
-           url: '../api/token4/Laravel/public/api/auth/password?token='+userService.getCurrentToken(),
+           url: '../api/public/api/auth/password?token='+userService.getCurrentToken(),
            headers: {
              //'Authorization' : 'Bearer ' + userService.getCurrentToken()
            },
@@ -1369,7 +1369,7 @@ angular.module('starter.controllers', [])
           console.log($scope.email.email);
              var req2 = {
                  method: 'POST',
-                 url: '../api/token4/Laravel/public/api/auth/resetpassword/'+$scope.email.email+'?token='+userService.getCurrentToken(),
+                 url: '../api/public/api/auth/resetpassword/'+$scope.email.email+'?token='+userService.getCurrentToken(),
                  headers: {
                    //'Authorization' : 'Bearer ' + userService.getCurrentToken()
                  },
@@ -1429,7 +1429,7 @@ angular.module('starter.controllers', [])
 
     var req2 = {
                  method: 'GET',
-                 url: '../api/token4/Laravel/public/api/auth/password/'+$scope.id
+                 url: '../api/public/api/auth/password/'+$scope.id
               }
 
               $http(req2).then(function(response){
@@ -1454,7 +1454,7 @@ angular.module('starter.controllers', [])
       $scope.user.password=$scope.user.password1;
       var req2 = {
                  method: 'PUT',
-                 url: '../api/token4/Laravel/public/api/auth/password',
+                 url: '../api/public/api/auth/password',
                  data: $scope.user
               }
 
@@ -1517,7 +1517,7 @@ angular.module('starter.controllers', [])
         console.log(CONFIG.ID);
         var req = {
            method: 'PUT',
-           url: '../api/token4/Laravel/public/api/update_push/'+CONFIG.ID+'?token='+userService.getCurrentToken(),
+           url: '../api/public/api/update_push/'+CONFIG.ID+'?token='+userService.getCurrentToken(),
            headers: {
              'Authorization' : 'Bearer ' + userService.getCurrentToken()
            },
@@ -1553,7 +1553,7 @@ angular.module('starter.controllers', [])
         console.log(CONFIG.ID);
         var req = {
            method: 'PUT',
-           url: '../api/token4/Laravel/public/api/update_push/'+CONFIG.ID+'?token='+userService.getCurrentToken(),
+           url: '../api/public/api/update_push/'+CONFIG.ID+'?token='+userService.getCurrentToken(),
            headers: {
              'Authorization' : 'Bearer ' + userService.getCurrentToken()
            },
@@ -1608,8 +1608,8 @@ angular.module('starter.controllers', [])
   $scope.anularDestino=function(id){
     var req3 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -1651,8 +1651,8 @@ angular.module('starter.controllers', [])
       if($scope.pedidos[pos].destinos[i].estado_destino!=4){
         var req3 = {
             method: 'PUT',
-            //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-            url: '../api/token4/Laravel/public/api/destino/'+$scope.pedidos[pos].destinos[i].id+'?token='+userService.getCurrentToken(),
+            //url: '../api/public/api/get_users/'+CONFIG.ID,
+            url: '../api/public/api/destino/'+$scope.pedidos[pos].destinos[i].id+'?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -1674,8 +1674,8 @@ angular.module('starter.controllers', [])
     }
     var req4 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -1706,8 +1706,8 @@ angular.module('starter.controllers', [])
       if($scope.pedidos[pos].destinos[i].estado_destino!=4){
         var req3 = {
             method: 'PUT',
-            //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-            url: '../api/token4/Laravel/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
+            //url: '../api/public/api/get_users/'+CONFIG.ID,
+            url: '../api/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -1738,8 +1738,8 @@ angular.module('starter.controllers', [])
             }
             var req4 = {
                 method: 'PUT',
-                //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                url: '../api/token4/Laravel/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
+                //url: '../api/public/api/get_users/'+CONFIG.ID,
+                url: '../api/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
                 headers: {
                   'Authorization' : 'Bearer ' + userService.getCurrentToken()
                 },
@@ -1764,7 +1764,7 @@ angular.module('starter.controllers', [])
 
     var acepPedido = {
         method: 'GET',
-        url: '../api/token4/Laravel/public/api/encamino/'+localStorageService.get('idLiebre')+'?token='+userService.getCurrentToken(),
+        url: '../api/public/api/encamino/'+localStorageService.get('idLiebre')+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -1789,7 +1789,7 @@ angular.module('starter.controllers', [])
           }
             var acepPedido = {
               method: 'PUT',
-              url: '../api/token4/Laravel/public/api/pedido/'+id,
+              url: '../api/public/api/pedido/'+id,
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               },
@@ -1816,8 +1816,8 @@ angular.module('starter.controllers', [])
               console.log($scope.pedidos[pos].destinos[i].id);
                 var req3 = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -1833,7 +1833,7 @@ angular.module('starter.controllers', [])
             /*------------------------------------------------------------------------------------------------------------------*/
             var acepPedido = {
               method: 'PUT',
-              url: '../api/token4/Laravel/public/api/aceptarPedido/'+id+'?token='+userService.getCurrentToken(),
+              url: '../api/public/api/aceptarPedido/'+id+'?token='+userService.getCurrentToken(),
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               }
@@ -1859,8 +1859,8 @@ angular.module('starter.controllers', [])
     }
     var req3 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -1901,7 +1901,7 @@ angular.module('starter.controllers', [])
         }
         var req3 = {
           method: 'PUT',
-          url: '../api/token4/Laravel/public/api/destino/'+$scope.pedidos[pos].destinos[i].id+'?token='+userService.getCurrentToken(),
+          url: '../api/public/api/destino/'+$scope.pedidos[pos].destinos[i].id+'?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -1920,7 +1920,7 @@ angular.module('starter.controllers', [])
       }
       var req4 = {
         method: 'PUT',
-        url: '../api/token4/Laravel/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
+        url: '../api/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -1960,8 +1960,8 @@ angular.module('starter.controllers', [])
   $timeout(function() {
      var req2 = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedidomoto?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedidomoto?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -2101,8 +2101,8 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       var req = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/get_users/'+100+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/get_users/'+100+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -2187,8 +2187,8 @@ angular.module('starter.controllers', [])
             console.log('si');
             var req3 = {
               method: 'PUT',
-              //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-              url: '../api/token4/Laravel/public/api/entregado/'+id+'?token='+userService.getCurrentToken(),
+              //url: '../api/public/api/get_users/'+CONFIG.ID,
+              url: '../api/public/api/entregado/'+id+'?token='+userService.getCurrentToken(),
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               },
@@ -2222,8 +2222,8 @@ angular.module('starter.controllers', [])
             }
             var req3 = {
                 method: 'PUT',
-                //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                url: '../api/token4/Laravel/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
+                //url: '../api/public/api/get_users/'+CONFIG.ID,
+                url: '../api/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
                 headers: {
                   'Authorization' : 'Bearer ' + userService.getCurrentToken()
                 },
@@ -2244,8 +2244,8 @@ angular.module('starter.controllers', [])
           }
           var req4 = {
               method: 'PUT',
-              //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-              url: '../api/token4/Laravel/public/api/pedido/'+id,
+              //url: '../api/public/api/get_users/'+CONFIG.ID,
+              url: '../api/public/api/pedido/'+id,
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               },
@@ -2264,8 +2264,8 @@ angular.module('starter.controllers', [])
               }
               var req4 = {
                   method: 'PUT',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/pedido/'+id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/pedido/'+id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -2286,7 +2286,7 @@ angular.module('starter.controllers', [])
                 /*------------------------------------------------------------------------------------------------------------------*/
                 var acepPedido = {
                   method: 'PUT',
-                  url: '../api/token4/Laravel/public/api/finalizarPedido/'+id+'?token='+userService.getCurrentToken(),
+                  url: '../api/public/api/finalizarPedido/'+id+'?token='+userService.getCurrentToken(),
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   }
@@ -2345,8 +2345,8 @@ angular.module('starter.controllers', [])
               console.log('si');
             var req3 = {
               method: 'PUT',
-              //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-              url: '../api/token4/Laravel/public/api/entregado/'+id+'?token='+userService.getCurrentToken(),
+              //url: '../api/public/api/get_users/'+CONFIG.ID,
+              url: '../api/public/api/entregado/'+id+'?token='+userService.getCurrentToken(),
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               },
@@ -2378,8 +2378,8 @@ angular.module('starter.controllers', [])
           }
           var req3 = {
               method: 'PUT',
-              //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-              url: '../api/token4/Laravel/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
+              //url: '../api/public/api/get_users/'+CONFIG.ID,
+              url: '../api/public/api/destino/'+$scope.pedidos[pos].destinos[i].id,
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               },
@@ -2400,8 +2400,8 @@ angular.module('starter.controllers', [])
         }
         var req4 = {
             method: 'PUT',
-            //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-            url: '../api/token4/Laravel/public/api/pedido/'+id,
+            //url: '../api/public/api/get_users/'+CONFIG.ID,
+            url: '../api/public/api/pedido/'+id,
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -2420,8 +2420,8 @@ angular.module('starter.controllers', [])
             }
             var req4 = {
                 method: 'PUT',
-                //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                url: '../api/token4/Laravel/public/api/pedido/'+id,
+                //url: '../api/public/api/get_users/'+CONFIG.ID,
+                url: '../api/public/api/pedido/'+id,
                 headers: {
                   'Authorization' : 'Bearer ' + userService.getCurrentToken()
                 },
@@ -2448,7 +2448,7 @@ angular.module('starter.controllers', [])
                 console.log( $scope.finalizarPedido);
                 var acepPedido = {
                   method: 'PUT',
-                  url: '../api/token4/Laravel/public/api/finalizarPedido/'+id+'?token='+userService.getCurrentToken(),
+                  url: '../api/public/api/finalizarPedido/'+id+'?token='+userService.getCurrentToken(),
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -2501,8 +2501,8 @@ angular.module('starter.controllers', [])
             console.log('si');
             var req3 = {
               method: 'PUT',
-              //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-              url: '../api/token4/Laravel/public/api/entregado/'+id+'?token='+userService.getCurrentToken(),
+              //url: '../api/public/api/get_users/'+CONFIG.ID,
+              url: '../api/public/api/entregado/'+id+'?token='+userService.getCurrentToken(),
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               },
@@ -2539,8 +2539,8 @@ angular.module('starter.controllers', [])
             console.log('si');
             var req3 = {
               method: 'PUT',
-              //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-              url: '../api/token4/Laravel/public/api/editArticulo/'+id+'?token='+userService.getCurrentToken(),
+              //url: '../api/public/api/get_users/'+CONFIG.ID,
+              url: '../api/public/api/editArticulo/'+id+'?token='+userService.getCurrentToken(),
               headers: {
                 'Authorization' : 'Bearer ' + userService.getCurrentToken()
               },
@@ -2558,8 +2558,8 @@ angular.module('starter.controllers', [])
                 }
                 var req3 = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/productos_pedido/'+id,
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/productos_pedido/'+id,
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -2582,8 +2582,8 @@ angular.module('starter.controllers', [])
                 }
                 var req4 = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/add/'+id,
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/add/'+id,
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -2620,8 +2620,8 @@ angular.module('starter.controllers', [])
       }
       var req3 = {
           method: 'PUT',
-          //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-          url: '../api/token4/Laravel/public/api/productos_pedido/'+id,
+          //url: '../api/public/api/get_users/'+CONFIG.ID,
+          url: '../api/public/api/productos_pedido/'+id,
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -2644,8 +2644,8 @@ angular.module('starter.controllers', [])
       }
       var req4 = {
           method: 'PUT',
-          //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-          url: '../api/token4/Laravel/public/api/add/'+id,
+          //url: '../api/public/api/get_users/'+CONFIG.ID,
+          url: '../api/public/api/add/'+id,
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -2663,7 +2663,7 @@ angular.module('starter.controllers', [])
         }
         var req4 = {
           method: 'PUT',
-          url: '../api/token4/Laravel/public/api/entregadoSi/'+id+'?token='+userService.getCurrentToken(),
+          url: '../api/public/api/entregadoSi/'+id+'?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -2695,8 +2695,8 @@ angular.module('starter.controllers', [])
     }
     var req3 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/productos_pedido/'+id,
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/productos_pedido/'+id,
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -2711,8 +2711,8 @@ angular.module('starter.controllers', [])
               }
               var req4 = {
                   method: 'PUT',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/destino/'+dest_id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/destino/'+dest_id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -2738,8 +2738,8 @@ angular.module('starter.controllers', [])
       }
       var req4 = {
           method: 'PUT',
-          //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-          url: '../api/token4/Laravel/public/api/supr/'+id,
+          //url: '../api/public/api/get_users/'+CONFIG.ID,
+          url: '../api/public/api/supr/'+id,
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -2759,8 +2759,8 @@ angular.module('starter.controllers', [])
         }
         var req4 = {
           method: 'PUT',
-          //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-          url: '../api/token4/Laravel/public/api/entregadoNo/'+id+'?token='+userService.getCurrentToken(),
+          //url: '../api/public/api/get_users/'+CONFIG.ID,
+          url: '../api/public/api/entregadoNo/'+id+'?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -2902,8 +2902,8 @@ angular.module('starter.controllers', [])
               }
               var req3 = {
                   method: 'PUT',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/productos_pedido/'+id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/productos_pedido/'+id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -2921,8 +2921,8 @@ angular.module('starter.controllers', [])
                 }
                 var req4 = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/supr/'+id,
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/supr/'+id,
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -2941,8 +2941,8 @@ angular.module('starter.controllers', [])
                 }
                 var req4 = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/entregadoNo/'+id+'?token='+userService.getCurrentToken(),
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/entregadoNo/'+id+'?token='+userService.getCurrentToken(),
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -2963,8 +2963,8 @@ angular.module('starter.controllers', [])
               }
               var req3 = {
                   method: 'PUT',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/productos_pedido/'+id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/productos_pedido/'+id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -2982,8 +2982,8 @@ angular.module('starter.controllers', [])
                 }
                 var req4 = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/add/'+id,
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/add/'+id,
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -3000,7 +3000,7 @@ angular.module('starter.controllers', [])
               }
               var req4 = {
                 method: 'PUT',
-                url: '../api/token4/Laravel/public/api/entregadoSi/'+id+'?token='+userService.getCurrentToken(),
+                url: '../api/public/api/entregadoSi/'+id+'?token='+userService.getCurrentToken(),
                 headers: {
                   'Authorization' : 'Bearer ' + userService.getCurrentToken()
                 },
@@ -3021,8 +3021,8 @@ angular.module('starter.controllers', [])
               }
               var req3 = {
                   method: 'PUT',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/productos_pedido/'+id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/productos_pedido/'+id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -3040,8 +3040,8 @@ angular.module('starter.controllers', [])
                 }
                 var reqadd = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/add/'+id,
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/add/'+id,
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -3059,8 +3059,8 @@ angular.module('starter.controllers', [])
                 }
                 var reqsupr = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/supr/'+id,
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/supr/'+id,
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -3080,8 +3080,8 @@ angular.module('starter.controllers', [])
                 }
                 var reqsupr = {
                     method: 'PUT',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/entregadoSiNo/'+id+'?token='+userService.getCurrentToken(),
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/entregadoSiNo/'+id+'?token='+userService.getCurrentToken(),
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -3100,8 +3100,8 @@ angular.module('starter.controllers', [])
               }
               var req3 = {
                   method: 'PUT',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/destino/'+dest_id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/destino/'+dest_id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   },
@@ -3180,8 +3180,8 @@ angular.module('starter.controllers', [])
               }*/
               /*var req3 = {
                   method: 'GET',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/cantE/'+id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/cantE/'+id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   }
@@ -3212,8 +3212,8 @@ angular.module('starter.controllers', [])
 
               var req4 = {
                   method: 'GET',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/cantD/'+id,
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/cantD/'+id,
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   }
@@ -3245,8 +3245,8 @@ angular.module('starter.controllers', [])
                 /*----------------------------------------------------------------------------------------------*/
                   var req4 = {
                     method: 'GET',
-                    //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                    url: '../api/token4/Laravel/public/api/cantED/'+id+'?token='+userService.getCurrentToken(),
+                    //url: '../api/public/api/get_users/'+CONFIG.ID,
+                    url: '../api/public/api/cantED/'+id+'?token='+userService.getCurrentToken(),
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     }
@@ -3326,8 +3326,8 @@ angular.module('starter.controllers', [])
 
     var req3 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -3345,8 +3345,8 @@ angular.module('starter.controllers', [])
     }
     var req4 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedido/'+pedido_id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedido/'+pedido_id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -3411,8 +3411,8 @@ angular.module('starter.controllers', [])
   $scope.anularDestino=function(id){
     var req3 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -3455,8 +3455,8 @@ angular.module('starter.controllers', [])
       if($scope.pedidos[pos].destinos[i].estado_destino!=4){
         var req3 = {
             method: 'PUT',
-            //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-            url: '../api/token4/Laravel/public/api/destino/'+$scope.pedidos[pos].destinos[i].id+'?token='+userService.getCurrentToken(),
+            //url: '../api/public/api/get_users/'+CONFIG.ID,
+            url: '../api/public/api/destino/'+$scope.pedidos[pos].destinos[i].id+'?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -3478,8 +3478,8 @@ angular.module('starter.controllers', [])
     }
     var req4 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -3511,8 +3511,8 @@ angular.module('starter.controllers', [])
     }
     var req4 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedido/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -3562,8 +3562,8 @@ angular.module('starter.controllers', [])
     }
     var req3 = {
         method: 'PUT',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -3610,8 +3610,8 @@ angular.module('starter.controllers', [])
   $timeout(function() {
      var req2 = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedidomoto2?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedidomoto2?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -3790,8 +3790,8 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       var req = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/get_users/'+100+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/get_users/'+100+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -3858,8 +3858,8 @@ angular.module('starter.controllers', [])
   $scope.iniciar=function(){
     var req2 = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedidomoto?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedidomoto?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -4013,7 +4013,7 @@ angular.module('starter.controllers', [])
     $scope.loading = true;
     var repro = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/reprogramados/motorizado?token='+userService.getCurrentToken(),
+      url: '../api/public/api/reprogramados/motorizado?token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -4031,8 +4031,8 @@ angular.module('starter.controllers', [])
      $scope.f=$filter('date')(new Date(), "yyyy-MM-dd")
      var req2 = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedidomoto33/'+fecha+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedidomoto33/'+fecha+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -4172,8 +4172,8 @@ angular.module('starter.controllers', [])
              
               var req3 = {
                   method: 'GET',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/cantE/'+id+'?token='+userService.getCurrentToken(),
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/cantE/'+id+'?token='+userService.getCurrentToken(),
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   }
@@ -4204,8 +4204,8 @@ angular.module('starter.controllers', [])
 
               var req4 = {
                   method: 'GET',
-                  //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-                  url: '../api/token4/Laravel/public/api/cantD/'+id+'?token='+userService.getCurrentToken(),
+                  //url: '../api/public/api/get_users/'+CONFIG.ID,
+                  url: '../api/public/api/cantD/'+id+'?token='+userService.getCurrentToken(),
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   }
@@ -4254,7 +4254,7 @@ angular.module('starter.controllers', [])
   $timeout(function() {
     var repro = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/reprogramados/motorizado?token='+userService.getCurrentToken(),
+      url: '../api/public/api/reprogramados/motorizado?token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -4272,8 +4272,8 @@ angular.module('starter.controllers', [])
      $scope.f=$filter('date')(new Date(), "yyyy-MM-dd")
      var req2 = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedidomoto33/'+$scope.f+'?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedidomoto33/'+$scope.f+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -4461,8 +4461,8 @@ angular.module('starter.controllers', [])
   $timeout(function() {
      var req2 = {
         method: 'GET',
-        //url: '../api/token4/Laravel/public/api/get_users/'+CONFIG.ID,
-        url: '../api/token4/Laravel/public/api/pedidomoto?token='+userService.getCurrentToken(),
+        //url: '../api/public/api/get_users/'+CONFIG.ID,
+        url: '../api/public/api/pedidomoto?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -4672,7 +4672,7 @@ angular.module('starter.controllers', [])
 
         var req = {
           method: 'POST',
-          url: '../api/token4/Laravel/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
+          url: '../api/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -4790,7 +4790,7 @@ angular.module('starter.controllers', [])
 
           var reqM = {
             method: 'PUT',
-            url: '../api/token4/Laravel/public/api/update_moto_admin/'+ idC+'?token='+userService.getCurrentToken(),
+            url: '../api/public/api/update_moto_admin/'+ idC+'?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -4984,7 +4984,7 @@ angular.module('starter.controllers', [])
              
               var req = {
                      method: 'PUT',
-                     url: '../api/token4/Laravel/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
+                     url: '../api/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
                      headers: {
                        'Authorization' : 'Bearer ' + userService.getCurrentToken()
                      },
@@ -5030,7 +5030,7 @@ angular.module('starter.controllers', [])
               
               var req = {
                      method: 'PUT',
-                     url: '../api/token4/Laravel/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
+                     url: '../api/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
                      headers: {
                        'Authorization' : 'Bearer ' + userService.getCurrentToken()
                      },
@@ -5038,7 +5038,7 @@ angular.module('starter.controllers', [])
                     }
               var req2 = {
                      method: 'PUT',
-                     url: '../api/token4/Laravel/public/api/update_users/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
+                     url: '../api/public/api/update_users/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
                      headers: {
                        'Authorization' : 'Bearer ' + userService.getCurrentToken()
                      },
@@ -5092,7 +5092,7 @@ angular.module('starter.controllers', [])
 
               var req = {
                      method: 'PUT',
-                     url: '../api/token4/Laravel/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
+                     url: '../api/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
                      headers: {
                        'Authorization' : 'Bearer ' + userService.getCurrentToken()
                      },
@@ -5138,7 +5138,7 @@ angular.module('starter.controllers', [])
 
                var req = {
                      method: 'PUT',
-                     url: '../api/token4/Laravel/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
+                     url: '../api/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
                      headers: {
                        'Authorization' : 'Bearer ' + userService.getCurrentToken()
                      },
@@ -5183,7 +5183,7 @@ angular.module('starter.controllers', [])
 
                var req = {
                      method: 'PUT',
-                     url: '../api/token4/Laravel/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
+                     url: '../api/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
                      headers: {
                        'Authorization' : 'Bearer ' + userService.getCurrentToken()
                      },
@@ -5229,7 +5229,7 @@ angular.module('starter.controllers', [])
 
                var req = {
                      method: 'PUT',
-                     url: '../api/token4/Laravel/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
+                     url: '../api/public/api/motorizado/'+ CONFIG.ID+'?token='+userService.getCurrentToken(),
                      headers: {
                        'Authorization' : 'Bearer ' + userService.getCurrentToken()
                      },
@@ -5309,7 +5309,7 @@ angular.module('starter.controllers', [])
 
           var req = {
             method: 'POST',
-            url: '../api/token4/Laravel/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
+            url: '../api/public/api/auth/signup_motorizado?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             },
@@ -5372,7 +5372,7 @@ angular.module('starter.controllers', [])
       
       var req = {
         method: 'GET',
-        url: '../api/token4/Laravel/public/api/get_users/'+localStorageService.get('idLiebre')+'?token='+userService.getCurrentToken(),
+        url: '../api/public/api/get_users/'+localStorageService.get('idLiebre')+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         }
@@ -5423,7 +5423,7 @@ angular.module('starter.controllers', [])
 
  var req = {
     method: 'PUT',
-    url: '../api/token4/Laravel/public/api/update_user?token='+userService.getCurrentToken(),
+    url: '../api/public/api/update_user?token='+userService.getCurrentToken(),
     headers: {
       'Authorization' : 'Bearer ' + userService.getCurrentToken()
     },

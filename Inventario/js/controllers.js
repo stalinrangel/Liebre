@@ -61,7 +61,7 @@ angular.module('starter.controllers', [])
   setTimeout(function() {
     var reqHora = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/auth/getHour?token='+userService.getCurrentToken(),
+      url: '../api/public/api/auth/getHour?token='+userService.getCurrentToken(),
       headers: {
        'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -115,7 +115,7 @@ angular.module('starter.controllers', [])
    $scope.loading3 = true;
    var req = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/inventario_bajo?token='+userService.getCurrentToken(),
+      url: '../api/public/api/inventario_bajo?token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -142,7 +142,7 @@ angular.module('starter.controllers', [])
   $scope.devueltosFecha = $filter('date')(new Date(),'yyyy-MM-dd');
   var req = {
     method: 'GET',
-    url: '../api/token4/Laravel/public/api/productos_pedido_fechas/'+$scope.devueltosFecha+'?token='+userService.getCurrentToken(),
+    url: '../api/public/api/productos_pedido_fechas/'+$scope.devueltosFecha+'?token='+userService.getCurrentToken(),
     headers: {
       'Authorization' : 'Bearer ' + userService.getCurrentToken()
     }
@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
     $scope.loading3 = true;
     var req = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/productos_pedido_fechas/'+fecha+'?token='+userService.getCurrentToken(),
+      url: '../api/public/api/productos_pedido_fechas/'+fecha+'?token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -205,7 +205,7 @@ angular.module('starter.controllers', [])
 
     var req = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/por_fechas?fecha='+fecha+'&token='+userService.getCurrentToken(),
+      url: '../api/public/api/por_fechas?fecha='+fecha+'&token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -225,7 +225,7 @@ angular.module('starter.controllers', [])
     $scope.ver_datos=false;
     var req = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/buscar_productos_pedidos/'+$scope.buscar_id+'?token='+userService.getCurrentToken(),
+      url: '../api/public/api/buscar_productos_pedidos/'+$scope.buscar_id+'?token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -263,7 +263,7 @@ angular.module('starter.controllers', [])
       $scope.loading4 = true;
       var req2 = {
         method: 'PUT',
-        url: '../api/token4/Laravel/public/api/agregar_devueltos/'+item.atributo_id+'?token='+userService.getCurrentToken(),
+        url: '../api/public/api/agregar_devueltos/'+item.atributo_id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -347,7 +347,7 @@ angular.module('starter.controllers', [])
 
   var req = {
     method: 'GET',
-    url: '../api/token4/Laravel/public/api/por_fechas?fecha='+fecha+'&token='+userService.getCurrentToken(),
+    url: '../api/public/api/por_fechas?fecha='+fecha+'&token='+userService.getCurrentToken(),
     headers: {
       'Authorization' : 'Bearer ' + userService.getCurrentToken()
     }
@@ -379,7 +379,7 @@ angular.module('starter.controllers', [])
       $scope.loading4 = true;
       var req2 = {
         method: 'PUT',
-        url: '../api/token4/Laravel/public/api/agregar_devueltos/'+item.atributo_id+'?token='+userService.getCurrentToken(),
+        url: '../api/public/api/agregar_devueltos/'+item.atributo_id+'?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -488,7 +488,7 @@ angular.module('starter.controllers', [])
 
   var req = {
     method: 'GET',
-    url: '../api/token4/Laravel/public/api/get_ecommerce?token='+userService.getCurrentToken(),
+    url: '../api/public/api/get_ecommerce?token='+userService.getCurrentToken(),
     headers: {
       'Authorization' : 'Bearer ' + userService.getCurrentToken()
     }
@@ -510,7 +510,7 @@ angular.module('starter.controllers', [])
         $scope.guias.cliente = $scope.ori[i].name +' '+ $scope.ori[i].apellidos;
         var req1 = {
           method: 'GET',
-          url: '../api/token4/Laravel/public/api/producto/'+$scope.ori[i].id+'?token='+userService.getCurrentToken(),
+          url: '../api/public/api/producto/'+$scope.ori[i].id+'?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           }
@@ -570,7 +570,7 @@ angular.module('starter.controllers', [])
 
       var req2 = {
         method: 'POST',
-        url: '../api/token4/Laravel/public/api/guias/store?token='+userService.getCurrentToken(),
+        url: '../api/public/api/guias/store?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -619,7 +619,7 @@ angular.module('starter.controllers', [])
   $scope.guia_cliente='';
   var req1 = {
     method: 'GET',
-    url: '../api/token4/Laravel/public/api/guias?token='+userService.getCurrentToken(),
+    url: '../api/public/api/guias?token='+userService.getCurrentToken(),
     headers: {
       'Authorization' : 'Bearer ' + userService.getCurrentToken()
     }
@@ -643,7 +643,7 @@ angular.module('starter.controllers', [])
     console.log($scope.guia_cliente);
     var req1 = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/guias_cliente?cliente='+$scope.guia_cliente+'&token='+userService.getCurrentToken(),
+      url: '../api/public/api/guias_cliente?cliente='+$scope.guia_cliente+'&token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -670,7 +670,7 @@ angular.module('starter.controllers', [])
     console.log(fecha);
     var req1 = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/guias_fechas?fecha='+fecha+'&token='+userService.getCurrentToken(),
+      url: '../api/public/api/guias_fechas?fecha='+fecha+'&token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -773,7 +773,7 @@ angular.module('starter.controllers', [])
 .controller('InventarioCtrl', function($scope,$location,$timeout,userService,$http,CONFIG,$mdDialog) {
   var atri = {
     method: 'GET',
-    url: '../api/token4/Laravel/public/api/get_ecommerce?token='+userService.getCurrentToken(),
+    url: '../api/public/api/get_ecommerce?token='+userService.getCurrentToken(),
     headers: {
       'Authorization' : 'Bearer ' + userService.getCurrentToken()
     }
@@ -788,7 +788,7 @@ angular.module('starter.controllers', [])
 
   var req = {
     method: 'GET',
-    url: '../api/token4/Laravel/public/api/users?token='+userService.getCurrentToken(),
+    url: '../api/public/api/users?token='+userService.getCurrentToken(),
     headers: {
       'Authorization' : 'Bearer ' + userService.getCurrentToken()
     }
@@ -853,7 +853,7 @@ angular.module('starter.controllers', [])
 
         var reqe = {
           method: 'PUT',
-          url: '../api/token4/Laravel/public/api/update_users/'+ pedido.id+'?token='+userService.getCurrentToken(),
+          url: '../api/public/api/update_users/'+ pedido.id+'?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -895,7 +895,7 @@ angular.module('starter.controllers', [])
 
         var reqe = {
           method: 'PUT',
-          url: '../api/token4/Laravel/public/api/update_users/'+ pedido.id+'?token='+userService.getCurrentToken(),
+          url: '../api/public/api/update_users/'+ pedido.id+'?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -955,7 +955,7 @@ angular.module('starter.controllers', [])
   $timeout(function() {
     var req2 = {
       method: 'GET',
-      url: '../api/token4/Laravel/public/api/inventario/'+CONFIG.ECOMMERCE+'?token='+userService.getCurrentToken(),
+      url: '../api/public/api/inventario/'+CONFIG.ECOMMERCE+'?token='+userService.getCurrentToken(),
       headers: {
         'Authorization' : 'Bearer ' + userService.getCurrentToken()
       }
@@ -1052,7 +1052,7 @@ angular.module('starter.controllers', [])
         if($scope.inventarios[i].id==producto_id){  
           var atri = {
             method: 'DELETE',
-            url: '../api/token4/Laravel/public/api/producto/'+producto_id+'?token='+userService.getCurrentToken(),
+            url: '../api/public/api/producto/'+producto_id+'?token='+userService.getCurrentToken(),
             headers: {
               'Authorization' : 'Bearer ' + userService.getCurrentToken()
             }
@@ -1097,7 +1097,7 @@ angular.module('starter.controllers', [])
               $timeout(function() {
                var atri = {
                   method: 'DELETE',
-                  url: '../api/token4/Laravel/public/api/color/'+color_id+'?token='+userService.getCurrentToken(),
+                  url: '../api/public/api/color/'+color_id+'?token='+userService.getCurrentToken(),
                   headers: {
                     'Authorization' : 'Bearer ' + userService.getCurrentToken()
                   }
@@ -1148,7 +1148,7 @@ angular.module('starter.controllers', [])
                 $timeout(function() {
                  var atri = {
                     method: 'PUT',
-                    url: '../api/token4/Laravel/public/api/atributo/'+id_atributo+'?token='+userService.getCurrentToken(),
+                    url: '../api/public/api/atributo/'+id_atributo+'?token='+userService.getCurrentToken(),
                     headers: {
                       'Authorization' : 'Bearer ' + userService.getCurrentToken()
                     },
@@ -1198,7 +1198,7 @@ angular.module('starter.controllers', [])
                   $timeout(function() {
                     var atri = {
                       method: 'DELETE',
-                      url: '../api/token4/Laravel/public/api/atributo/'+id_atributo+'?token='+userService.getCurrentToken(),
+                      url: '../api/public/api/atributo/'+id_atributo+'?token='+userService.getCurrentToken(),
                       headers: {
                         'Authorization' : 'Bearer ' + userService.getCurrentToken()
                       }
@@ -1258,7 +1258,7 @@ angular.module('starter.controllers', [])
     $scope.guardarAtributo=function(){
       var atri = {
         method: 'POST',
-        url: '../api/token4/Laravel/public/api/atributo/store?token='+userService.getCurrentToken(),
+        url: '../api/public/api/atributo/store?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -1321,7 +1321,7 @@ angular.module('starter.controllers', [])
     $scope.guardarColor=function(){
       var atri = {
         method: 'POST',
-        url: '../api/token4/Laravel/public/api/color/store?token='+userService.getCurrentToken(),
+        url: '../api/public/api/color/store?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -1405,7 +1405,7 @@ angular.module('starter.controllers', [])
 
       var atri = {
         method: 'POST',
-        url: '../api/token4/Laravel/public/api/color/store?token='+userService.getCurrentToken(),
+        url: '../api/public/api/color/store?token='+userService.getCurrentToken(),
         headers: {
           'Authorization' : 'Bearer ' + userService.getCurrentToken()
         },
@@ -1532,7 +1532,7 @@ angular.module('starter.controllers', [])
       if($scope.addProductos.nombre!='' && $scope.addProductos.descripcion!=''){
         var atri = {
           method: 'POST',
-          url: '../api/token4/Laravel/public/api/producto/store?token='+userService.getCurrentToken(),
+          url: '../api/public/api/producto/store?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
@@ -1611,7 +1611,7 @@ angular.module('starter.controllers', [])
       if($scope.editProducto.nombre !='' && $scope.editProducto.descripcion!=''){
         var atri = {
           method: 'PUT',
-          url: '../api/token4/Laravel/public/api/producto/'+$scope.producto.id+'?token='+userService.getCurrentToken(),
+          url: '../api/public/api/producto/'+$scope.producto.id+'?token='+userService.getCurrentToken(),
           headers: {
             'Authorization' : 'Bearer ' + userService.getCurrentToken()
           },
