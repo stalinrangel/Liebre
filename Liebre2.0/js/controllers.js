@@ -2460,6 +2460,7 @@ angular.module('starter.controllers', [])
 
         if($scope.pedidos.length>1){
           for (var i = 0; i < $scope.pedidos.length; i++) {
+            console.log($scope.pedidos[i]);
             if($scope.pedidos[i].destino==''||$scope.pedidos[i].departamentoDestino==''||$scope.pedidos[i].nombreDestino==''||$scope.pedidos[i].telefonoDestino==''||$scope.pedidos[i].telefonoDestino==null||$scope.pedidos[i].lat==''||$scope.pedidos[i].lng==''||$scope.pedidos[i].costo==0||$scope.pedidos[i].distrito_destino==''||$scope.pedidos[i].comentarios==''||$scope.pedidos[i].subtotal==0){
               con=i+1;
               $mdDialog.show(
