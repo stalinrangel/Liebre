@@ -2431,6 +2431,7 @@ angular.module('starter.controllers', [])
             }
           }
           console.log(isNaN(($scope.pedidos[i].km/1000).toFixed(2)));
+          console.log($scope.pedidos[i]);
           if(isNaN(($scope.pedidos[i].km/1000).toFixed(2))){
             $mdDialog.show(
               $mdDialog.alert()
