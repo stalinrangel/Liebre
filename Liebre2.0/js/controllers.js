@@ -2492,6 +2492,7 @@ angular.module('starter.controllers', [])
 
         if($scope.pedidos.length==1){
           console.log('entro donde no es');
+          console.log($scope.pedidos[0]);
           if($scope.pedidos[0].destino==''||$scope.pedidos[0].departamentoDestino==''||$scope.pedidos[0].nombreDestino==''||$scope.pedidos[0].telefonoDestino==''||$scope.pedidos[0].telefonoDestino==null||$scope.pedidos[0].lat==''||$scope.pedidos[0].lng==''||$scope.pedidos[0].costo==0||$scope.pedidos[0].distrito_destino==''||$scope.pedidos[0].comentarios==''||$scope.pedidos[0].subtotal==0){
             $mdDialog.show(
               $mdDialog.alert()
