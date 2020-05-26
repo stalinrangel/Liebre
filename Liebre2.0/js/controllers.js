@@ -2490,10 +2490,14 @@ angular.module('starter.controllers', [])
           }
         }
 
+
         if($scope.pedidos.length==1){
           console.log('entro donde no es');
+           if ($scope.pedidos[0].costo==0||$scope.pedidos[0].costo=="") {
+             $scope.pedidos[0].costo==$scope.pedidos[0].subtotal;
+           }
           console.log($scope.pedidos[0]);
-          /*if($scope.pedidos[0].destino==''||$scope.pedidos[0].departamentoDestino==''||$scope.pedidos[0].nombreDestino==''||$scope.pedidos[0].telefonoDestino==''||$scope.pedidos[0].telefonoDestino==null||$scope.pedidos[0].lat==''||$scope.pedidos[0].lng==''||$scope.pedidos[0].costo==0||$scope.pedidos[0].distrito_destino==''||$scope.pedidos[0].comentarios==''||$scope.pedidos[0].subtotal==0){
+          if($scope.pedidos[0].destino==''||$scope.pedidos[0].departamentoDestino==''||$scope.pedidos[0].nombreDestino==''||$scope.pedidos[0].telefonoDestino==''||$scope.pedidos[0].telefonoDestino==null||$scope.pedidos[0].lat==''||$scope.pedidos[0].lng==''||$scope.pedidos[0].costo==0||$scope.pedidos[0].distrito_destino==''||$scope.pedidos[0].comentarios==''||$scope.pedidos[0].subtotal==0){
             $mdDialog.show(
               $mdDialog.alert()
                 .parent(angular.element(document.querySelector('#popupContainer')))
@@ -2504,7 +2508,7 @@ angular.module('starter.controllers', [])
                 .ok('OK')
             );
             puedeCotizar=1;
-          }*/
+          }
 
           if($scope.pedidos[0].fecha_destino=='' || $scope.pedidos[0].fecha_destino== null){
             $mdDialog.show(
