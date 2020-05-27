@@ -1630,6 +1630,7 @@ angular.module('starter.controllers', [])
           $scope.dest= new google.maps.LatLng($scope.ruta[i+1]);
 
           if (i < tam-1 && $scope.user.tipo_usuario != 3) {
+            console.log($scope.costos[0].costokm);
             $scope.pedidos[i-1].costo = ((google.maps.geometry.spherical.computeDistanceBetween($scope.ori, $scope.dest)*parseFloat($scope.costos[0].costokm))/1000).toFixed(2);
           }
           console.log(isNaN(google.maps.geometry.spherical.computeDistanceBetween($scope.ori, $scope.dest)));
