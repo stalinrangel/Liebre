@@ -7701,10 +7701,10 @@ angular.module('starter.controllers', [])
   };
 
   /************************* FUNCIONES AGREGAR Y REMOVER **********************/ 
-  $scope.addNew = function(personalDetail){
-    alert('Esta opción esta en mantenimiento.')
-  };
   /*$scope.addNew = function(personalDetail){
+    alert('Esta opción esta en mantenimiento.')
+  };*/
+  $scope.addNew = function(personalDetail){
     //if ($scope.contador+1<3) {
     $scope.contador=$scope.contador+1;
     $scope.pedidos.push({ 
@@ -7739,7 +7739,7 @@ angular.module('starter.controllers', [])
     //}else{
     //alert('Esta opción esta en mantenimiento, ¡pronto la habilitaremos!');
     //}
-  };*/
+  };
     
   $scope.remove = function(){
     var newDataList=[];
