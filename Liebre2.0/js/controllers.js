@@ -2493,11 +2493,36 @@ angular.module('starter.controllers', [])
 
         if($scope.pedidos.length==1){
           console.log('entro donde no es');
-           if ($scope.pedidos[0].costo==0||$scope.pedidos[0].costo=="") {
-             $scope.pedidos[0].costo==$scope.pedidos[0].subtotal;
-           }
+           
           console.log($scope.pedidos[0]);
-          if($scope.pedidos[0].destino==''||$scope.pedidos[0].departamentoDestino==''||$scope.pedidos[0].nombreDestino==''||$scope.pedidos[0].telefonoDestino==''||$scope.pedidos[0].telefonoDestino==null||$scope.pedidos[0].lat==''||$scope.pedidos[0].lng==''||$scope.pedidos[0].costo==0||$scope.pedidos[0].distrito_destino==''||$scope.pedidos[0].comentarios==''||$scope.pedidos[0].subtotal==0){
+          if ($scope.pedidos[0].destino=='') {
+            console.log('destino');
+          }
+          if ($scope.pedidos[0].departamentoDestino=='') {
+            console.log('departamentoDestino');
+          }
+          if ($scope.pedidos[0].nombreDestino=='') {
+            console.log('nombreDestino');
+          }
+          if ($scope.pedidos[0].telefonoDestino=='') {
+            console.log('telefonoDestino');
+          }
+          if ($scope.pedidos[0].lat=='') {
+            console.log('lat');
+          }
+          if ($scope.pedidos[0].lng=='') {
+            console.log('lng');
+          }
+          if ($scope.pedidos[0].distrito_destino=='') {subtotal comentarios distrito_destino lng lat telefonoDestino nombreDestino
+            console.log('distrito_destino');
+          }
+          if ($scope.pedidos[0].comentarios=='') {
+            console.log('comentarios');
+          }
+          if ($scope.pedidos[0].subtotal=='') {
+            console.log('subtotal');
+          }
+          if($scope.pedidos[0].destino==''||$scope.pedidos[0].departamentoDestino==''||$scope.pedidos[0].nombreDestino==''||$scope.pedidos[0].telefonoDestino==''||$scope.pedidos[0].telefonoDestino==null||$scope.pedidos[0].lat==''||$scope.pedidos[0].lng==''||$scope.pedidos[0].distrito_destino==''||$scope.pedidos[0].comentarios==''||$scope.pedidos[0].subtotal==0){
             $mdDialog.show(
               $mdDialog.alert()
                 .parent(angular.element(document.querySelector('#popupContainer')))
@@ -3205,7 +3230,7 @@ angular.module('starter.controllers', [])
   }
 
   var SwitchCosto_destino = function (sno,pedido) {
-
+    console.log('SwitchCosto_destino');
     $scope.costoe = 0;
 
     if ($scope.user.almacen == 0 && $scope.user.tipo_usuario == 3) {
