@@ -1742,7 +1742,7 @@ angular.module('starter.controllers', [])
         }
       }
       console.log($scope.pedidos[pos].destino.geometry);
-      if(angular.isObject($scope.pedidos[pos].destino.geometry)){
+      if(angular.isObject($scope.pedidos[pos].destino.geometry)&&angular.isObject($scope.pedidos[pos].destino.geometry)!=undefined){
         for (var i = 0; i < $scope.pedidos.length; i++) {
           if($scope.pedidos[i].id_pedido==id){
             $scope.pedidos[i].lat=results[0].geometry.location.lat();
