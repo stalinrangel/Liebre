@@ -973,6 +973,7 @@ angular.module('starter.controllers', [])
       }
 
       $http(reqcosto).then(function(response){
+          console.log(response.data.costos);
           CONFIG.COSTOS = response.data.costos;
           $scope.costos = response.data.costos;
       }, function(){
@@ -3239,6 +3240,7 @@ angular.module('starter.controllers', [])
     }
 
     if ($scope.user.tipo_usuario == 3) {
+      console.log($scope.costos);
       switch (sno) {
         case 0:
           pedido.costo = parseFloat($scope.costos[0].ecommerce_manana);
