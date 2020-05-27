@@ -2513,7 +2513,7 @@ angular.module('starter.controllers', [])
           if ($scope.pedidos[0].lng=='') {
             console.log('lng');
           }
-          if ($scope.pedidos[0].distrito_destino=='') {subtotal comentarios distrito_destino lng lat telefonoDestino nombreDestino
+          if ($scope.pedidos[0].distrito_destino=='') {
             console.log('distrito_destino');
           }
           if ($scope.pedidos[0].comentarios=='') {
