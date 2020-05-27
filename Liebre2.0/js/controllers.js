@@ -4716,6 +4716,7 @@ angular.module('starter.controllers', [])
       }
 
       $http(reqcosto).then(function(response){
+        console.log(response.data.costos);
           CONFIG.COSTOS = response.data.costos;
           $scope.costos = response.data.costos;
           console.log(response);
@@ -10904,6 +10905,7 @@ angular.module('starter.controllers', [])
     }
 
     $http(reqcosto).then(function(response){
+      console.log(response.data.costos);
       CONFIG.COSTOS = response.data.costos;
       $scope.costos = response.data.costos;
     }, function(){
