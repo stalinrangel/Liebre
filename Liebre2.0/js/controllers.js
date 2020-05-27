@@ -1741,6 +1741,7 @@ angular.module('starter.controllers', [])
           pos=i;
         }
       }
+      console.log($scope.pedidos[pos].destino.geometry);
       if(angular.isObject($scope.pedidos[pos].destino.geometry)){
         for (var i = 0; i < $scope.pedidos.length; i++) {
           if($scope.pedidos[i].id_pedido==id){
