@@ -9238,7 +9238,8 @@ angular.module('starter.controllers', [])
       }
 
       if ($scope.pedidos.destinos[0].subtotal == 0) {
-        $scope.pedidos.estado = 'RECHAZADO';
+       // $scope.pedidos.estado = 'RECHAZADO';
+       $scope.pedidos.estado = 'FINALIZADO_';
       }
 
       if ($scope.pedidos.forma_pago == 0) {
@@ -9490,7 +9491,7 @@ angular.module('starter.controllers', [])
     function estadoHtml(data, type, full, meta) {
         vm.persons[data.id] = data;
         if (data.destinos[0].subtotal == 0) {
-          return '<span style="color:#E53935">RECHAZADO</span>';
+          //return '<span style="color:#E53935">RECHAZADO</span>';
         }
         if (data.estado == 4) {
           return '<span style="color:#ff9800">ANULADO</span>';
