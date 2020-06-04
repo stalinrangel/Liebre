@@ -5304,7 +5304,14 @@ angular.module('starter.controllers', [])
       }
     }
     if (d.estado == 1) {
+      console.log('52307');
       for(var i = 0; i < $scope.dest.length; i++) {
+        if ($scope.dest[i].estado_destino == 1) {
+              estado = 'ASIGNADO';
+            }
+            if ($scope.dest[i].estado_destino == 2) {
+              estado = 'EN CAMINO';
+            }
         if ($scope.dest[i].estado_destino == 1) {
           html += '<tr style="background-color:#f6f6f6"><td class="ng-scope" style="width:1% !important"></td><td class="ng-scope" style="width: 10%;">LIE000'+ d.id + '-'+ String.fromCharCode(letter) +'</td><td class="ng-scope" style="width: 7%;"></td><td class="ng-scope" style="width: 7%;"><td class="ng-scope" style="width: 13%;">'+ $scope.dest[i].origen +'</td><td class="ng-scope" style="width: 15%;">'+ $scope.dest[i].destino +'</td><td class="ng-scope" style="width: 8%;"><td class="ng-scope" style="width: 8%;"><td class="ng-scope" style="width: 7%;"><td class="ng-scope" style="width: 6%;"><td class="ng-scope" style="width: 12%;"><button class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow button_print2" itemId="'+i+'">' + '<i class="fa fa-print"></i>' + '</button><button class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow button_moto" itemId="'+i+'">' + '<i class="fa fa-check"></i>' + '</button><button class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow button_delete" itemId="'+i+'">' + '<i class="fa fa-times"></i>' + '</button></td></tr>';   
         }
@@ -5313,7 +5320,14 @@ angular.module('starter.controllers', [])
     }
 
     if (d.estado == 2) {
+      console.log('5317');
       for(var i = 0; i < $scope.dest.length; i++) {
+        if ($scope.dest[i].estado_destino == 1) {
+              estado = 'ASIGNADO';
+            }
+            if ($scope.dest[i].estado_destino == 2) {
+              estado = 'EN CAMINO';
+            }
         if ($scope.dest[i].estado_destino == 2) {
           html += '<tr style="background-color:#f6f6f6"><td class="ng-scope" style="width:1% !important"></td><td class="ng-scope" style="width: 10%;">LIE000'+ d.id + '-'+ String.fromCharCode(letter) +'</td><td class="ng-scope" style="width: 7%;"></td><td class="ng-scope" style="width: 7%;"><td class="ng-scope" style="width: 13%;">'+ $scope.dest[i].origen +'</td><td class="ng-scope" style="width: 15%;">'+ $scope.dest[i].destino +'</td><td class="ng-scope" style="width: 8%;"><td class="ng-scope" style="width: 8%;"><td class="ng-scope" style="width: 7%;"><td class="ng-scope" style="width: 6%;"><td class="ng-scope" style="width: 12%;"><button class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow button_print2" itemId="'+i+'">' + '<i class="fa fa-print"></i>' + '</button><button class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow button_moto" itemId="'+i+'">' + '<i class="fa fa-check"></i>' + '</button><button class="md-raised bottom_table md-button md-ink-ripple btn3 btn_yellow button_delete" itemId="'+i+'">' + '<i class="fa fa-times"></i>' + '</button></td></tr>';   
         }
