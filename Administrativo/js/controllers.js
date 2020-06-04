@@ -2364,6 +2364,7 @@ angular.module('starter.controllers', [])
   }
 
   function format (d) {
+    console.log('2367');
     var html = '<table cellpadding="5" id="isrctable" ng-controller="ListadoProcesoCtrl" cellspacing="0" border="0" style="padding-left:50px;" width="100%">';
     var letter = 'A'.charCodeAt(0);
     $scope.dest = d.destinos;
@@ -5276,7 +5277,7 @@ angular.module('starter.controllers', [])
     $scope.dest.sort(function(a, b){
       return a.n_marcador - b.n_marcador;
     });
-
+    console.log('5280');
       var motorizado = '';
       var estado = '';
     if (d.estado == 0) {
@@ -6918,7 +6919,7 @@ angular.module('starter.controllers', [])
       return a.n_marcador - b.n_marcador;
     });
 
-
+    console.log('6922');
     if (d.estado == 1) {
       for(var i = 0; i < $scope.dest.length; i++) {
         if ($scope.dest[i].estado_destino == 4) {
