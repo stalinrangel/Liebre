@@ -2206,6 +2206,8 @@ angular.module('starter.controllers', [])
 
 .controller('encaminoCtrl', function($scope,$window,$mdDialog,$cookieStore,$sce,CONFIG,userService,$location,$http,$timeout) {
 
+  
+
   $scope.finalizar_destino=function(id,ev){
     console.log(id);
     var confirm = $mdDialog.confirm()
@@ -2239,7 +2241,7 @@ angular.module('starter.controllers', [])
 
     });  
   }
-  
+
   $scope.pedidoEntregado=function(tipo,id,estado,ev){
 
     if (tipo==0) {
