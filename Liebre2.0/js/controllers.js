@@ -1062,19 +1062,20 @@ angular.module('starter.controllers', [])
   /************************* Inicio de declaracion de horarios **********************/
 
   var circle = new google.maps.Circle({
-    center: {lat:  -12.1056553, lng: -77.0369909},
+    //center: {lat:  -12.1056553, lng: -77.0369909},41.403706, 2.173504
+    center: {lat:  41.403706, lng: 2.173504},
     radius: 10*1000
   });
 
   $scope.autocompleteOptions = {
     bounds: circle.getBounds(),
-    componentRestrictions: {country: 'pe'}
+    componentRestrictions: {country: 'es'}
   };
-  
-  var lima={
+  var lima={lat:  41.403706, lng: 2.173504};
+  /*var lima={
     lat: -12.046374,
     lng: -77.042793
-  };
+  };*/
 
   $scope.pedidos = [{   
     'id_pedido':1,
