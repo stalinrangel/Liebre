@@ -2206,6 +2206,40 @@ angular.module('starter.controllers', [])
 
 .controller('encaminoCtrl', function($scope,$window,$mdDialog,$cookieStore,$sce,CONFIG,userService,$location,$http,$timeout) {
 
+  $scope.finalizar_destino=function(id){
+    console.log(id);
+    var confirm = $mdDialog.confirm()
+    .title('Advertencia')
+    .textContent('¿Esta seguro de querer realizar esta acción?')
+    .ariaLabel('Lucky day')
+    .targetEvent(ev)
+    .ok('SI')
+    .cancel('NO');
+    $mdDialog.show(confirm).then(function() {
+        $scope.update={
+          estado_destino:3
+        }
+      
+        var req3 = {
+          method: 'PUT',
+          url: '../api/public/api/destino/'+id+'?token='+userService.getCurrentToken(),
+          headers: {
+            'Authorization' : 'Bearer ' + userService.getCurrentToken()
+          },
+          data: $scope.update
+        }
+
+        $http(req3).then(function(response){
+          console.log(response);
+        }, function(error){
+          console.log(error);
+        });
+         
+    }, function() {
+
+    });  
+  }
+  
   $scope.pedidoEntregado=function(tipo,id,estado,ev){
 
     if (tipo==0) {
