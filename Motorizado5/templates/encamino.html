@@ -259,6 +259,9 @@
                               <div class="col-md-4">
                                   <md-button class="md-primary navButton" style="width: 100%; background-color: grey !important" ng-href="https://www.google.com.pe/maps/search/{{dest.lat2}},{{dest.lng2}}">Ir al destino {{$index + 1}} con google maps </md-button>
                               </div>
+                              <div class="col-md-4">
+                                  <md-button class="md-primary navButton" style="width: 100%; background-color: #00B050 !important" ng-click="finalizar_destino(dest.id)" ng-show="pedido.admin_id && pedido.destinos[0].detalle==''">Marcar como finalizado</md-button>
+                              </div>
                               <!-- <div class="col-md-4">
                                   <md-button class="md-primary navButton" style="width: 100%; background-color: #00B050 !important" ng-click="marcarEntregado(dest.id)">Marcar como entregado</md-button>
                               </div> -->
