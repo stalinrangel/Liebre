@@ -2206,7 +2206,7 @@ angular.module('starter.controllers', [])
 
 .controller('encaminoCtrl', function($scope,$window,$mdDialog,$cookieStore,$sce,CONFIG,userService,$location,$http,$timeout) {
 
-  $scope.finalizar_destino=function(id){
+  $scope.finalizar_destino=function(id,ev){
     console.log(id);
     var confirm = $mdDialog.confirm()
     .title('Advertencia')
