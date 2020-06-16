@@ -8,7 +8,7 @@
 	      <div class="row">
 	      	<div class="col-md-6">
 	      		<div class="content_status">
-	      			<h5 class="text_status">ESTADOs: {{pedidos.estado}}</h5>
+	      			<h5 class="text_status">ESTADO: {{pedidos.estado}}</h5>
 	      			<p class="imprimir_pedido2" ng-click="imprimir()"><i class="fa fa-print"></i> Imprimir Pedido</p>
 	      		</div>
 	            <div class="content_formdetalle">
@@ -36,7 +36,7 @@
                     </div>
 	                <div ng-repeat="pedido in destinos | orderBy:'id_pedido'">
                     <div class="content_dist" ng-show="destinos.length < 2"><h5 class="dest-orin" ng-show="destinos.length < 2" style="margin-bottom:5px !important; font-size:12px !important">DESTINO</h5></div>
-                    <div class="content_dist" ng-show="destinos.length > 1" style="margin-bottom:5px !important; font-size:12px !important"><h5 class="dest-orin" ng-show="destinos.length > 1">DESTINO {{$index + 1}}</h5> {{pedido.destino.estado_destino2}}</div>
+                    <div class="content_dist" ng-show="destinos.length > 1" style="margin-bottom:5px !important; font-size:12px !important"><h5 class="dest-orin" ng-show="destinos.length > 1">DESTINO {{$index + 1}} -</h5> {{pedido.destinos.estado_destino2}}</div>
                     <div class="panel panel-default" style="margin-bottom:7px !important">
                       <div class="panel-body">
                           <div class="row">
