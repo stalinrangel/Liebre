@@ -1660,6 +1660,7 @@ angular.module('starter.controllers', [])
 
       $timeout(function() {
         if ($scope.user.tipo_usuario != 3) {
+          console.log($scope.costos);
           $scope.costo = $scope.km*parseFloat($scope.costos[0].costokm);
         }
       }, 1500);
