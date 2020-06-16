@@ -8687,6 +8687,10 @@ angular.module('starter.controllers', [])
         });
 
         for (var i = 0; i < $scope.destinos.length; i++) {
+          if ($scope.destinos[i].estado_destino==0) {$scope.destinos[i].estado_destino2='Sin Asignar'}
+          if ($scope.destinos[i].estado_destino==1) {$scope.destinos[i].estado_destino2='Asignado'}
+          if ($scope.destinos[i].estado_destino==2) {$scope.destinos[i].estado_destino2='En Camino'}
+          if ($scope.destinos[i].estado_destino==4) {$scope.destinos[i].estado_destino2='Entregado'}
           console.log($scope.destinos[i].lat2);
           console.log($scope.destinos[i].lng2);
             marcador.lat=parseFloat($scope.destinos[i].lat2);
