@@ -8701,6 +8701,7 @@ angular.module('starter.controllers', [])
         }
 
         $timeout(function() {
+          console.log($scope.destinos);
           console.log($scope.ruta);
           traceRoute($scope.ruta);
           for (var i = 1; i < $scope.ruta.length+1; i++) {
