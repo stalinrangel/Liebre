@@ -8393,6 +8393,7 @@ angular.module('starter.controllers', [])
     };
 
     var showTabDialog = function(ev) {
+      console.log($scope.pedido);
       $mdDialog.show({
         locals:{data: $scope.pedido}, 
         templateUrl: 'templates/detalle_pedido.html',
@@ -8406,7 +8407,7 @@ angular.module('starter.controllers', [])
     };
 
     var mdDialogCtrl = function ($scope,data,$timeout,$rootScope,$filter) { 
-
+      console.log(data);
       $scope.pedidos = data;
       $scope.destinos = [];
       $scope.cliente = CONFIG.CLIENTE;
