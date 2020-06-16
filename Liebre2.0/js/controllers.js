@@ -962,7 +962,8 @@ angular.module('starter.controllers', [])
     }, 300);
   }
 
-  if (CONFIG.COSTOS == '') {
+  //if (CONFIG.COSTOS == '') {
+  if (true) {
     setTimeout(function() {
       var reqcosto = {
         method: 'GET',
