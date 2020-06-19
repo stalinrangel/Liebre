@@ -2210,7 +2210,8 @@ angular.module('starter.controllers', [])
 
   $scope.finalizar_destino=function(id,ev){
     console.log(id);
-    var confirm = $mdDialog.confirm()
+    console.log($scope.pedido);
+    /*var confirm = $mdDialog.confirm()
     .title('Advertencia')
     .textContent('¿Esta seguro de querer realizar esta acción?')
     .ariaLabel('Lucky day')
@@ -2244,7 +2245,7 @@ angular.module('starter.controllers', [])
          
     }, function() {
 
-    });  
+    });  */
   }
 
   $scope.pedidoEntregado=function(tipo,id,estado,ev){
