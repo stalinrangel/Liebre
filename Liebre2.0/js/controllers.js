@@ -8693,7 +8693,8 @@ angular.module('starter.controllers', [])
           if ($scope.destinos[i].estado_destino==0) {$scope.destinos[i].estado_destino2='Sin Asignar'}
           if ($scope.destinos[i].estado_destino==1) {$scope.destinos[i].estado_destino2='Asignado'}
           if ($scope.destinos[i].estado_destino==2) {$scope.destinos[i].estado_destino2='En Camino'}
-          if ($scope.destinos[i].estado_destino==4) {$scope.destinos[i].estado_destino2='Entregado'}
+          if ($scope.destinos[i].estado_destino==3) {$scope.destinos[i].estado_destino2='Finalizado'}
+          if ($scope.destinos[i].estado_destino==4) {$scope.destinos[i].estado_destino2='Cancelado'}
           console.log($scope.destinos[i].lat2);
           console.log($scope.destinos[i].lng2);
             marcador.lat=parseFloat($scope.destinos[i].lat2);
