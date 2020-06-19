@@ -2210,8 +2210,7 @@ angular.module('starter.controllers', [])
 
   $scope.finalizar_destino=function(id,ev){
     console.log(id);
-    console.log($scope.pedido);
-    /*var confirm = $mdDialog.confirm()
+    var confirm = $mdDialog.confirm()
     .title('Advertencia')
     .textContent('¿Esta seguro de querer realizar esta acción?')
     .ariaLabel('Lucky day')
@@ -2234,18 +2233,14 @@ angular.module('starter.controllers', [])
 
         $http(req3).then(function(response){
           console.log(response);
-          for (var i = 0; i < $scope.pedido.destinos.length; i++) {
-            if ($scope.pedido.destinos[i].id==id) {
-              $scope.pedido.destinos[i].estado_destino=3;
-            }
-          }
+          $window.location.reload();
         }, function(error){
           console.log(error);
         });
          
     }, function() {
 
-    });  */
+    });  
   }
 
   $scope.pedidoEntregado=function(tipo,id,estado,ev){
