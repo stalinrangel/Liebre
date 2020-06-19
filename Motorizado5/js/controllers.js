@@ -2233,6 +2233,11 @@ angular.module('starter.controllers', [])
 
         $http(req3).then(function(response){
           console.log(response);
+          for (var i = 0; i < $scope.pedido.destinos.length; i++) {
+            if ($scope.pedido.destinos[i].id==id) {
+              $scope.pedido.destinos[i].estado_destino=3;
+            }
+          }
         }, function(error){
           console.log(error);
         });
