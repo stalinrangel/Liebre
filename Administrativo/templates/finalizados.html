@@ -35,7 +35,7 @@
 	      <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover"></table>
 		<div id="detalle_pedido4" ng-show="false">
 			<img src="images/logo.png" height="50">
-			<h4 class="title_print">Courier Liebre Express</h4>
+			<h4 class="title_print">Courier GAMARRA</h4>
 			<hr>
 			<p style="display:block !important;text-align:right;margin-bottom:0px !important">Nº Pedido: {{idpedido}}</p>
 			<div style="width:30%;display:inline-block !important;float:left">
@@ -94,7 +94,7 @@
 		</div>
 			<div id="finalizados" ng-show="false">
 				<img src="images/logo.png" height="50">
-				<h4 class="title_print">Courier Liebre Express</h4>
+				<h4 class="title_print">Courier GAMARRA</h4>
 				<hr>
 				<p style="text-align:center">PEDIDOS FINALIZADOS</p>
 				<table style="width:100%">
@@ -111,7 +111,7 @@
 				    <th>Hora Programada</th>
 				  </tr>
 				  <tr ng-repeat="track in tracking">
-				    <td>LIE000{{track.id}}</td>
+				    <td>000{{track.id}}</td>
 				    <td>{{track.nombre}}</td> 
 				    <td>{{track.origen_solicitud}}</td>
 				   	<td ng-repeat="dest in track.destinos" ng-if="$first">{{dest.origen}}</td>

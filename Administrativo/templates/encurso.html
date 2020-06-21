@@ -36,7 +36,7 @@
 	      	<table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover" id="tableencurso"></table>
 	    	<div id="detalle_pedido3" ng-show="false">
 				<img src="images/logo.png" height="50">
-				<h4 class="title_print">Courier Liebre Express</h4>
+				<h4 class="title_print">Courier GAMARRA</h4>
 				<hr>
 				<p style="display:block !important;text-align:right;margin-bottom:0px !important">Nº Pedido: {{idpedido}}</p>
 				<div style="width:30%;display:inline-block !important;float:left">
@@ -95,7 +95,7 @@
 		</div>
 		  <div id="encurso" ng-show="false">
 				<img src="images/logo.png" height="50">
-				<h4 class="title_print">Courier Liebre Express</h4>
+				<h4 class="title_print">Courier GAMARRA</h4>
 				<hr>
 				<p style="text-align:right;font-size:12px">Fecha: {{fecha_actual}}</p>
 				<p style="text-align:center">PEDIDOS EN CURSO</p>
@@ -115,7 +115,7 @@
 				    <th>Forma de Pago</th>
 				  </tr>
 				  <tr ng-repeat="track in tracking" style="font-size:20px;">
-				    <td>LIE000{{track.id}}</td>
+				    <td>000{{track.id}}</td>
 				    <td>{{track.nombre}}</td> 
 				    <td ng-repeat="dest in track.destinos" ng-if="$last">{{dest.nombre_destino}}</td>
 				   	<td ng-repeat="dest in track.destinos" ng-if="$last">{{dest.telefono_destino}}</td>
