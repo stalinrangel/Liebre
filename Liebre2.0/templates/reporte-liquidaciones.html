@@ -227,7 +227,7 @@
 </md-dialog>
 <div id="reporte_liquidacion" ng-show="false">
     <img src="images/logo.png" height="50">
-    <h4 class="title_print">Courier Liebre Express</h4>
+    <h4 class="title_print">Courier Gamarra</h4>
     <hr>
     <br>
     <h4 style="text-align:center;text-decoration: underline;text-transform:uppercase">REPORTE LIQUIDACION {{tracking.nombre_ecommerce}}</h4>
@@ -261,7 +261,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat='item in tracking.nordens | orderBy: n_orden' class="odd gradeX">
-                                        <td>LIE000{{item.n_orden}}</td>
+                                        <td>000{{item.n_orden}}</td>
                                         <td>{{item.cliente}}</td>
                                         <!--<td>{{item.tipo}}</td>-->
                                         <td>{{item.estado}}</td>
@@ -427,7 +427,7 @@
     </div>
 </div>
 <div id="reporte_liquidacion2" ng-show="false">
-    <h4 class="title_print">COURIER LIEBRE EXPRESS</h4>
+    <h4 class="title_print">COURIER Gamarra</h4>
     <div>
         <p>FECHA ENVIO: {{tracking.fecha_inicio1}}</p>
     </div>
