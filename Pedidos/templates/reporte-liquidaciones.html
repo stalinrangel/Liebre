@@ -1,0 +1,626 @@
+<md-dialog aria-label="Mango (Fruit)" class="dialog_detalle">
+  <form ng-cloak >
+    <md-toolbar ng-show="!showSearch">
+        <div class="md-toolbar-tools">
+          <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+            <ng-md-icon icon="menu"></ng-md-icon>
+          </md-button>
+          <h3>
+            <span style="color: #fff;text-transform: uppercase;">LIQUIDACION {{tracking.nombre_ecommerce}}</span>
+          </h3>
+          <span flex></span>
+          <span style="color: #fff">Fecha: {{tracking.fecha_inicio1}}</span>
+          <md-button aria-label="Cancel" class="button_modal" style="fill: white" ng-click="cancelar()">
+            <ng-md-icon icon="clear"></ng-md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-dialog-content>
+          <div class="md-dialog-content">
+            <br>
+            <p class="imprimir_pedido2 pull-right" ng-click="imprimir()" style="margin-right:30px;"><i class="fa fa-print"></i> Imprimir</p>
+            <p class="imprimir_pedido2 pull-right" ng-click="exportToExcel('#reporte_liquidacion2')" style="margin-right:30px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <md-card>
+                                 <div class="dataTable_wrapper">
+                                    <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr class="head_table">
+                                                <th>Nº Orden</th>
+                                                <th>Cliente</th>
+                                                <!--<th>Tipo</th>-->
+                                                <th>Estado</th>
+                                                <th>Costo Productos</th>
+                                                <th ng-if="cliente.tipo_usuario == 3">Adicionar</th>
+                                                <th ng-if="cliente.tipo_usuario != 3">Costo Envío</th>
+                                                <th>Descuento</th>
+                                                <th>Forma de Pago</th>
+                                                <th>Observacion</th>
+                                                <th>Total Servicios</th>
+                                                <th>Fecha Reprog.</th>
+                                                <th>Hora envío</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat='item in tracking.nordens | orderBy: n_orden' class="odd gradeX">
+                                                <td>LIE000{{item.n_orden}}</td>
+                                                <td>{{item.cliente}}</td>
+                                                <!--<td>{{item.tipo}}</td>-->
+                                                <td>{{item.estado}}</td>
+                                                <td>S/. {{item.costo_productos | number:2}}</td>
+                                                <td>S/. {{item.costo_envio | number:2}}</td>
+                                                <td>S/. {{item.descuento | number:2}}</td>
+                                                <td>{{item.forma_pago}}</td>
+                                                <td>{{item.observacion}}</td>
+                                                <td>S/. {{item.total_servicios | number:2}}</td>
+                                                <td>{{item.fecha_reprogramacion}}</td>
+                                                <td>{{item.hora_envio}}</td>
+                                            </tr>
+                                            <tr >
+                                                <td colspan="5" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">TOTAL MONTO A COBRAR</p>  
+                                                </td>
+                                                <td colspan="1" style="background-color:#fff">
+                                                    S/. {{tracking.total_a_cobrar | number:2}}
+                                                </td>
+                                                 <td colspan="2" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">COSTO TOTAL SERVICIOS</p>  
+                                                </td>
+                                                <td colspan="2" style="background-color:#fff">
+                                                    S/. {{tracking.costo_total_servicios | number:2}}
+                                                </td>
+                                                <td style="background-color:#fff"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive --> 
+                            </md-card>
+                        <!-- /.panel -->
+                        </div>
+                    <!-- /.col-lg-12 -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4" style="padding-right: 0px;padding-left: 30px;">
+                    <md-card>
+                        <div>
+                            <div class="contet_servicios">
+                                <span>TOTAL SERVICIOS</span>
+                                <span class="pull-right number_servicio">{{tracking.total_servicios}}</span>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8 col-md-8">
+                                    <div class="ic_model"><ng-md-icon icon="event_available" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+                                    <span style="font-weight:bold">Entregados:</span>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                    <span class="pull-right serv_number">{{tracking.entregados}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8 col-md-8">
+                                    <div class="ic_model"><ng-md-icon icon="event_busy" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+                                    <span style="font-weight: bold">Anulados:</span>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                    <span class="pull-right serv_number">{{tracking.anulados}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8 col-md-8">
+                                    <div class="ic_model"><ng-md-icon icon="event_note" style="fill:#272727;position:relative;top:5px" size="20"></ng-md-icon></div>
+                                    <span style="font-weight: bold">Reprogramados:</span>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                    <span class="pull-right serv_number">{{tracking.reprogramados}}</span>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </md-card>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <md-card>
+                                <div class="dataTable_wrapper">
+                                    <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr class="head_table">
+                                                <th></th>
+                                                <th>EFECT</th>
+                                                <th>POS (-5%)</th>
+                                                <th>TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">TOTAL A DEPOSITAR</p>  
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.efectivo}}
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.pos}}
+                                                </td>
+                                                 <td style="background-color:#fff">
+                                                    S./ {{tracking.totalcobrar}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">TOTAL SERVICIOS</p>  
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.costo_total_servicios}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">COSTO RECOJO PRODUCTOS</p>  
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.costo_recojo}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">SERVICIOS OLVA</p>  
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.servicios_olva}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">SERVICIOS ADICIONALES</p>  
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.servicios_adicionales}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">SALDO PENDIENDE POR DEPOSITAR</p>
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.pendiente}}
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="cliente.tipo_usuario=='3'">
+                                                <td colspan="3" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">TOTAL DE DEPOSITO DESCUENTO DE LOS SERVICIOS</p>
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.total_deposito_descuento_servicios}}
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="cliente.tipo_usuario!=='3'">
+                                                <td colspan="3" style="background-color:#fff">
+                                                    <p style="text-align:right;font-weight:bold">TOTAL A CANCELAR</p>
+                                                </td>
+                                                <td style="background-color:#fff">
+                                                    S./ {{tracking.total_deposito_descuento_servicios}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive --> 
+                            </md-card>
+                        <!-- /.panel -->
+                        </div>
+                    <!-- /.col-lg-12 -->
+                    </div>
+                </div>
+            </div>
+          </div>
+      </md-dialog-content>
+    </form>
+</md-dialog>
+<div id="reporte_liquidacion" ng-show="false">
+    <img src="images/logo.png" height="50">
+    <h4 class="title_print">Courier Gamarra</h4>
+    <hr>
+    <br>
+    <h4 style="text-align:center;text-decoration: underline;text-transform:uppercase">REPORTE LIQUIDACION {{tracking.nombre_ecommerce}}</h4>
+    <div>
+        <p style="text-align:right;font-size:10px;">Fecha: {{tracking.fecha_inicio1}}</p>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <md-card>
+                         <div class="dataTable_wrapper">
+                            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr class="head_table">
+                                        <th>Nº Orden</th>
+                                        <th>Cliente</th>
+                                        <!--<th>Tipo</th>-->
+                                        <th>Estado</th>
+                                        <th>Costo Productos</th>
+                                        <th ng-if="cliente.tipo_usuario == 3">Adicionar</th>
+                                        <th ng-if="cliente.tipo_usuario != 3">Costo Envío</th>
+                                        <th>Descuento</th>
+                                        <th>Forma de Pago</th>
+                                        <th>Observacion</th>
+                                        <th>Total Servicios</th>
+                                        <th>Fecha Reprog.</th>
+                                        <th>Hora envío</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat='item in tracking.nordens | orderBy: n_orden' class="odd gradeX">
+                                        <td>000{{item.n_orden}}</td>
+                                        <td>{{item.cliente}}</td>
+                                        <!--<td>{{item.tipo}}</td>-->
+                                        <td>{{item.estado}}</td>
+                                        <td>S/. {{item.costo_productos | number:2}}</td>
+                                        <td>S/. {{item.costo_envio | number:2}}</td>
+                                        <td>S/. {{item.descuento | number:2}}</td>
+                                        <td>{{item.forma_pago}}</td>
+                                        <td>{{item.observacion}}</td>
+                                        <td>S/. {{item.total_servicios | number:2}}</td>
+                                        <td>{{item.fecha_reprogramacion}}</td>
+                                        <td>{{item.hora_envio}}</td>
+                                    </tr>
+                                    <tr >
+                                        <td colspan="5" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">TOTAL MONTO A COBRAR</p>  
+                                        </td>
+                                        <td colspan="1" style="background-color:#fff">
+                                            S/. {{tracking.total_a_cobrar | number:2}}
+                                        </td>
+                                         <td colspan="2" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">COSTO TOTAL SERVICIOS</p>  
+                                        </td>
+                                        <td colspan="2" style="background-color:#fff">
+                                            S/. {{tracking.costo_total_servicios | number:2}}
+                                        </td>
+                                        <td style="background-color:#fff"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="dataTable_wrapper">
+                <table style="width:25%; margin-right:15px; float:left" class="table table-striped table-hover" id="dataTables-example">
+                    <thead>
+                        <tr class="head_table">
+                            <th>TOTAL SERVICIOS</th>
+                            <th>{{tracking.total_servicios}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">ENTREGADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{tracking.entregados}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">ANULADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{tracking.anulados}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">REPROGRAMADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{tracking.reprogramados}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dataTable_wrapper">
+                <table style="width:73%; float:left" class="table table-striped table-hover" id="dataTables-example">
+                    <thead>
+                        <tr class="head_table">
+                            <th></th>
+                            <th>EFECT</th>
+                            <th>POS (-5%)</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL A DEPOSITAR</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.efectivo}}
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.pos}}
+                            </td>
+                             <td style="background-color:#fff">
+                                S./ {{tracking.totalcobrar}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL SERVICIOS</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.costo_total_servicios}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">COSTO RECOJO PRODUCTOS</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.costo_recojo}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">SERVICIOS OLVA</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.servicios_olva}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">SERVICIOS ADICIONALES</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.servicios_adicionales}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">SALDO PENDIENDE POR DEPOSITAR</p>
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.pendiente}}
+                            </td>
+                        </tr>
+                        <tr ng-if="cliente.tipo_usuario=='3'">
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL DE DEPOSITO DESCUENTO DE LOS SERVICIOS</p>
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.total_deposito_descuento_servicios}}
+                            </td>
+                        </tr>
+                        <tr ng-if="cliente.tipo_usuario!=='3'">
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL A CANCELAR</p>
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.total_deposito_descuento_servicios}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="reporte_liquidacion2" ng-show="false">
+    <h4 class="title_print">COURIER Gamarra</h4>
+    <div>
+        <p>FECHA ENVIO: {{tracking.fecha_inicio1}}</p>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <md-card>
+                         <div class="dataTable_wrapper">
+                            <table style="width:100%" class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr class="head_table">
+                                        <th>N Orden</th>
+                                        <th>Cliente</th>
+                                        <!--<th>Tipo</th>-->
+                                        <th>Estado</th>
+                                        <th>Costo Productos</th>
+                                        <th ng-if="cliente.tipo_usuario == 3">Adicionar</th>
+                                        <th ng-if="cliente.tipo_usuario != 3">Costo Envio</th>
+                                        <th>Descuento</th>
+                                        <th>Forma de Pago</th>
+                                        <th>Observacion</th>
+                                        <th>Total Servicios</th>
+                                        <th>Fecha Reprog.</th>
+                                        <th>Hora envio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat='item in tracking.nordens | orderBy: n_orden' class="odd gradeX">
+                                        <td>LIE000{{item.n_orden}}</td>
+                                        <td>{{item.cliente}}</td>
+                                        <!--<td>{{item.tipo}}</td>-->
+                                        <td>{{item.estado}}</td>
+                                        <td>S/. {{item.costo_productos | number:2}}</td>
+                                        <td>S/. {{item.costo_envio | number:2}}</td>
+                                        <td>S/. {{item.descuento | number:2}}</td>
+                                        <td>{{item.forma_pago}}</td>
+                                        <td>{{item.observacion}}</td>
+                                        <td>S/. {{item.total_servicios | number:2}}</td>
+                                        <td>{{item.fecha_reprogramacion}}</td>
+                                        <td>{{item.hora_envio}}</td>
+                                    </tr>
+                                    <tr >
+                                        <td colspan="5" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">TOTAL MONTO A COBRAR</p>  
+                                        </td>
+                                        <td colspan="1" style="background-color:#fff">
+                                            S/. {{tracking.total_a_cobrar | number:2}}
+                                        </td>
+                                         <td colspan="2" style="background-color:#fff">
+                                            <p style="text-align:right;font-weight:bold">COSTO TOTAL SERVICIOS</p>  
+                                        </td>
+                                        <td colspan="2" style="background-color:#fff">
+                                            S/. {{tracking.costo_total_servicios | number:2}}
+                                        </td>
+                                        <td style="background-color:#fff"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive --> 
+                    </md-card>
+                <!-- /.panel -->
+                </div>
+            <!-- /.col-lg-12 -->
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="dataTable_wrapper">
+                <table style="width:25%; margin-right:15px; float:left" class="table table-striped table-hover" id="dataTables-example">
+                    <thead>
+                        <tr class="head_table">
+                            <th>TOTAL SERVICIOS</th>
+                            <th>{{tracking.total_servicios}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">ENTREGADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{tracking.entregados}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">ANULADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{tracking.anulados}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">REPROGRAMADO</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                {{tracking.reprogramados}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div class="dataTable_wrapper">
+                <table style="width:73%; float:left" class="table table-striped table-hover" id="dataTables-example">
+                    <thead>
+                        <tr class="head_table">
+                            <th></th>
+                            <th>EFECT</th>
+                            <th>POS (-5%)</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL A DEPOSITAR</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.efectivo}}
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.pos}}
+                            </td>
+                             <td style="background-color:#fff">
+                                S./ {{tracking.totalcobrar}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL SERVICIOS</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.costo_total_servicios}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">COSTO RECOJO PRODUCTOS</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.costo_recojo}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">SERVICIOS OLVA</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.servicios_olva}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">SERVICIOS ADICIONALES</p>  
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.servicios_adicionales}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">SALDO PENDIENDE POR DEPOSITAR</p>
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.pendiente}}
+                            </td>
+                        </tr>
+                        <tr ng-if="cliente.tipo_usuario=='3'">
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL DE DEPOSITO DESCUENTO DE LOS SERVICIOS</p>
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.total_deposito_descuento_servicios}}
+                            </td>
+                        </tr>
+                        <tr ng-if="cliente.tipo_usuario!=='3'">
+                            <td colspan="3" style="background-color:#fff">
+                                <p style="text-align:right;font-weight:bold">TOTAL A CANCELAR</p>
+                            </td>
+                            <td style="background-color:#fff">
+                                S./ {{tracking.total_deposito_descuento_servicios}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

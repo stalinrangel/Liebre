@@ -1,0 +1,71 @@
+<md-dialog aria-label="Mango (Fruit)" class="dialog_detalle" style="width:auto !important; max-width:50% !important;">
+  <form ng-cloak >
+    <md-dialog-content>
+      <div>
+        <i class="fa fa-times delete_modal" aria-hidden="true" ng-click="cancelar()"></i>
+      </div>
+      <div class="md-dialog-content">
+        <h4 style="color:#029ed1; border-bottom: 1px solid #029ed1; font-weight:bold">Reprogramar Pedido</h4>
+        <br>
+        <div class="row" ng-if="user.tipo_usuario != '3'">
+          <div class="col-xs-12 col-sm-12 col-md-5">
+            <div class="form-group input_pedido">
+              <label>Fecha de Entrega</label>
+              <md-datepicker ng-model="myDate" ng-change="ajusteFecha(myDate)" md-placeholder="Enter date" md-min-date="minDate" md-date-filter="onlyWeekendsPredicate"></md-datepicker>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group input_pedido">
+              <label>Hora</label>
+              <select ng-model='horaPedido1' ng-change="ajusteHora(horaPedido1)" class="form-control" null-is-undefined ng-options="select.hora for select in selectHora" style="margin-top:10px">
+              <option value="">Seleccione la hora</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-12">
+            <br>
+            <button class="btn btn-danger pull-right btn-add" ng-click="reprogramar()">Reprogramar Envío</button>
+          </div>
+        </div>
+	      <div class="row" ng-if="user.tipo_usuario == '3'">
+          <div class="col-xs-12 col-sm-12 col-md-5">
+            <div class="form-group input_pedido">
+              <label>Fecha de Entrega</label>
+              <md-datepicker ng-model="myDate" ng-change="ajusteFecha(myDate)" md-placeholder="Enter date" md-min-date="minDate" md-date-filter="onlyWeekendsPredicate"></md-datepicker>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="form-group input_pedido">
+              <label>Turno</label>
+              <select ng-model='horaPedido2' ng-change="ajusteHora1(horaPedido2)" class="form-control" null-is-undefined ng-options="select.id as select.horario for select in seleccionarHorario" style="margin-top:10px">
+                <option value="">Seleccione el turno</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="form-group input_pedido">
+              <label>Rango</label>
+              <select ng-model='horaPedido3' ng-change="ajusteHora2(horaPedido3)" class="form-control" null-is-undefined ng-options="selection.hora for selection in seleccionarHorae | filter:{ids:horaPedido2}" style="margin-top:10px">
+                <option value="">Seleccione el rango</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-12">
+            <br>
+            <div class="form-group input_pedido">
+              <label>Forma de Pago</label>
+              <md-radio-group ng-model="pedido.forma_pago">
+                <md-radio-button ng-value="0" class="md-primary"> Efectivo</md-radio-button>
+                <md-radio-button ng-value="2" class="md-primary"> Pos Visa</md-radio-button>
+              </md-radio-group>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+            <button class="btn btn-danger pull-right btn-add" style="margin-top:30px;" ng-click="reprogramar_ecommerce()">Reprogramar Envío</button>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

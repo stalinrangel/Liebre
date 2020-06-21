@@ -1,0 +1,98 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a ng-click="toggleSidebar()">
+            Menú
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          </a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/persona">Realizar envíos <span class="menu-icon fa fa-truck"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/tracking">Mis envíos <span class="menu-icon fa fa-search"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/historial">Historial <span class="menu-icon fa fa-list-ol"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">Pagos <span class="menu-icon fa fa-credit-card"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/perfil">Mi cuenta <span class="menu-icon fa fa-user"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">Ayuda <span class="menu-icon fa fa-question"></span></a>
+        </li>
+      </ul>
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div class="page-content">
+
+        <!-- Header Bar -->
+        <div class="row header">
+          <div class="col-xs-12">
+            <div class="user pull-right">
+              <div class="item dropdown" uib-dropdown>
+                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                  <img ng-src="{{profile.picture}}">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li class="dropdown-header">
+                    {{profile.usuario}}
+                  </li>
+                  <li class="divider"></li>
+                  <li class="link">
+                    <a ng-click="cerrarS()">
+                      Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="page">
+               <img src="images/logo.png" width="90" height="45">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Header Bar -->
+
+        <!-- Main Content -->
+        <div class="content">
+          <div class="content_listpedidos">
+          <div class="row margin_null">  
+            <ul class="content_tabmoto">
+              <div class="col-xs-1 col-md-1 nav nav-pills nav-stacked">
+                <li ng-class="{ active: isSet(1) }">
+                  <a href="#/historial" class="link_tab">Historial</a>
+                </li>
+              </div>
+              <div class="col-xs-3 col-md-3 nav nav-pills nav-stacked">
+                <li ng-class="{ active: isSet(2) }">
+                  <a href="#/borrador" class="link_tab link_tab_act">Borrador</a>
+                </li>
+              </div>
+              <div class="col-xs-3 col-md-3 nav nav-pills nav-stacked">
+               
+              </div>
+            <div class="col-xs-3 col-md-3 nav nav-pills nav-stacked">
+                
+              </div>
+            </ul>
+          </div>
+            <div ng-controller="ListadoBorradorCtrl as showCase">
+              <p class="text-danger"><strong>{{ showCase.message }}</strong></p>
+              <br>
+              <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-instance="showCase.dtInstance" class="row-border hover tabla_pacientes"></table>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+</div>
