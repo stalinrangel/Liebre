@@ -2233,6 +2233,7 @@ angular.module('starter.controllers', [])
 
         $http(req3).then(function(response){
           console.log(response);
+          $window.location.reload();
         }, function(error){
           console.log(error);
         });

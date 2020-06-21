@@ -962,7 +962,8 @@ angular.module('starter.controllers', [])
     }, 300);
   }
 
-  if (CONFIG.COSTOS == '') {
+  //if (CONFIG.COSTOS == '') {
+  if (true) {
     setTimeout(function() {
       var reqcosto = {
         method: 'GET',
@@ -1660,6 +1661,7 @@ angular.module('starter.controllers', [])
 
       $timeout(function() {
         if ($scope.user.tipo_usuario != 3) {
+          console.log($scope.costos);
           $scope.costo = $scope.km*parseFloat($scope.costos[0].costokm);
         }
       }, 1500);
@@ -8393,6 +8395,7 @@ angular.module('starter.controllers', [])
     };
 
     var showTabDialog = function(ev) {
+      console.log($scope.pedido);
       $mdDialog.show({
         locals:{data: $scope.pedido}, 
         templateUrl: 'templates/detalle_pedido.html',
@@ -8406,7 +8409,7 @@ angular.module('starter.controllers', [])
     };
 
     var mdDialogCtrl = function ($scope,data,$timeout,$rootScope,$filter) { 
-
+      console.log(data);
       $scope.pedidos = data;
       $scope.destinos = [];
       $scope.cliente = CONFIG.CLIENTE;
@@ -8687,6 +8690,11 @@ angular.module('starter.controllers', [])
         });
 
         for (var i = 0; i < $scope.destinos.length; i++) {
+          if ($scope.destinos[i].estado_destino==0) {$scope.destinos[i].estado_destino2='Sin Asignar'}
+          if ($scope.destinos[i].estado_destino==1) {$scope.destinos[i].estado_destino2='Asignado'}
+          if ($scope.destinos[i].estado_destino==2) {$scope.destinos[i].estado_destino2='En Camino'}
+          if ($scope.destinos[i].estado_destino==3) {$scope.destinos[i].estado_destino2='Finalizado'}
+          if ($scope.destinos[i].estado_destino==4) {$scope.destinos[i].estado_destino2='Cancelado'}
           console.log($scope.destinos[i].lat2);
           console.log($scope.destinos[i].lng2);
             marcador.lat=parseFloat($scope.destinos[i].lat2);
@@ -8701,6 +8709,7 @@ angular.module('starter.controllers', [])
         }
 
         $timeout(function() {
+          console.log($scope.destinos);
           console.log($scope.ruta);
           traceRoute($scope.ruta);
           for (var i = 1; i < $scope.ruta.length+1; i++) {
